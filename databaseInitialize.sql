@@ -12,7 +12,7 @@ CREATE TABLE User(
 	userFirstName varchar(20) not null, 
     userLastName varchar(20) not null,
     userType varchar(10) NOT NULL, /*admin/sales/*/ 
-	userEmail varchar(60) NOT NULL,
+	userEmail varchar(60) NOT NULL UNIQUE,
     Primary key (userId),
     password varchar(60) NOT NULL
 );
@@ -20,6 +20,7 @@ CREATE TABLE User(
 CREATE TABLE MAKE(
 	FOREIGN KEY (userId) references user(userId),
 	MakeId INT NOT NULL AUTO_INCREMENT,
+    MakeName varchar(20) NOT NULL, 
 	userId INT NOT NULL,
 	dateAdded date not null,
     primary key(makeId)

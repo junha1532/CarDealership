@@ -13,11 +13,11 @@ import java.util.Objects;
  * @author junha
  */
 public class Vehicle {
-    private int userId;
+    private User user;
     private int vehicleId;
     private String VIN;
     private int year;
-    private int makeId;
+    private Make make;
     private String model;
     private String color;
     private String interior;
@@ -32,17 +32,17 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" + "userId=" + userId + ", vehicleId=" + vehicleId + ", VIN=" + VIN + ", year=" + year + ", makeId=" + makeId + ", model=" + model + ", color=" + color + ", interior=" + interior + ", bodyStyle=" + bodyStyle + ", transmission=" + transmission + ", mileage=" + mileage + ", salePrice=" + salePrice + ", MSRP=" + MSRP + ", featured=" + featured + ", dateAdded=" + dateAdded + ", DESCRIPTION=" + DESCRIPTION + '}';
+        return "Vehicle{" + "user=" + user + ", vehicleId=" + vehicleId + ", VIN=" + VIN + ", year=" + year + ", make=" + make + ", model=" + model + ", color=" + color + ", interior=" + interior + ", bodyStyle=" + bodyStyle + ", transmission=" + transmission + ", mileage=" + mileage + ", salePrice=" + salePrice + ", MSRP=" + MSRP + ", featured=" + featured + ", dateAdded=" + dateAdded + ", DESCRIPTION=" + DESCRIPTION + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + this.userId;
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.user);
         hash = 41 * hash + this.vehicleId;
         hash = 41 * hash + Objects.hashCode(this.VIN);
         hash = 41 * hash + this.year;
-        hash = 41 * hash + this.makeId;
+        hash = 41 * hash + Objects.hashCode(this.make);
         hash = 41 * hash + Objects.hashCode(this.model);
         hash = 41 * hash + Objects.hashCode(this.color);
         hash = 41 * hash + Objects.hashCode(this.interior);
@@ -69,16 +69,10 @@ public class Vehicle {
             return false;
         }
         final Vehicle other = (Vehicle) obj;
-        if (this.userId != other.userId) {
-            return false;
-        }
         if (this.vehicleId != other.vehicleId) {
             return false;
         }
         if (this.year != other.year) {
-            return false;
-        }
-        if (this.makeId != other.makeId) {
             return false;
         }
         if (this.mileage != other.mileage) {
@@ -114,18 +108,24 @@ public class Vehicle {
         if (!Objects.equals(this.DESCRIPTION, other.DESCRIPTION)) {
             return false;
         }
+        if (!Objects.equals(this.user, other.user)) {
+            return false;
+        }
+        if (!Objects.equals(this.make, other.make)) {
+            return false;
+        }
         if (!Objects.equals(this.dateAdded, other.dateAdded)) {
             return false;
         }
         return true;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getVehicleId() {
@@ -152,12 +152,12 @@ public class Vehicle {
         this.year = year;
     }
 
-    public int getMakeId() {
-        return makeId;
+    public Make getMake() {
+        return make;
     }
 
-    public void setMakeId(int makeId) {
-        this.makeId = makeId;
+    public void setMake(Make make) {
+        this.make = make;
     }
 
     public String getModel() {
@@ -247,5 +247,6 @@ public class Vehicle {
     public void setDESCRIPTION(String DESCRIPTION) {
         this.DESCRIPTION = DESCRIPTION;
     }
-    
+
+
 }

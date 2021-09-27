@@ -9,7 +9,6 @@ package com.m3.cardealership.entities;
  *
  * @author Daniel
  */
-package com.m3.cardealership.entities;
 
 import java.util.Objects;
 
