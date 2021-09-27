@@ -20,10 +20,21 @@ CREATE TABLE User(
 CREATE TABLE MAKE(
 	FOREIGN KEY (userId) references user(userId),
 	MakeId INT NOT NULL AUTO_INCREMENT,
-    MakeName varchar(20) NOT NULL, 
+    MakeName varchar(20) NOT NULL UNIQUE, 
 	userId INT NOT NULL,
 	dateAdded date not null,
     primary key(makeId)
+);
+
+Create TABLE MODEL(
+Primary key (modelId),
+FOREIGN KEY (MakeId) references make(MakeId),
+FOREIGN KEY (userId) references user(userId),
+modelId INT NOT NULL AUTO_INCREMENT,
+MakeId INT NOT NULL,
+userId INT NOT NULL,
+modelName varchar(20) NOT NULL,
+dateAdded Date NOT NULL
 );
 
 CREATE TABLE Vehicle (
@@ -32,7 +43,7 @@ VehicleId INT NOT NULL AUTO_INCREMENT,
 VIN varchar(20) NOT NULL,
 Year INT NOT NULL,
 MakeId INT NOT NULL,
-Model varchar(20) NOT NULL,
+ModelId INT NOT NULL,
 Color varchar(20) NOT NULL,
 Interior varchar(20) NOT NULL,
 BodyStyle varchar(20) NOT NULL,
@@ -45,7 +56,7 @@ dateAdded date not null,
 DESCRIPTION varchar(200) NOT NULL,
 PRIMARY KEY (VehicleId),
 FOREIGN KEY (userId) references user(userId),
-FOREIGN KEY (MakeId) references make(MakeId)
+FOREIGN KEY (ModelId) references MODEL(ModelId)
 );
 
 
@@ -71,12 +82,11 @@ CREATE TABLE Contact(
 
 Create TABLE SALE(
 	FOREIGN KEY(SpecialTitle) references Special(SpecialTitle),
-	FOREIGN KEY(VehicleId) references Vehicle(VehicleId),
 	FOREIGN KEY (SalesPersonId) references User(userId),
 	SaleId INT NOT NULL AUTO_INCREMENT,
 	Primary key (SaleId),
     SpecialTitle varchar(20),
-    vehicleId int not null,
+--     vehicleId int not null,
     salespersonId int not null,
     customerName varchar(20) NOT NULL,
 	customerEmail varchar(20) NOT NULL,
