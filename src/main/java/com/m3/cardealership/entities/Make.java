@@ -16,12 +16,13 @@ public class Make {
     private int makeId;
     private int userId;
     private LocalDateTime dateAdded;
+    private String makeName;
 
-    public Make(int makeId, int userId, LocalDateTime dateAdded) {
-        this.makeId = makeId;
-        this.userId = userId;
-        this.dateAdded = dateAdded;
-    }
+//    public Make(int makeId, int userId, LocalDateTime dateAdded) {
+//        this.makeId = makeId;
+//        this.userId = userId;
+//        this.dateAdded = dateAdded;
+//    }
 
     public int getMakeId() {
         return makeId;
@@ -47,15 +48,25 @@ public class Make {
         this.dateAdded = dateAdded;
     }
     
-    
-    
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = LocalDateTime.parse(dateAdded);
+    }
+
+    public String getMakeName() {
+        return makeName;
+    }
+
+    public void setMakeName(String makeName) {
+        this.makeName = makeName;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.makeId;
-        hash = 53 * hash + this.userId;
-        hash = 53 * hash + Objects.hashCode(this.dateAdded);
+        int hash = 5;
+        hash = 89 * hash + this.makeId;
+        hash = 89 * hash + this.userId;
+        hash = 89 * hash + Objects.hashCode(this.dateAdded);
+        hash = 89 * hash + Objects.hashCode(this.makeName);
         return hash;
     }
 
@@ -71,7 +82,20 @@ public class Make {
             return false;
         }
         final Make other = (Make) obj;
+        if (this.makeId != other.makeId) {
+            return false;
+        }
+        if (this.userId != other.userId) {
+            return false;
+        }
+        if (!Objects.equals(this.makeName, other.makeName)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateAdded, other.dateAdded)) {
+            return false;
+        }
         return true;
     }
+    
     
 }

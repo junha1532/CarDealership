@@ -23,13 +23,13 @@ public class Contact{
 
     
     //contactEMAIL && contactPhone != NULL
-    public Contact(int contactId, String contactName, String message, String contactEmail, String contactPhone) {
-        this.contactId = contactId;
-        this.contactName = contactName;
-        this.message = message;
-        this.contactEmail = contactEmail;
-        this.contactPhone = contactPhone;
-    }
+//    public Contact(int contactId, String contactName, String message, String contactEmail, String contactPhone) {
+//        this.contactId = contactId;
+//        this.contactName = contactName;
+//        this.message = message;
+//        this.contactEmail = contactEmail;
+//        this.contactPhone = contactPhone;
+//    }
 
 
     @Override
