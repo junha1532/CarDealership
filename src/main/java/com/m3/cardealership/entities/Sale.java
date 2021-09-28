@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Sale {
     private int saleId;
     private String specialTitle;
-    private int vehicleId;
     private int salespersonId;
     private String customerName;
     private String customerEmail;
@@ -27,24 +26,23 @@ public class Sale {
 
     @Override
     public String toString() {
-        return "Sale{" + "saleId=" + saleId + ", specialTitle=" + specialTitle + ", vehicleId=" + vehicleId + ", salespersonId=" + salespersonId + ", customerName=" + customerName + ", customerEmail=" + customerEmail + ", customerAddress=" + customerAddress + ", customerAddress2=" + customerAddress2 + ", customerCity=" + customerCity + ", customerZipCode=" + customerZipCode + ", purchasePrice=" + purchasePrice + ", purchaseType=" + purchaseType + '}';
+        return "Sale{" + "saleId=" + saleId + ", specialTitle=" + specialTitle + ", salespersonId=" + salespersonId + ", customerName=" + customerName + ", customerEmail=" + customerEmail + ", customerAddress=" + customerAddress + ", customerAddress2=" + customerAddress2 + ", customerCity=" + customerCity + ", customerZipCode=" + customerZipCode + ", purchasePrice=" + purchasePrice + ", purchaseType=" + purchaseType + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + this.saleId;
-        hash = 89 * hash + Objects.hashCode(this.specialTitle);
-        hash = 89 * hash + this.vehicleId;
-        hash = 89 * hash + this.salespersonId;
-        hash = 89 * hash + Objects.hashCode(this.customerName);
-        hash = 89 * hash + Objects.hashCode(this.customerEmail);
-        hash = 89 * hash + Objects.hashCode(this.customerAddress);
-        hash = 89 * hash + Objects.hashCode(this.customerAddress2);
-        hash = 89 * hash + Objects.hashCode(this.customerCity);
-        hash = 89 * hash + Objects.hashCode(this.customerZipCode);
-        hash = 89 * hash + this.purchasePrice;
-        hash = 89 * hash + Objects.hashCode(this.purchaseType);
+        int hash = 5;
+        hash = 17 * hash + this.saleId;
+        hash = 17 * hash + Objects.hashCode(this.specialTitle);
+        hash = 17 * hash + this.salespersonId;
+        hash = 17 * hash + Objects.hashCode(this.customerName);
+        hash = 17 * hash + Objects.hashCode(this.customerEmail);
+        hash = 17 * hash + Objects.hashCode(this.customerAddress);
+        hash = 17 * hash + Objects.hashCode(this.customerAddress2);
+        hash = 17 * hash + Objects.hashCode(this.customerCity);
+        hash = 17 * hash + Objects.hashCode(this.customerZipCode);
+        hash = 17 * hash + this.purchasePrice;
+        hash = 17 * hash + Objects.hashCode(this.purchaseType);
         return hash;
     }
 
@@ -61,9 +59,6 @@ public class Sale {
         }
         final Sale other = (Sale) obj;
         if (this.saleId != other.saleId) {
-            return false;
-        }
-        if (this.vehicleId != other.vehicleId) {
             return false;
         }
         if (this.salespersonId != other.salespersonId) {
@@ -113,14 +108,6 @@ public class Sale {
 
     public void setSpecialTitle(String specialTitle) {
         this.specialTitle = specialTitle;
-    }
-
-    public int getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(int vehicleId) {
-        this.vehicleId = vehicleId;
     }
 
     public int getSalespersonId() {
@@ -194,6 +181,7 @@ public class Sale {
     public void setPurchaseType(String purchaseType) {
         this.purchaseType = purchaseType;
     }
+
     
     
 }

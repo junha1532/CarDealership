@@ -20,20 +20,19 @@ public class Contact{
     private String contactEmail;
     private String contactPhone;
 
-    
-    //contactEMAIL && contactPhone != NULL
-//    public Contact(int contactId, String contactName, String message, String contactEmail, String contactPhone) {
-//        this.contactId = contactId;
-//        this.contactName = contactName;
-//        this.message = message;
-//        this.contactEmail = contactEmail;
-//        this.contactPhone = contactPhone;
-//    }
-
+    @Override
+    public String toString() {
+        return "Contact{" + "contactId=" + contactId + ", contactName=" + contactName + ", message=" + message + ", contactEmail=" + contactEmail + ", contactPhone=" + contactPhone + '}';
+    }
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
+        hash = 89 * hash + this.contactId;
+        hash = 89 * hash + Objects.hashCode(this.contactName);
+        hash = 89 * hash + Objects.hashCode(this.message);
+        hash = 89 * hash + Objects.hashCode(this.contactEmail);
+        hash = 89 * hash + Objects.hashCode(this.contactPhone);
         return hash;
     }
 
@@ -50,6 +49,9 @@ public class Contact{
         }
         final Contact other = (Contact) obj;
         if (this.contactId != other.contactId) {
+            return false;
+        }
+        if (!Objects.equals(this.contactName, other.contactName)) {
             return false;
         }
         if (!Objects.equals(this.message, other.message)) {
@@ -105,5 +107,6 @@ public class Contact{
     }
     
     
+
 
 }

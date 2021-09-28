@@ -6,9 +6,9 @@
 package com.m3.cardealership.dao;
 
 import com.m3.cardealership.dao.MakeDaoDB.MakeMapper;
-import com.m3.cardealership.dao.UserDaoDB.UserMapper;
+import com.m3.cardealership.dao.ModelDaoDB.ModelMapper;
 import com.m3.cardealership.entities.Make;
-import com.m3.cardealership.entities.User;
+import com.m3.cardealership.entities.Model;
 import com.m3.cardealership.entities.Vehicle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,9 +34,9 @@ public class VehicleDaoDB implements VehicleDao {
     @Override
     public Vehicle getVehicleById(int id) {
         try {
-            final String SELECT_Vehicle_BY_ID = "SELECT * FROM vehicle WHERE id = ?";
+            final String SELECT_Vehicle_BY_ID = "SELECT * FROM vehicle WHERE vehicleId = ?";
             Vehicle vehicle = jdbc.queryForObject(SELECT_Vehicle_BY_ID, new VehicleMapper(), id);
-            vehicle.setUser(getUserforVehicle(id));
+            vehicle.setModel(getModelforVehicle(id));
             vehicle.setMake(getMakeforVehicle(id));
             return vehicle;
         } catch (DataAccessException ex) {
@@ -48,13 +48,13 @@ public class VehicleDaoDB implements VehicleDao {
     public List<Vehicle> getAllVehicles() {
         final String SELECT_ALL_VEHICLES = "SELECT * FROM vehicle";
         List<Vehicle> vehicles = jdbc.query(SELECT_ALL_VEHICLES, new VehicleMapper());
-        associateUserAndMake(vehicles);
+        associateModelAndMake(vehicles);
         return vehicles;
     }
     
-    private void associateUserAndMake(List<Vehicle> vehicles) {
+    private void associateModelAndMake(List<Vehicle> vehicles) {
         for (Vehicle vehicle : vehicles) {
-            vehicle.setUser(getUserforVehicle(vehicle.getVehicleId()));
+            vehicle.setModel(getModelforVehicle(vehicle.getVehicleId()));
             vehicle.setMake(getMakeforVehicle(vehicle.getVehicleId()));
         }
     }
@@ -62,13 +62,13 @@ public class VehicleDaoDB implements VehicleDao {
     @Override
     @Transactional
     public Vehicle addVehicle(Vehicle vehicle) {
-        final String INSERT_VEHICLE = "INSERT INTO vehicle(userId, VIN, Year, MakeId, Model, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION) "
+        final String INSERT_VEHICLE = "INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelId, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(INSERT_VEHICLE,
-                vehicle.getUser().getUserId(),
+                vehicle.getUserId(),
                 vehicle.getVIN(),
                 vehicle.getMake().getMakeId(),
-                vehicle.getModel(),
+                vehicle.getModel().getModelId(),
                 vehicle.getColor(),
                 vehicle.getInterior(),
                 vehicle.getBodyStyle(),
@@ -89,14 +89,14 @@ public class VehicleDaoDB implements VehicleDao {
 
     @Override
     public void updateVehicle(Vehicle vehicle) {
-               final String UPDATE_VEHICLE = "UPDATE vehicle SET userId = ?, VIN = ?, Year = ?, MakeId = ?, Model = ?, Color = ?, "
+               final String UPDATE_VEHICLE = "UPDATE vehicle SET userId = ?, VIN = ?, Year = ?, MakeId = ?, ModelId = ?, Color = ?, "
                        + "Interior = ?, BodyStyle = ?, Transmission = ?, Mileage = ?, SalePrice = ?, MSRP = ?, featured = ?, "
                        + "dateAdded = ?, DESCRIPTION = ? WHERE id = ?";
         jdbc.update(UPDATE_VEHICLE, 
-                vehicle.getUser().getUserId(),
+                vehicle.getUserId(),
                 vehicle.getVIN(),
                 vehicle.getMake().getMakeId(),
-                vehicle.getModel(),
+                vehicle.getModel().getModelId(),
                 vehicle.getColor(),
                 vehicle.getInterior(),
                 vehicle.getBodyStyle(),
@@ -118,10 +118,10 @@ public class VehicleDaoDB implements VehicleDao {
     }
 
     @Override
-    public User getUserforVehicle(int id) {
-        final String SELECT_USER_FOR_VEHICLE = "SELECT u.* FROM user u "
-                + "JOIN vehicle v ON v.userId = u.userId WHERE v.userId = ?";
-        return jdbc.queryForObject(SELECT_USER_FOR_VEHICLE, new UserMapper(), id);
+    public Model getModelforVehicle(int id) {
+        final String SELECT_MODEL_FOR_VEHICLE = "SELECT m.* FROM model m "
+                + "JOIN vehicle v ON v.modelId = m.model WHERE v.modelId = ?";
+        return jdbc.queryForObject(SELECT_MODEL_FOR_VEHICLE, new ModelMapper(), id);
     }
 
     @Override
@@ -136,10 +136,10 @@ public class VehicleDaoDB implements VehicleDao {
         @Override
         public Vehicle mapRow(ResultSet rs, int index) throws SQLException {
             Vehicle vehicle = new Vehicle();
+            vehicle.setUserId(rs.getInt("userId"));
             vehicle.setVehicleId(rs.getInt("VehicleId"));
             vehicle.setVIN(rs.getString("VIN"));
             vehicle.setYear(rs.getInt("Year"));
-            vehicle.setModel(rs.getString("Model"));
             vehicle.setColor(rs.getString("Color"));
             vehicle.setInterior(rs.getString("Interior"));
             vehicle.setBodyStyle(rs.getString("BodyStyle"));

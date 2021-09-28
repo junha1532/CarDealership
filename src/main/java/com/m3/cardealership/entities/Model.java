@@ -10,26 +10,28 @@ import java.util.Objects;
 
 /**
  *
- * @author Daniel
+ * @author junha
  */
-public class Make {
+public class Model {
+    private int modelId;
     private int makeId;
     private int userId;
+    private String modelName;
     private LocalDate dateAdded;
-    private String makeName;
 
     @Override
     public String toString() {
-        return "Make{" + "makeId=" + makeId + ", userId=" + userId + ", dateAdded=" + dateAdded + ", makeName=" + makeName + '}';
+        return "Model{" + "modelId=" + modelId + ", makeId=" + makeId + ", userId=" + userId + ", modelName=" + modelName + ", dateAdded=" + dateAdded + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
+        hash = 53 * hash + this.modelId;
         hash = 53 * hash + this.makeId;
         hash = 53 * hash + this.userId;
+        hash = 53 * hash + Objects.hashCode(this.modelName);
         hash = 53 * hash + Objects.hashCode(this.dateAdded);
-        hash = 53 * hash + Objects.hashCode(this.makeName);
         return hash;
     }
 
@@ -44,20 +46,31 @@ public class Make {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Make other = (Make) obj;
+        final Model other = (Model) obj;
+        if (this.modelId != other.modelId) {
+            return false;
+        }
         if (this.makeId != other.makeId) {
             return false;
         }
         if (this.userId != other.userId) {
             return false;
         }
-        if (!Objects.equals(this.makeName, other.makeName)) {
+        if (!Objects.equals(this.modelName, other.modelName)) {
             return false;
         }
         if (!Objects.equals(this.dateAdded, other.dateAdded)) {
             return false;
         }
         return true;
+    }
+
+    public int getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(int modelId) {
+        this.modelId = modelId;
     }
 
     public int getMakeId() {
@@ -76,6 +89,14 @@ public class Make {
         this.userId = userId;
     }
 
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
     public LocalDate getDateAdded() {
         return dateAdded;
     }
@@ -83,15 +104,6 @@ public class Make {
     public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
     }
-
-    public String getMakeName() {
-        return makeName;
-    }
-
-    public void setMakeName(String makeName) {
-        this.makeName = makeName;
-    }
-
-
+    
     
 }

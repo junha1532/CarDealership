@@ -6,7 +6,7 @@
 package com.m3.cardealership.dao;
 
 import com.m3.cardealership.entities.Make;
-import com.m3.cardealership.entities.User;
+import com.m3.cardealership.entities.Model;
 import com.m3.cardealership.entities.Vehicle;
 import java.util.List;
 
@@ -21,6 +21,6 @@ public interface VehicleDao {
     void updateVehicle(Vehicle vehicle);
     void deleteVehicleById(int id);
     
-    User getUserforVehicle(int id);
+    Model getModelforVehicle(int id);
     Make getMakeforVehicle(int id);
 }
