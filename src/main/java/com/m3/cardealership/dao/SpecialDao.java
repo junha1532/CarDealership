@@ -14,11 +14,8 @@ import java.util.List;
  * @author junha
  */
 public interface SpecialDao {
-    Special getSpecialById(int id);
+    Special getSpecialByTitle(String title);
     List<Special> getAllSpecials();
     Special addSpecial(Special special);
-    void updateSpecial(Special special);
-    void deleteSpecialById(int id);
-    
-    List<Special> getSalesForSale(Sale sale);
+    void deleteSpecialByTitle(String title);
 }
