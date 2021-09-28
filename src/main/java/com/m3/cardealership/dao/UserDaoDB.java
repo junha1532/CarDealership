@@ -52,7 +52,7 @@ public class UserDaoDB implements UserDao{
     public User addUser(User user) {
                 final String INSERT_USER = "INSERT INTO user(userFirstName, userLastName, userType, userEmail, password) "
                 + "VALUES(?,?,?,?,?)";
-//        try {
+        try {
             jdbc.update(INSERT_USER,
                 user.getUserFirstName(),
                 user.getUserLastName(),
@@ -60,9 +60,9 @@ public class UserDaoDB implements UserDao{
                 user.getUserEmail(),
                 user.getPassword()
         );
-//        } catch (SQLIntegrityConstraintViolationException  e) {
-//            return null;
-//        }
+        } catch (DataAccessException   e) {
+            return null;
+        }
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         user.setUserId(newId);
         return user;
