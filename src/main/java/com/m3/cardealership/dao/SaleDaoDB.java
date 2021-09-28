@@ -36,17 +36,6 @@ public class SaleDaoDB implements SaleDao {
     }
 
     @Override
-    public Sale getSaleByVehicleiId(int id) {
-        try{
-            final String SELECT_SALE_BY_ID = "SELECT * FROM sale WHERE vehicleId = ?";
-            Sale sale = jdbc.queryForObject(SELECT_SALE_BY_ID,new SaleMapper(), id);
-            return sale;
-        }catch (DataAccessException ex){
-            return null;
-        }    
-    }    
-
-    @Override
     public List<Sale> getAllSales() {
         final String GET_ALL_SALES = "SELECT * FROM sale";
         return jdbc.query(GET_ALL_SALES, new SaleMapper());
@@ -69,12 +58,11 @@ public class SaleDaoDB implements SaleDao {
 
     @Override
     public Sale addSale(Sale sale) {
-        final String INSERT_SALE = "INSERT INTO sale(SpecialTitle,vehicleId,salesPersonId,customerName,customerEmail,"
+        final String INSERT_SALE = "INSERT INTO sale(SpecialTitle,salesPersonId,customerName,customerEmail,"
                 + "customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(INSERT_SALE, 
                 sale.getSpecialTitle(),
-//                sale.getVehicleId(),
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
                 sale.getCustomerEmail(),
@@ -93,12 +81,11 @@ public class SaleDaoDB implements SaleDao {
 
     @Override
     public void updateSale(Sale sale) {
-        final String UPDATE_TEACHER = "UPDATE teacher SET SpecialTitle = ?, vehicleId = ?, " +
+        final String UPDATE_SALE = "UPDATE sale SET SpecialTitle = ?, " +
                 "salesPersonId = ?, customerName = ?, customerEmail = ?, customerAddress = ?, customerAddress2 = ?, "
                 + "customerCity = ?, customerZipCode = ?, purchasePrice = ?, purchaseType = ? WHERE id = ?";
-        jdbc.update(UPDATE_TEACHER,                
+        jdbc.update(UPDATE_SALE,                
                 sale.getSpecialTitle(),
-//                sale.getVehicleId(),
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
                 sale.getCustomerEmail(),
@@ -130,7 +117,6 @@ public class SaleDaoDB implements SaleDao {
             Sale sale = new Sale();
             sale.setSaleId(rs.getInt("SaleId"));
             sale.setSpecialTitle(rs.getString("SpecialTitle"));
-//            sale.setVehicleId(rs.getInt("vehicleId"));
             sale.setSalespersonId(rs.getInt("salespersonId"));
             sale.setCustomerName(rs.getString("customerName"));
             sale.setCustomerEmail(rs.getString("customerEmail"));

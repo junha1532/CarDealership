@@ -17,10 +17,16 @@ import java.util.List;
 public interface VehicleDao {
     Vehicle getVehicleById(int id);
     List<Vehicle> getAllVehicles();
+    List<Vehicle> getFeaturedVehicles();
+    
     Vehicle addVehicle(Vehicle vehicle);
     void updateVehicle(Vehicle vehicle);
     void deleteVehicleById(int id);
     
     Model getModelforVehicle(int id);
     Make getMakeforVehicle(int id);
+    
+    
+    List<Vehicle> getVehicleBySearch(Boolean isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear);
+    List<Vehicle> getVehicleBySearch(Boolean isNew);
 }

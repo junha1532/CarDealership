@@ -15,8 +15,16 @@ import java.util.Objects;
 public class Contact{
     
     private int contactId;
+    
+//    @NotBlank(message = "Name must not be empty")
+//    @Size(max = 20, message="Name must be less than 20 characters.")
     private String contactName;
+    
+//    @NotBlank(message = "Message must not be empty.")
+//    @Size(max = 30, message="Message must be less than 200 characters.")
     private String message;
+    
+    //email and phone cannot both be null
     private String contactEmail;
     private String contactPhone;
 
