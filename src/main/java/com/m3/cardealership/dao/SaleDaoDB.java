@@ -74,7 +74,7 @@ public class SaleDaoDB implements SaleDao {
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(INSERT_SALE, 
                 sale.getSpecialTitle(),
-                sale.getVehicleId(),
+//                sale.getVehicleId(),
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
                 sale.getCustomerEmail(),
@@ -98,7 +98,7 @@ public class SaleDaoDB implements SaleDao {
                 + "customerCity = ?, customerZipCode = ?, purchasePrice = ?, purchaseType = ? WHERE id = ?";
         jdbc.update(UPDATE_TEACHER,                
                 sale.getSpecialTitle(),
-                sale.getVehicleId(),
+//                sale.getVehicleId(),
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
                 sale.getCustomerEmail(),
@@ -130,7 +130,7 @@ public class SaleDaoDB implements SaleDao {
             Sale sale = new Sale();
             sale.setSaleId(rs.getInt("SaleId"));
             sale.setSpecialTitle(rs.getString("SpecialTitle"));
-            sale.setVehicleId(rs.getInt("vehicleId"));
+//            sale.setVehicleId(rs.getInt("vehicleId"));
             sale.setSalespersonId(rs.getInt("salespersonId"));
             sale.setCustomerName(rs.getString("customerName"));
             sale.setCustomerEmail(rs.getString("customerEmail"));
