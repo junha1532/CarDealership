@@ -100,6 +100,9 @@ Create TABLE SALE(
 INSERT INTO user(userFirstName, userLastName, userType, userEmail, password)
 Values("Junha", "Park", "ADMIN", "junha.park@cardealership.com", "12345ABC");
 
+INSERT INTO user(userFirstName, userLastName, userType, userEmail, password)
+Values("Paul", "Botti", "USER", "pbotti4@gmail.com", "123456456456");
+
 INSERT INTO Make(userId, makeName, dateAdded) 
 Values(1, "Audi", "2021-09-01");
 

@@ -9,8 +9,15 @@ package com.m3.cardealership.security;
  *
  * @author pbott
  */
+import com.m3.cardealership.dao.UserDao;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+//import com.m3.cardealership.entities;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,7 +31,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    UserDao userdao;
     
+    
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(users());
+        }
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -52,39 +66,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
         public UserDetailsService users() {
-            // The builder will ensure the passwords are encoded before saving in memory
-            UserBuilder users = User.withDefaultPasswordEncoder();
-            UserDetails user = users
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
-            UserDetails admin = users
-                .username("admin")
-                .password("password")
-                .roles("USER", "ADMIN")
-                .build();
-            return new InMemoryUserDetailsManager(user, admin);
+            InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+            List<com.m3.cardealership.entities.User> userList = userdao.getAllUsers();
+
+            for(com.m3.cardealership.entities.User u : userList){
+                manager.createUser(
+                        User.withDefaultPasswordEncoder().username(u.getUserEmail())
+                                .password(u.getPassword())
+                                .roles(u.getUserType())
+                                .build());
+            }
+            
+            return manager;
         }
         
-//        @Autowired
-//	DataSource dataSource;
-//	
-//	@Autowired
-//	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-//		
-//	  auth.jdbcAuthentication().dataSource(dataSource)
-//		.usersByUsernameQuery(
-//			"select userEmail,password, 1 from user where userEmail=?")
-//		.authoritiesByUsernameQuery(
-//			"select userEmail, userType from user where userEmail=?")
-//                  .passwordEncoder(new BCryptPasswordEncoder());
-//	}
-//        
-//        @Bean
-//        public PasswordEncoder passwordEncoder() {
-//            return new BCryptPasswordEncoder();
-//        }
-        
+        @Bean
+        public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+            final Properties users = new Properties();
+            users.put("user","pass,ROLE_USER,enabled"); //add whatever other user you need
+            return new InMemoryUserDetailsManager(users);
+        }
         
 }
