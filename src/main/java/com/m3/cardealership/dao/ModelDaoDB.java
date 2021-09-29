@@ -34,7 +34,7 @@ public class ModelDaoDB implements ModelDao{
         }
     }
     
-    
+    @Override
     public Model getModelFromModelName(String modelName){
         try {
             final String SELECT_MODEL_BY_MODELNAME = "SELECT * FROM model WHERE modelName = ?";
