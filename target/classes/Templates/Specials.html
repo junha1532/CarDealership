@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿<!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -20,18 +19,22 @@
         <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales
         </a>
     </div>
+    
+    
+    <div class="container"><h1>Specials</h1></div>
+        
+    
+    <div class="addSpecial">
+        <form th:action="@{/Specials}" method="post">
+            <label for="name">Title</label> <br />
+            <input type="text" id="name" name="name" />
+            <br />
+            <label for="description">Description</label> <br />
+            <textarea id="description" name="description"></textarea>
+            <br />
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>TEMP SPECIALS PAGE!</title>
-    </head>
-    <body>
-        <h1>THIS IS TEMP SPECIALS PAGE!</h1>  
-        
-    </body>
-</html>
->>>>>>> db6085cdcbdb171bf206d63c3a7c24f4de2b5107
+
