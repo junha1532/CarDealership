@@ -81,6 +81,8 @@ public class SaleDaoDB implements SaleDao {
         
     }
 
+    
+    //unused
     @Override
     public void updateSale(Sale sale) {
         final String UPDATE_SALE = "UPDATE sale SET SpecialTitle = ?, " +

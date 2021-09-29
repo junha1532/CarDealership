@@ -30,12 +30,23 @@ public class SalesController {
     @Autowired
     VehicleDao vehicleDao;
     
+    @GetMapping("Sales") //MSRP
+    public String getVehicles(Model model){
+        return "sales";
+    }
+    
+        
+    @GetMapping("Sales") //Search like queries
+    public String getVehicles(Model model,String queries){
+        return "sales";
+    }
+    
+    
     
     @GetMapping("Purchase")
     public String addSale(Integer id, Model model) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         model.addAttribute("course", vehicle);
-
         return "Purchase";
     }
     
@@ -43,7 +54,6 @@ public class SalesController {
     @Transactional
     @PostMapping("Purchase")
     public String performAddSale(Vehicle vehicle, HttpServletRequest request) {
-//        String customerName = request.getParameter("teacherId");
         
         String salespersonId = request.getParameter("salespersonId");
         String customerName = request.getParameter("customerName");
@@ -72,5 +82,8 @@ public class SalesController {
 
         return "redirect:/Sales";
     }
+    
+    //addCarMake
+    //addCarModel
     
 }

@@ -25,7 +25,7 @@ USE cardealership;
 -- Values(3, 1, "SuperFast", "2021-09-14");
 
 -- INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
--- Values(1, "0123456789", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, false, "2021-09-14", "This is a used Black Audi R8");
+-- Values(1, "421341241", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, false, "2021-09-14", "This is a used Black Audi R8");
 
 -- INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
 -- Values(1, "0123498765", 2020, 1, 2, "Red", "Grey", "SUV", "Auto", 0, 35000, 40000, false, "2021-09-14", "This is a New Red Audi A4");
@@ -48,3 +48,5 @@ USE cardealership;
 -- AND YEAR LIKE "%2020%"
 -- LIMIT 4;
 -- AND SALEPRICE = 35000;
+
+SELECT v.year Year, ma.makeName Make, m.modelName Model v.count(v.*) FROM VEHICLE v JOIN make ma on ma.makeid = v.makeId join model m on m.modelId = v.modelId WHERE ma.makeName = "Audi" and m.modelName = "R8";

@@ -1,4 +1,13 @@
 -------------------------------------------------------------------------------
 Test set: com.m3.cardealership.CardealershipApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.171 s - in com.m3.cardealership.CardealershipApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.539 s <<< FAILURE! - in com.m3.cardealership.CardealershipApplicationTests
+contextLoads  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'contactController': Unsatisfied dependency expressed through field '<error>'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.m3.cardealership.dao.ContactDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.m3.cardealership.dao.ContactDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+
+>>>>>>> Stashed changes

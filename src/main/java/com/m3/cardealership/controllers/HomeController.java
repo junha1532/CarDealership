@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/Home")
 public class HomeController {
     
     @Autowired 
@@ -45,7 +45,7 @@ public class HomeController {
         return "Specials";
     }
     
-    @GetMapping("/index")
+    @RequestMapping(value={"/", "/home", "/index.html"}, method= RequestMethod.GET)
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);

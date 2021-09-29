@@ -5,7 +5,12 @@
  */
 package com.m3.cardealership.controllers;
 
+import com.m3.cardealership.dao.VehicleDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -14,5 +19,34 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class AdminController {
+    
+    @Autowired
+    VehicleDao vehicledao;
+    
+    @GetMapping("Vehicles")
+    public String DisplayVehicles(Model model){
+        return "Vehicles";
+    }
+    
+    @PostMapping("/AddVehicle")
+    public String AddVehicle(){
+        return "redirect:/Vehicles";
+    }
+    
+    //GetAllVehicles
+    //EditVehicle -> editvehicle page with the vehicle
+    //editvehicleUPDATE -> modified vehicle
+    
+    
+    //getallusers
+    
+    //adduser
+    //edituser
+    
+    //addSpecial
+    //deleteSpecial
+    
+    
+    
     
 }

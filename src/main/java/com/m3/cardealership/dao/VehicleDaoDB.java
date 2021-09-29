@@ -56,13 +56,18 @@ public class VehicleDaoDB implements VehicleDao {
     
     public List<Vehicle> getVehicleBySearch(Boolean isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear){
         String SELECT_FEATURED_VEHICLES = "SELECT v.* FROM VEHICLE v JOIN model m ON m.modelId = v.modelId JOIN make ma on ma.makeId = m.makeId";
+        
+        //new
         if (isNew)
             SELECT_FEATURED_VEHICLES += " WHERE v.mileage =0";
+        //used
         else SELECT_FEATURED_VEHICLES += " WHERE v.mileage >0";
         
         //Quick Search
-        SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE %" + likeQuery 
-                + "% AND m.modelName LIKE %" + likeQuery + "% AND v.year LIKE %" + likeQuery + "%";
+        
+        if (likeQuery != "")
+            SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE %" + likeQuery 
+                    + "% AND m.modelName LIKE %" + likeQuery + "% AND v.year LIKE %" + likeQuery + "%";
         
         //Price Min_max
         if (minPrice != ""){
@@ -95,7 +100,7 @@ public class VehicleDaoDB implements VehicleDao {
         
         String SELECT_FEATURED_VEHICLES = "SELECT * FROM VEHICLE v ";
         if (isNew)
-            SELECT_FEATURED_VEHICLES += "WHERE v.mileage ==0";
+            SELECT_FEATURED_VEHICLES += "WHERE v.mileage =0";
         else SELECT_FEATURED_VEHICLES += "WHERE v.mileage >0";
         
         SELECT_FEATURED_VEHICLES += " ORDER BY MSRP DESC LIMIT 20";

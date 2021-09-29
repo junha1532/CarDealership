@@ -21,27 +21,27 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class VehicleController {
-    
-    @Autowired
-    UserDao userDao;
-    
-    @Autowired
-    SaleDao saleDao;
-    
-    @Autowired
-    SpecialDao specialDao;
-    
-    @Autowired
-    ContactDao contactDao;
-    
-    @Autowired
-    VehicleDao vehicleDao;
-
-    @Autowired
-    MakeDao makeDao;
-
-    @Autowired
-    ModelDao modelDao;
-    
+//    
+//    @Autowired
+//    UserDao userDao;
+//    
+//    @Autowired
+//    SaleDao saleDao;
+//    
+//    @Autowired
+//    SpecialDao specialDao;
+//    
+//    @Autowired
+//    ContactDao contactDao;
+//    
+//    @Autowired
+//    VehicleDao vehicleDao;
+//
+//    @Autowired
+//    MakeDao makeDao;
+//
+//    @Autowired
+//    ModelDao modelDao;
+//    
 
 }

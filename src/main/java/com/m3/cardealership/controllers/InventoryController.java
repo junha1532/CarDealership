@@ -33,13 +33,15 @@ public class InventoryController {
     ContactDao contactDao;
     
 
-    @GetMapping("/Inventory/Detail")
+    //pathvariable
+    @GetMapping("/Inventory/Detail/{id}")
     public String vehicleDetail(Integer id, Model model) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
         return "/Inventory/Detail";
     }
     
+    //MSRP
     @GetMapping ("/Inventory/New")
     public String showNewVehicles(Model model){
         Boolean isNew = true;
@@ -49,6 +51,7 @@ public class InventoryController {
     }
     
     
+    //search queries
     @GetMapping ("/Inventory/New")
     public String showNewVehicles(Model model, HttpServletRequest request){
         Boolean isNew = true;
@@ -64,6 +67,7 @@ public class InventoryController {
     }
     
     
+    //sorted by MSRP
     @GetMapping ("/Inventory/Used")
     public String showUsedVehicles(Model model){
         Boolean isNew = false;
@@ -72,6 +76,8 @@ public class InventoryController {
         return "/Inventory/Used";
     }
     
+    
+    //SEARCH query
     @GetMapping ("/Inventory/used")
     public String showUsedVehicles(Model model, HttpServletRequest request){
         Boolean isNew = false;
