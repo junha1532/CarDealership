@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .and()  //added
                         .httpBasic();  //added;
                 
-//                http.csrf().disable();
+                http.csrf().disable();
         }
         
         @RequestMapping("/403")
