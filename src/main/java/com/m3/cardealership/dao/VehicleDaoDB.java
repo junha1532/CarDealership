@@ -64,7 +64,6 @@ public class VehicleDaoDB implements VehicleDao {
         else SELECT_FEATURED_VEHICLES += " WHERE v.mileage >0";
         
         //Quick Search
-        
         if (likeQuery != "")
             SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE %" + likeQuery 
                     + "% AND m.modelName LIKE %" + likeQuery + "% AND v.year LIKE %" + likeQuery + "%";
@@ -149,7 +148,6 @@ public class VehicleDaoDB implements VehicleDao {
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         vehicle.setVehicleId(newId);
-//        insertVehicleStudent(vehicle);
         return vehicle;
     }
 

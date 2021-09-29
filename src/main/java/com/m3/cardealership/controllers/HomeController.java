@@ -56,7 +56,7 @@ public class HomeController {
         return "index";
     }
     
-    @PostMapping("/Contact/add")
+    @PostMapping("addContact")
     public String addContact(HttpServletRequest request) {
         String contactName = request.getParameter("customerName");
         String message = request.getParameter("message");

@@ -109,7 +109,7 @@ public class InventoryController {
         contact.setContactPhone(contactPhone);
         
         contactDao.addContact(contact);
-        return "redirect://Inventory/Detail?"+id;
+        return "redirect:/Inventory/Detail?"+id;
     }
     
     

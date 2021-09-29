@@ -57,6 +57,7 @@ public class SaleDaoDB implements SaleDao {
                 + " WHERE v.mileage = 0";
         return jdbc.query(GET_NEW_SALES, new SaleMapper());    
     }
+    
 
     @Override
     public Sale addSale(Sale sale) {
@@ -81,6 +82,8 @@ public class SaleDaoDB implements SaleDao {
         
     }
 
+    
+    
     
     //unused
     @Override
