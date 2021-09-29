@@ -120,7 +120,32 @@ Values(1, 1, "Audi123", "2021-09-14");
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
 Values(1, "01230AJKNDSD", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, false, "2021-09-14", "COOL CAR. MUST BUY!");
 
-DELETE FROM vehicle WHERE vehicleId = 1; 
+INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
+Values(2, "01230AJKNDSJ", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, true, "2021-09-14", "COOL CAR. MUST BUY!");
+
+-- INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
+-- Values(3, "01230AJKNDGJ", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, true, "2021-09-14", "COOL CAR. MUST BUY!");
+
+-- DELETE FROM vehicle WHERE vehicleId = 1; 
 
 INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType )
 Values(1, "Aubrey", "aubrey@abc.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "CASH");
+
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title1", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title2", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title3", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title4", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title5", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title6", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title7", "Desc", 100);
+INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
+Values ("Title8", "Desc", 100);

@@ -12,7 +12,6 @@ import com.m3.cardealership.dao.UserDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Special;
-import com.m3.cardealership.entities.Vehicle;
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import com.m3.cardealership.entities.Vehicle;
@@ -22,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -45,6 +45,13 @@ public class AdminController {
     
     @Autowired
     SpecialDao specialdao;
+    
+    @GetMapping("/Admin/Specials")
+    public String displaySpecials(Model model){
+        List<Special> specials = specialdao.getAllSpecials();
+        model.addAttribute("specials", specials);
+        return "Specials";
+    }
     
     @GetMapping("Vehicles")
     public String displayVehicles(Model model){
@@ -166,14 +173,17 @@ public class AdminController {
         String specialDescription = request.getParameter("specialDescription");
  
         Special special = new Special();
+        special.setSpecialTitle(specialTitle);
+        special.setSpecialDescription(specialDescription);
+        special.setPromotionAmount(0);//where do we get this from?
         specialdao.addSpecial(special);
 
         return "redirect:/Admin/Specials";
     }
 
-    @PostMapping("deleteSpecial")
-    public String deleteTeacher(HttpServletRequest request) {
-        specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
+    @GetMapping("deleteSpecial")
+    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
+        specialdao.deleteSpecialByTitle(title);
         return "redirect:/Admin/Specials";
     }   
     

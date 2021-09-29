@@ -15,8 +15,8 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="Index.html">Home</a>
-        <a href="InventoyNew.html">New Inventory</a>
+        <a th:href="@{/Index}">Home</a>
+        <a href="InventoryNew.html">New Inventory</a>
         <a href="UsedInventory.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
@@ -27,16 +27,32 @@
     <div class="container"><h1>Specials</h1></div>
         
     
-    <div class="addSpecial">
-        <form th:action="@{/Specials}" method="post">
+    <div class="container col-md-8 offset-md-2 border border-primary">
+        <div class="col-md-8 offset-md-2">
+        <form th:action="@{/addSpecial}" method="post">
             <label for="name">Title</label> <br />
-            <input type="text" id="name" name="name" />
+            <input type="text" id="specialTitle" name="specialTitle" />
             <br />
             <label for="description">Description</label> <br />
-            <textarea id="description" name="description"></textarea>
+            <textarea id="specialDescription" name="specialDescription"></textarea>
             <br />
             <input type="submit" value="Submit">
         </form>
+            </div>
+    </div>
+    <div class = "container">
+        <p th:each="special : ${specials}">
+            <span th:text="${special.SpecialTitle}"> </span>
+            <br>
+            <span th:text="${special.SpecialDescription}"> </span>
+            <br>
+            <a th:href="@{/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
+                <!--<button type="submit" th:action="@{/deleteSpecial}" method="post">Delete</button>-->
+<!--                <span><form th:action="@{/deleteSpecial}" th:object="${special}" method="post">
+                <input type="hidden" name="specialTitle" value="${special.SpecialTitle}"/>
+                <button type="submit">Delete</button>
+                    </form></span>-->
+        </p>
     </div>
 </body>
 </html>

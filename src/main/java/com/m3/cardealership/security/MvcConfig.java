@@ -20,15 +20,18 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/Index.html").setViewName("Index");
+                registry.addViewController("/Index").setViewName("Index.html");
 		registry.addViewController("/").setViewName("Index");
-                registry.addViewController("/Specials.html").setViewName("Specials");
+                registry.addViewController("/Inventory/Specials").setViewName("Specials");
+                registry.addViewController("/Admin/Specials").setViewName("Specials");
                 registry.addViewController("/Contact.html").setViewName("Contact");
 		registry.addViewController("/home/index").setViewName("Index");
-                registry.addViewController("/index").setViewName("Index");
-                registry.addViewController("/Inventory/New").setViewName("InventoyNew");
-
-                registry.addViewController("/Inventory/Used").setViewName("InventoryUsed");
-
+                registry.addViewController("/Inventory/New").setViewName("InventoryNew");
+                registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
+                registry.addViewController("*/StyleSheet.css").setViewName("StyleSheet.css");
+                registry.addViewController("/Inventory/UsedInventory.html").setViewName("UsedInventory");
+                registry.addViewController("Inventory/Script1.js").setViewName("Script1.js");
+                
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");
