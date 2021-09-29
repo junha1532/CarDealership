@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Daniel
  */
 @Controller
+@RequestMapping("/sales")
 public class SalesController {
     
     @Autowired 
@@ -44,7 +45,7 @@ public class SalesController {
     VehicleDao vehicleDao;
     
 
-    @GetMapping("Sales") //MSRP
+    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
     public String getVehicles(Model model){
         List<Vehicle> vehicles = vehicleDao.getAllVehicles();
         model.addAttribute("vehicles",vehicles); 
@@ -52,7 +53,7 @@ public class SalesController {
     }
 
     
-    @RequestMapping(value={"/", "/sales", "/index.html"}, method= RequestMethod.GET)
+    @RequestMapping(value={"/query", "/index/query"}, method= RequestMethod.GET)
     public String getVehicles(Model model, HttpServletRequest request){
         
         String likeQuery = request.getParameter("likeQuery");
