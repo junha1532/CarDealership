@@ -51,10 +51,10 @@ public class HomeController {
     
     @PostMapping("addContact")
     public String addContact(HttpServletRequest request) {
-        String contactName = request.getParameter("customerName");
-        String message = request.getParameter("message");
-        String contactEmail = request.getParameter("customerEmail");
-        String contactPhone = request.getParameter("customerPhone");
+        String contactName = request.getParameter("name");
+        String message = request.getParameter("subject");
+        String contactEmail = request.getParameter("email");
+        String contactPhone = request.getParameter("Pnumber");
         
         Contact contact = new Contact();
         contact.setContactName(contactName);
@@ -63,7 +63,7 @@ public class HomeController {
         contact.setContactPhone(contactPhone);
         contactDao.addContact(contact);
         
-        return "redirect:/Contact";
+        return "Contact";
     }
     
 

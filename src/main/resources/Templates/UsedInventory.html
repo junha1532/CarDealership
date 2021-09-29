@@ -14,10 +14,41 @@
         <a href="UsedInventory.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
-        <a sec:authorize="hasRole('ADMIN')">Admin
+        <a sec:authorize="hasRole('ADMIN')">
+            Admin
         </a>
-        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales
+        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">
+            Sales
         </a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="SearchBar">
+        <h3>Quick Search</h3>
+        <form name="formS" id="Searchform" action="Script1.js">
+            <input type="search" id="query" name="q" placeholder="Enter make, model, or year...">
+            <div class="dropdown">
+                Prices: <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Min Price</option>
+                </select>
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Max Price</option>
+                </select>
+            </div>
+
+            <div class="dropdown2">
+                Year:
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Min Year</option>
+                </select>
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Max Year</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search">Search</button>
+        </form>
     </div>
 
 </body>

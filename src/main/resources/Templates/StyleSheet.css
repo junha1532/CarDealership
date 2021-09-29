@@ -172,17 +172,16 @@ h3{
     margin-left: 10px;
 }
 #Searchform {
-    margin-left: 35px;
-    padding: 6px 10px;
     margin-top: 5px;
-    margin-right: 16px;
     font-size: 17px;
     border: none;
-    display:grid;
+    display: flex;
+    justify-content: space-around;
 }
 
 #query{
     width:250px;
+    height:35px;
 }
 
 .SearchBar input[type=text] {
@@ -193,18 +192,20 @@ h3{
     
 }
 
-.dropdown {
-    
-}
-.dropbtn{
-    background-color:cornflowerblue;
-    float:inline-start;
-
-}
-.dropbtn2 {
+.dropbtn {
     background-color: cornflowerblue;
-    float: inline-start;
-}
+    color: white;
+    padding:5px;
+    border:none;
+    max-height:25px;
+    max-width:100px;
+}.search{
+     width:100px;
+     height:25px;
+ }
+
+
+
 
 
 

@@ -10,7 +10,7 @@
 
     <meta charset="utf-8" />
     <title>
-        Home
+        Specials
     </title>
 </head>
 <body>
@@ -47,11 +47,6 @@
             <span th:text="${special.SpecialDescription}"> </span>
             <br>
             <a th:href="@{/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
-                <!--<button type="submit" th:action="@{/deleteSpecial}" method="post">Delete</button>-->
-<!--                <span><form th:action="@{/deleteSpecial}" th:object="${special}" method="post">
-                <input type="hidden" name="specialTitle" value="${special.SpecialTitle}"/>
-                <button type="submit">Delete</button>
-                    </form></span>-->
         </p>
     </div>
 </body>
