@@ -5,7 +5,7 @@
     border-right:solid;
     border-left:solid;
     border-width: 2px;
-    width:1246px;
+    width:1261px;
     text-align: center;
     overflow: hidden;
     position:fixed;
@@ -33,11 +33,12 @@
     border-bottom-width: 8px;
     color: inherit;
     height: 250px;
+    width:1205px;
     
 }
 
 .image {
-    width:1250px;
+    width:1265px;
     height:250px;
     
 }
