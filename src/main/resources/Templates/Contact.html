@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="Index.html">Home</a>
-        <a href="InventoyNew.html">New Inventory</a>
+        <a th:href="Index.html">Home</a>
+        <a href="InventoryNew.html">New Inventory</a>
         <a href="UsedInventory.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
     </div>
 
     <div class="contactUs">
-        <form action="action.php">
+        <form action="addContact" method = "POST">
             <label for="name">Name</label> <br />
             <input type="text" id="name" name="name" placeholder="Full Name" />
             <br />

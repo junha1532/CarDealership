@@ -50,7 +50,7 @@ public class ContactDaoDB implements ContactDao{
     //ADD VIN WHEN COME FROM CAR VIEW
     @Override
     public Contact addContact(Contact contact) {
-        final String INSERT_CONTACT = "INSERT INTO contact(ContactName,ContactMessage,ContactEmail,ContactPhone) VALUES(?,?,?,?)";
+        final String INSERT_CONTACT = "INSERT INTO contact(ContactName,Message,ContactEmail,ContactPhone) VALUES(?,?,?,?)";
         jdbc.update(INSERT_CONTACT,contact.getContactName(),contact.getMessage(),contact.getContactEmail(),contact.getContactPhone());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         contact.setContactId(newId);

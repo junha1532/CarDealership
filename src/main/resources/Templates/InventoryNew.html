@@ -5,21 +5,17 @@
 <head>
     <link rel="stylesheet" href="StyleSheet.css" />
     <meta charset="utf-8" />
-    <title>UsedInventory</title>
+    <title>NewInventory</title>
 </head>
 <body>
     <div class="navbar">
-        <a href="Index.html">Home</a>
+        <a th:href="@{/Index}">Home</a>
         <a href="InventoryNew.html">New Inventory</a>
         <a href="UsedInventory.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
-        <a sec:authorize="hasRole('ADMIN')">
-            Admin
-        </a>
-        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">
-            Sales
-        </a>
+        <a sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
     <br />
     <br />

@@ -36,16 +36,9 @@ public class HomeController {
     SpecialDao specialdao;
     
     @Autowired 
-    VehicleDao vehicledao;
-    
-    @GetMapping("/Specials")
-    public String displaySpecials(Model model){
-        List<Special> specials = specialdao.getAllSpecials();
-        model.addAttribute("specials", specials);
-        return "Specials";
-    }
-    
-    @RequestMapping(value={"", "/home"}, method= RequestMethod.GET)
+    VehicleDao vehicledao;    
+
+    @RequestMapping(value={"", "/Index"}, method= RequestMethod.GET)
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);
@@ -58,10 +51,10 @@ public class HomeController {
     
     @PostMapping("addContact")
     public String addContact(HttpServletRequest request) {
-        String contactName = request.getParameter("customerName");
-        String message = request.getParameter("message");
-        String contactEmail = request.getParameter("customerEmail");
-        String contactPhone = request.getParameter("customerPhone");
+        String contactName = request.getParameter("name");
+        String message = request.getParameter("subject");
+        String contactEmail = request.getParameter("email");
+        String contactPhone = request.getParameter("Pnumber");
         
         Contact contact = new Contact();
         contact.setContactName(contactName);
@@ -70,7 +63,7 @@ public class HomeController {
         contact.setContactPhone(contactPhone);
         contactDao.addContact(contact);
         
-        return "redirect:/Contact";
+        return "Contact";
     }
     
 

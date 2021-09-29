@@ -65,27 +65,27 @@ public class VehicleDaoDB implements VehicleDao {
         
         //Quick Search
         if (likeQuery != "")
-            SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE %" + likeQuery 
-                    + "% AND m.modelName LIKE %" + likeQuery + "% AND v.year LIKE %" + likeQuery + "%";
+            SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE \'%" + likeQuery 
+                    + "\'% AND m.modelName LIKE \'%" + likeQuery + "\'% AND v.year LIKE " + likeQuery;
         
         //Price Min_max
-        if (minPrice != ""){
-            if (maxPrice != "")
-                SELECT_FEATURED_VEHICLES += " AND v.price BETWEEN " + minPrice +" AND " + maxPrice;
+        if (minPrice.equals("")){
+            if (maxPrice.equals(""))
+                SELECT_FEATURED_VEHICLES += " AND v.salePrice BETWEEN " + minPrice +" AND " + maxPrice;
             else
-                SELECT_FEATURED_VEHICLES += " AND v.price >= " +minPrice;
+                SELECT_FEATURED_VEHICLES += " AND v.salePrice >= " +minPrice;
         }
-        if (maxPrice != "")
-            SELECT_FEATURED_VEHICLES += " AND v.price <= " +maxPrice;
+        if (maxPrice.equals(""))
+            SELECT_FEATURED_VEHICLES += " AND v.salePrice <= " +maxPrice;
         
         //Year
-        if (minYear != ""){
-            if (maxYear != "")
+        if (minYear.equals("")){
+            if (maxYear.equals(""))
                 SELECT_FEATURED_VEHICLES += " AND v.year BETWEEN " + minYear +" AND " + maxYear;
             else
                 SELECT_FEATURED_VEHICLES += " AND v.year >= " +minYear;
         }
-        if (maxYear != "")
+        if (maxYear.equals(""))
             SELECT_FEATURED_VEHICLES += " AND v.year <= " +maxYear;
         
         SELECT_FEATURED_VEHICLES += " LIMIT 20";
