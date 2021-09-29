@@ -45,7 +45,8 @@ public class HomeController {
         return "Specials";
     }
     
-    @RequestMapping(value={"/Index"}, method= RequestMethod.GET)
+
+    @RequestMapping(value={"", "/home"}, method= RequestMethod.GET)
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);
