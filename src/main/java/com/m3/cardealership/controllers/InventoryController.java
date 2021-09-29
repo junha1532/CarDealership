@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,8 +36,8 @@ public class InventoryController {
 
     //pathvariable
     @GetMapping("/Detail/{id}")
-    public String vehicleDetail(Integer id, Model model) {
-        Vehicle vehicle = vehicleDao.getVehicleById(id);
+    public String vehicleDetail(@PathVariable String id, Model model) {
+        Vehicle vehicle = vehicleDao.getVehicleById(1);
         model.addAttribute("vehicle", vehicle);
         return "Detail";
     }
@@ -95,7 +96,7 @@ public class InventoryController {
     
     
     @PostMapping("/Contact/add")
-    public String addContact(Integer id, HttpServletRequest request) {
+    public String addContact(@PathVariable Integer id, HttpServletRequest request) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         
         String contactName = request.getParameter("customerName");

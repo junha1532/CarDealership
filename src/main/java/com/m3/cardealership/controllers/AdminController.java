@@ -12,16 +12,23 @@ import com.m3.cardealership.dao.UserDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Special;
-import com.m3.cardealership.entities.Vehicle;
+import com.m3.cardealership.entities.User;
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import com.m3.cardealership.entities.Vehicle;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,7 +36,11 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
+    
+    @Autowired
+    UserDao userDao;
     
     @Autowired
     VehicleDao vehicledao;
@@ -46,6 +57,20 @@ public class AdminController {
     @Autowired
     SpecialDao specialdao;
     
+    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+
+    @Autowired
+    public AdminController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+       this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
+    }
+
+    @GetMapping("/Admin/Specials")
+    public String displaySpecials(Model model){
+        List<Special> specials = specialdao.getAllSpecials();
+        model.addAttribute("specials", specials);
+        return "Specials";
+    }
+    
     @GetMapping("Vehicles")
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
@@ -53,48 +78,21 @@ public class AdminController {
         return "Vehicles";
     }
     
-    @PostMapping("/AddVehicle")
-    public String addVehicle(HttpServletRequest request){
+    @PostMapping("/addVehicle")
+    public String addVehicle(Vehicle vehicle, HttpServletRequest request){
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
         com.m3.cardealership.entities.Model model = modeldao.getModelFromModelName(request.getParameter("modelName"));
-        
-        String VIN = request.getParameter("VIN");
-        String color =request.getParameter("color");
-        String interior = request.getParameter("interior");
-        String bodyStyle = request.getParameter("bodyStyle");
-        String transmission = request.getParameter("transmission");
-        String DESCRIPTION =  request.getParameter("DESCRIPTION"); ;
-        
-        int userId = Integer.valueOf(request.getParameter("userId"));
-        int year = Integer.valueOf(request.getParameter("year"));
-        int mileage = Integer.valueOf(request.getParameter("mileage"));
-        int salePrice = Integer.valueOf(request.getParameter("salePrice"));;
-        int MSRP = Integer.valueOf(request.getParameter("mileage"));;
-        boolean featured = convertToBoolean(request.getParameter("isFeatured"));
 
-        Vehicle vehicle = new Vehicle();
-        
-        vehicle.setUserId(userId);
-        vehicle.setVIN(VIN);
-        vehicle.setYear(year);
         vehicle.setMake(make);
         vehicle.setModel(model);
-        vehicle.setColor(color);
-        vehicle.setInterior(interior);
-        vehicle.setBodyStyle(bodyStyle);
-        vehicle.setTransmission(transmission);
-        vehicle.setMileage(mileage);
-        vehicle.setSalePrice(salePrice);
-        vehicle.setMSRP(MSRP);
-        vehicle.setFeatured(featured);
         vehicle.setDateAdded(LocalDate.now());
-        vehicle.setDESCRIPTION(DESCRIPTION);
         
+        vehicledao.addVehicle(vehicle);
  
-        return "redirect:/Vehicles";
+        return "redirect:/vehicles";
     }
 
-    @GetMapping("editVehicle")
+    @GetMapping("/editVehicle")
     public String editVehicle(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
@@ -102,7 +100,7 @@ public class AdminController {
         return "editVehicle";
     }    
     
-    @PostMapping("editVehicle")
+    @PostMapping("/editVehicle")
     public String performEditTeacher(HttpServletRequest request) {
         
         int id = Integer.parseInt(request.getParameter("id"));
@@ -143,7 +141,40 @@ public class AdminController {
         
         vehicledao.updateVehicle(vehicle);
         
-        return "redirect:/Admin/vehicles";
+        return "redirect:/vehicles";
+    }
+    
+    
+    @PostMapping("/addUser")
+    public String addUser(@RequestBody User user) {
+        
+        // 1. UserDao adds new user to database
+        userDao.addUser(user);
+        
+        // 2. Reload the in memory user details
+        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        grantedAuthorityList.add(new SimpleGrantedAuthority(user.getUserType()));
+        inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getPassword(),  grantedAuthorityList));
+
+        return "redirect:/admin";
+    }
+    
+    @GetMapping("/editUser")
+    public String getEditUser(Integer id, Model model) {
+        User user = userDao.getUserById(id);
+        model.addAttribute("user", user);
+        return "editUser";
+    }
+    
+    @PostMapping("/editUser")
+    public String editUser(User user){
+        // 1. UserDao updates existing user in database
+        userDao.updateUser(user);
+        
+        // 2. Reload the in memory user details
+        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
+        
+        return "redirect:/admin";
     }
 
     @GetMapping("users")
@@ -152,39 +183,44 @@ public class AdminController {
         return "users";
     }
 
-//    @PostMapping("addUser")
-//    public String addUser(HttpServletRequest request){
-//        return "redirect:/users";
-//    }
-
-//    @GetMapping ("editUser")
-//    @PostMapping ("editUser")
-
     @PostMapping ("addSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
         String specialDescription = request.getParameter("specialDescription");
  
         Special special = new Special();
+        special.setSpecialTitle(specialTitle);
+        special.setSpecialDescription(specialDescription);
+        special.setPromotionAmount(0);//where do we get this from?
         specialdao.addSpecial(special);
-
-        return "redirect:/Admin/Specials";
+        return "redirect:/specials";
     }
 
-    @PostMapping("deleteSpecial")
-    public String deleteTeacher(HttpServletRequest request) {
-        specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
+    @GetMapping("deleteSpecial")
+    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
+        specialdao.deleteSpecialByTitle(title);
         return "redirect:/Admin/Specials";
+
     }   
     
+    @PostMapping("updatePassword")
+    public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
+        User user = userDao.getUserByEmailPW(email, password);
+        user.setPassword(newpassword);
+        // 1. UserDao updates existing user in database
+        userDao.updateUser(user);
+        
+        // 2. Reload the in memory user details
+        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
+        
+        return "redirect:/admin";
+    }
+    
     private boolean convertToBoolean(String value) {
-    boolean returnValue = false;
-    if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
-        "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
-        returnValue = true;
-    return returnValue;
-}
-    
-    
-    
+        boolean returnValue = false;
+        if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
+            "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
+                returnValue = true;
+        return returnValue;
+    }    
 }

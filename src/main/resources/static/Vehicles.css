@@ -1,0 +1,21 @@
+.navbar {
+  background-color: cornflowerblue;
+  border-block: solid;
+  border-block-color: black;
+  border-right: solid;
+  border-left: solid;
+  border-width: 2px;
+  width: 1261px;
+  text-align: center;
+  overflow: hidden;
+  position: fixed;
+}
+
+.navbar a {
+  float: left;
+  text-align: center;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}

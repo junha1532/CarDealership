@@ -1,35 +1,47 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <link rel="stylesheet" href="StyleSheet.css" >
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      defer
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      defer
+    ></script>
 
     <meta charset="utf-8" />
-    <title>
-        Home
-    </title>
-</head>
-<body>
+    <title>Home</title>
+  </head>
+  <body>
     <div class="navbar">
-        <a href="Index.html">Home</a>
-        <a href="InventoyNew.html">New Inventory</a>
-        <a href="UsedInventory.html">Used Inventory</a>
-        <a href="Specials.html">Specials</a>
-        <a href="Contact.html">Contact</a>
-        <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
-        
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a href="UsedInventory">Used Inventory</a>
+        <a href="Specials">Specials</a>
+        <a href="Contact">Contact</a>
+        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> <!-- change these links -->
+        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
 
-   
     <div class="container">
-        <a href="Specials.html">
+        <a th:href="@{/Inventory/Specials}">
             <div class="jumbotron">
+<<<<<<< HEAD
                 <img src="ImageJumbotron.jpg" class="image"/>
+=======
+
+                <h1>Jumbotron Specials</h1>
+                <p th:each="special : ${specials}">
+                    <span th:text="${special.SpecialTitle}"> </span>
+                </p>
+>>>>>>> 0b7c35962c7651145f74fd2a1bb525b704964fd5
             </div>
         </a>
     </div>
@@ -38,8 +50,11 @@
         <div class="featuredVehicles">
             <h2>Featured Vehicles</h2>
         </div>
-            <div class="tableOne">
-                <table>
+            <div class="tableOne" id='featuredTable'>
+                <p th:each="vehicle : ${featuredVehicles}">
+                    <span th:text="${vehicle.DESCRIPTION}"> </span>
+                </p>
+<!--                <table>
                     <tr>
                         <th>
                             Car 1
@@ -93,7 +108,7 @@
                             Price
                         </th>
                     </tr>
-                </table>
+                </table>-->
             </div>
         </div>  
 
