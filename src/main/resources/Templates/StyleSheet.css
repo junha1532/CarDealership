@@ -1,0 +1,156 @@
+.navbar {
+    background-color: cornflowerblue;
+    border-block: solid;
+    border-block-color: black;
+    border-right:solid;
+    border-left:solid;
+    border-width: 2px;
+    width:1261px;
+    text-align: center;
+    overflow: hidden;
+    position:fixed;
+}
+
+.navbar a {
+    float:left;
+    text-align:center;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.jumbotron {
+    padding-top:30px;
+    padding-bottom: 30px;
+    border-bottom-style:solid;
+    border-bottom-color:black;
+    border-bottom-width:8px;
+    color: inherit;
+    background-color: #eee;
+
+}
+
+.jumbotron .h1, .jumbotron h1 {
+    color: black;
+
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200
+
+}
+
+.jumbotron > hr {
+    border-top-color: #d5d5d5
+
+}
+
+@media screen and (min-width:768px) {
+    .jumbotron {
+        padding-top: 48px;
+        padding-bottom: 48px
+    }
+
+    .container .jumbotron, .container-fluid .jumbotron {
+        padding-right: 60px;
+
+    }
+
+    .jumbotron .h1, .jumbotron h1 {
+        font-size: 63px
+    }
+}
+
+.featuredVehicles{
+    margin-left:25px;
+   
+}
+
+.tableOne {
+    margin-left:200px;
+    margin-right:200px;
+
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+
+}
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 20px;
+    padding-right:15px;
+}
+
+
+.contactUs {
+    background-color: #f2f2f2;
+    padding: 20px;
+    float: left;
+    width:1224px;
+    margin-top:40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+}
+.contactUs input[type=text], select, textarea {
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+    .contactUs input[type=email], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .contactUs input[type=tel], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .contactUs input[type=text], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+#subject, select, textarea {
+    height: 200px;
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+
+

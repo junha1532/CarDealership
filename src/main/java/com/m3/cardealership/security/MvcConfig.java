@@ -21,11 +21,15 @@ public class MvcConfig implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/Index.html").setViewName("Index.html");
 		registry.addViewController("/").setViewName("Index");
-                registry.addViewController("/InventoyNew.html").setViewName("InventoyNew");
-                registry.addViewController("/UsedInventory.html").setViewName("UsedInventory");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
                 registry.addViewController("/Specials.html").setViewName("Specials");
                 registry.addViewController("/Contact.html").setViewName("Contact");
+		registry.addViewController("/home/index").setViewName("Index");
+                registry.addViewController("/index").setViewName("Index");
+                registry.addViewController("/Inventory/New").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/New/query").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/Used").setViewName("InventoryUsed");
+                registry.addViewController("/Inventory/Used/query").setViewName("InventoryUsed");
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");

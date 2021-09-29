@@ -64,7 +64,6 @@ public class VehicleDaoDB implements VehicleDao {
         else SELECT_FEATURED_VEHICLES += " WHERE v.mileage >0";
         
         //Quick Search
-        
         if (likeQuery != "")
             SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE %" + likeQuery 
                     + "% AND m.modelName LIKE %" + likeQuery + "% AND v.year LIKE %" + likeQuery + "%";
@@ -149,7 +148,6 @@ public class VehicleDaoDB implements VehicleDao {
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         vehicle.setVehicleId(newId);
-//        insertVehicleStudent(vehicle);
         return vehicle;
     }
 
@@ -186,14 +184,14 @@ public class VehicleDaoDB implements VehicleDao {
     @Override
     public Model getModelforVehicle(int id) {
         final String SELECT_MODEL_FOR_VEHICLE = "SELECT m.* FROM model m "
-                + "JOIN vehicle v ON v.modelId = m.model WHERE v.modelId = ?";
+                + "JOIN vehicle v ON v.modelId = m.modelId WHERE v.vehicleId = ?";
         return jdbc.queryForObject(SELECT_MODEL_FOR_VEHICLE, new ModelMapper(), id);
     }
 
     @Override
     public Make getMakeforVehicle(int id) {
         final String SELECT_MAKE_FOR_VEHICLE = "SELECT m.* FROM  make m "
-                + "JOIN vehicle v ON v.MakeId = m.MakeId WHERE v.MakeId = ?";
+                + "JOIN vehicle v ON v.MakeId = m.MakeId WHERE v.vehicleId = ?";
         return jdbc.queryForObject(SELECT_MAKE_FOR_VEHICLE, new MakeMapper(), id);
     }
 

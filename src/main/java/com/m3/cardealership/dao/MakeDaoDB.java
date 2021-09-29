@@ -35,7 +35,8 @@ public class MakeDaoDB implements MakeDao {
             return make;
         }catch (DataAccessException ex){
             return null;
-        }    }
+        }    
+    }
 
     @Override
     public List<Make> getAllMakes() {
@@ -51,6 +52,18 @@ public class MakeDaoDB implements MakeDao {
         make.setMakeId(newId);
         return make;
     }
+    
+    @Override
+    public Make getMakeFromMakeName(String makeName){
+        try{
+        final String GET_MAKE_FROM_MAKENAME = "SELECT * FROM make where makeName  = ?";
+            Make make = jdbc.queryForObject(GET_MAKE_FROM_MAKENAME,new MakeMapper(), makeName);
+            return make;
+        }catch (DataAccessException ex){
+            return null;
+        }    
+    }
+    
 
     
     //Probably unused
