@@ -22,16 +22,28 @@
     <br />
     <div class="SearchBar">
         <h3>Quick Search</h3>
-        <form id="Searchform">
+        <form name="formS" id="Searchform" action="Script1.js">
             <input type="search" id="query" name="q" placeholder="Enter make, model, or year...">
-            Price
             <div class="dropdown">
-                <script src="Script1.js"></script>
-                <button onclick="myFunction()" class="dropbtn">Min Price</button>
-                :
-                <div id="myDropdown" class="dropdown-content"></div>
-                <button onclick="myFunction()" class="dropbtn2">Max Price</button>
+                Prices: <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Min Price</option>
+                </select>
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Max Price</option>
+                </select>
             </div>
+
+            <div class="dropdown2">
+                Year:
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Min Year</option>
+                </select>
+                <select name="subject" class="dropbtn" id="subject">
+                    <option value="" selected="selected">Max Year</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search">Search</button>
         </form>
     </div>
 
