@@ -13,6 +13,7 @@ import java.util.List;
  * @author junha
  */
 public interface UserDao {
+    User getUserById(int id);
     User getUserByEmailPW(String email, String pw);
     List<User> getAllUsers();
     User addUser(User user);
