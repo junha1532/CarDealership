@@ -66,6 +66,9 @@ public class SalesController {
         
         return "Sales";
 
+    @GetMapping("Sales/query") //Search like queries
+    public String getVehicles(Model model,String queries){
+        return "Sales";
     }
     
     
@@ -79,7 +82,7 @@ public class SalesController {
     
     
     @Transactional
-    @PostMapping("Purchase")
+    @PostMapping("Purchase/query")
     public String performAddSale(Vehicle vehicle, HttpServletRequest request) {
         
         String salespersonId = request.getParameter("salespersonId");

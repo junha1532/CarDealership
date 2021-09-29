@@ -15,6 +15,8 @@ import com.m3.cardealership.entities.Special;
 import com.m3.cardealership.entities.Vehicle;
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
+import com.m3.cardealership.entities.Vehicle;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,8 @@ public class AdminController {
     
     @GetMapping("Vehicles")
     public String displayVehicles(Model model){
-        model.addAttribute("vehicles",vehicledao.getAllVehicles());
+        List<Vehicle> vehicles = vehicledao.getAllVehicles();
+        model.addAttribute("vehicles", vehicles);
         return "Vehicles";
     }
     
