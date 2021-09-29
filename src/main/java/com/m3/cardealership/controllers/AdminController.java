@@ -203,14 +203,24 @@ public class AdminController {
 
     }   
     
+    @PostMapping("updatePassword")
+    public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
+        User user = userDao.getUserByEmailPW(email, password);
+        user.setPassword(newpassword);
+        // 1. UserDao updates existing user in database
+        userDao.updateUser(user);
+        
+        // 2. Reload the in memory user details
+        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
+        
+        return "redirect:/admin";
+    }
+    
     private boolean convertToBoolean(String value) {
-    boolean returnValue = false;
-    if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
-        "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
-        returnValue = true;
-    return returnValue;
-}
-    
-    
-    
+        boolean returnValue = false;
+        if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
+            "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
+                returnValue = true;
+        return returnValue;
+    }    
 }
