@@ -1,12 +1,17 @@
-<<<<<<< HEAD
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="StyleSheet.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <meta charset="utf-8" />
-    <title>Specials</title>
+    <title>
+        Home
+    </title>
 </head>
 <body>
     <div class="navbar">
@@ -15,23 +20,11 @@
         <a href="UsedInventory.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
-        <a sec:authorize="hasRole('ADMIN')">Admin
-        </a>
-        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales
-        </a>
+        <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
-</body>
-</html>
-=======
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>TEMP SPECIALS PAGE!</title>
-    </head>
-    <body>
-        <h1>THIS IS TEMP SPECIALS PAGE!</h1>  
-        
     </body>
 </html>
->>>>>>> db6085cdcbdb171bf206d63c3a7c24f4de2b5107
+
+
+
