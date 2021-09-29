@@ -17,9 +17,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/Index").setViewName("Index");
+		registry.addViewController("/home/index").setViewName("Index");
+                registry.addViewController("/index").setViewName("Index");
 		registry.addViewController("/").setViewName("Index");
-                registry.addViewController("/InventoryNew").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/New").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/New/quert").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/Used").setViewName("InventoryUsed");
+                registry.addViewController("/Inventory/Used/query").setViewName("InventoryUsed");
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");

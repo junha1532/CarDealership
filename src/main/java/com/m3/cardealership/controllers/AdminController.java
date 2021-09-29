@@ -6,6 +6,8 @@
 package com.m3.cardealership.controllers;
 
 import com.m3.cardealership.dao.VehicleDao;
+import com.m3.cardealership.entities.Vehicle;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class AdminController {
     
     @GetMapping("Vehicles")
     public String DisplayVehicles(Model model){
+        List<Vehicle> vehicles = vehicledao.getAllVehicles();
+        model.addAttribute("vehicles", vehicles);
         return "Vehicles";
     }
     
