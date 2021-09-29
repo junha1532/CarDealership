@@ -17,6 +17,8 @@ public interface ModelDao {
     List<Model> getAllModels();
     Model addModel(Model model);
     
+    Model getModelFromModelName(String modelName);
+    
 //    List<Model> getCoursesForTeacher(Teacher teacher);
 //    List<Model> getCoursesForStudent(Student student);
 }

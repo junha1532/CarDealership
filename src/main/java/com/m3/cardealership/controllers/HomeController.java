@@ -45,7 +45,7 @@ public class HomeController {
         return "Specials";
     }
     
-    @RequestMapping(value={"/", "/home", "/index.html"}, method= RequestMethod.GET)
+    @RequestMapping(value={"/", "/home"}, method= RequestMethod.GET)
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);
@@ -53,10 +53,10 @@ public class HomeController {
         List<Vehicle> featuredVehicles = vehicledao.getFeaturedVehicles();
         model.addAttribute("featuredVehicles",featuredVehicles);
         
-        return "index";
+        return "Index";
     }
     
-    @PostMapping("/Contact/add")
+    @PostMapping("addContact")
     public String addContact(HttpServletRequest request) {
         String contactName = request.getParameter("customerName");
         String message = request.getParameter("message");

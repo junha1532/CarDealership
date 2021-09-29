@@ -44,8 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/index").permitAll()
-                                .antMatchers("/InventoryNew").hasRole("ADMIN")
-				.anyRequest().authenticated()
+                                .antMatchers("/admin**").hasRole("ADMIN")
+//				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .and()
                         .exceptionHandling().accessDeniedPage("/403")
                         .and()
-			.logout()
+			.logout().logoutSuccessUrl("/")
 				.permitAll()    
                         .and()  //added
                         .httpBasic();  //added;
@@ -64,9 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @RequestMapping("/403")
         public String accessDenied() {
             return "/forbidden";
-        }
-        
-        
+        }        
 
 	@Bean
         public UserDetailsService users() {

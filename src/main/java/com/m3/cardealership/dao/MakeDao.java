@@ -20,5 +20,6 @@ public interface MakeDao {
     Make addMake(Make make);
     void updateMake(Make make);
     void deleteMakeById(int id);  
+    Make getMakeFromMakeName(String makeName);
     
 }

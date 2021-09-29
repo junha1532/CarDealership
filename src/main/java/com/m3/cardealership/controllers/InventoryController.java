@@ -34,25 +34,26 @@ public class InventoryController {
     
 
     //pathvariable
-    @GetMapping("/Inventory/Detail/{id}")
+    @GetMapping("/Detail/{id}")
     public String vehicleDetail(Integer id, Model model) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
-        return "/Inventory/Detail";
+        return "Detail";
     }
     
     //MSRP
-    @GetMapping ("/Inventory/New")
+
+    @GetMapping ("/New")
     public String showNewVehicles(Model model){
         Boolean isNew = true;
         List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
         model.addAttribute("vehicles",vehicles);
-        return "/Inventory/New";
+        return "InventoryNew";
     }
     
     
     //search queries
-    @GetMapping ("/Inventory/New")
+    @GetMapping ("/New/query")
     public String showNewVehicles(Model model, HttpServletRequest request){
         Boolean isNew = true;
         String likeQuery = request.getParameter("likeQuery");
@@ -63,22 +64,22 @@ public class InventoryController {
         
         List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
-        return "/Inventory/New";
+        return "InventoryNew";
     }
     
     
     //sorted by MSRP
-    @GetMapping ("/Inventory/Used")
+    @GetMapping ("/Used")
     public String showUsedVehicles(Model model){
         Boolean isNew = false;
         List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
         model.addAttribute("vehicles",vehicles);
-        return "/Inventory/Used";
+        return "UsedInventory";
     }
     
     
     //SEARCH query
-    @GetMapping ("/Inventory/used")
+    @GetMapping ("/Used/query")
     public String showUsedVehicles(Model model, HttpServletRequest request){
         Boolean isNew = false;
         String likeQuery = request.getParameter("likeQuery");
@@ -89,7 +90,7 @@ public class InventoryController {
         
         List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
-        return "/Inventory/New";
+        return "InventoryNew";
     }
     
     
@@ -109,7 +110,7 @@ public class InventoryController {
         contact.setContactPhone(contactPhone);
         
         contactDao.addContact(contact);
-        return "redirect://Inventory/Detail?"+id;
+        return "redirect:/Inventory/Detail?"+id;
     }
     
     

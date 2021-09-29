@@ -16,10 +16,10 @@ public class ReportsController {
     //SELECT YEAR,makeNAME, modelName, count(
     
     
-    //INVENTORY REPORT
-   //SELECT v.year Year, ma.makeName Make, m.modelName Model, count(*) Count, sum(v.SalePrice) Stock_Value FROM VEHICLE v JOIN make ma on ma.makeid = v.makeId join model m on m.modelId = v.modelId WHERE v.mileage > 0 AND ma.makeName = "Audi" and m.modelName = "R8";
     
-    //get
+    
+    //INVENTORY REPORT
+    //SELECT v.year Year, ma.makeName Make, m.modelName Model, count(*) Count, sum(v.SalePrice) Stock_Value FROM VEHICLE v JOIN make ma on ma.makeid = v.makeId join model m on m.modelId = v.modelId WHERE v.mileage > 0  group by v.year,ma.MakeId;
     
     //SALES REPORT
     //SELECT concat(u.userFirstName," ", u.userLastName) User, sum(s.purchasePrice) Total_Sales, count(*) Total_Vehicles FROM user u join sale s on s.salesPersonId = u.userId group by u.userId;

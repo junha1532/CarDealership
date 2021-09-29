@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-    xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <link rel="stylesheet" href="StyleSheet.css" />
+    <link rel="stylesheet" href="/StyleSheet.css" >
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -17,9 +17,14 @@
     <div class="navbar">
         <a href="Index.html">Home</a>
         <a href="InventoyNew.html">New Inventory</a>
-        <a href="UsedInventory.html">Used Inventory</a>
+        <a href="InventoryUsed.html">Used Inventory</a>
         <a href="Specials.html">Specials</a>
         <a href="Contact.html">Contact</a>
+        <a sec:authorize="hasRole('ADMIN')">Admin
+        </a>
+        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales
+        </a>
+        
     </div>
 
    
@@ -67,7 +72,7 @@
                             Image:
                             Make and Model
                             Price
-]                        </th>
+                        </th>
                     </tr>
                     <tr>
                         <th>

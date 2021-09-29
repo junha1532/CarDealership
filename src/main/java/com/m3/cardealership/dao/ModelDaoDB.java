@@ -33,6 +33,17 @@ public class ModelDaoDB implements ModelDao{
             return null;
         }
     }
+    
+    @Override
+    public Model getModelFromModelName(String modelName){
+        try {
+            final String SELECT_MODEL_BY_MODELNAME = "SELECT * FROM model WHERE modelName = ?";
+            return jdbc.queryForObject(SELECT_MODEL_BY_MODELNAME, new ModelMapper(), modelName);
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
+
 
     @Override
     public List<Model> getAllModels() {
