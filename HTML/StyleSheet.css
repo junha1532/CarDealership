@@ -2,10 +2,10 @@
     background-color: cornflowerblue;
     border-block: solid;
     border-block-color: black;
-    border-right-style: solid;
-    border-left-style: solid;
+    border-right:solid;
+    border-left:solid;
     border-width: 2px;
-    width:1228px;
+    width:1261px;
     text-align: center;
     overflow: hidden;
     position:fixed;
@@ -27,7 +27,7 @@
     border-bottom-color:black;
     border-bottom-width:8px;
     color: inherit;
-    background-color: #eee
+    background-color: #eee;
 
 }
 
@@ -48,16 +48,6 @@
 
 }
 
-.container .jumbotron, .container-fluid .jumbotron {
-    padding-right: 15px;
-    padding-left: 15px;
-    border-radius: 6px
-}
-
-.jumbotron .container {
-    max-width: 100%
-}
-
 @media screen and (min-width:768px) {
     .jumbotron {
         padding-top: 48px;
@@ -66,7 +56,7 @@
 
     .container .jumbotron, .container-fluid .jumbotron {
         padding-right: 60px;
-        padding-left: 60px
+
     }
 
     .jumbotron .h1, .jumbotron h1 {
@@ -98,7 +88,69 @@ th {
     padding: 20px;
     padding-right:15px;
 }
-body {
-    padding: 16px;
+
+
+.contactUs {
+    background-color: #f2f2f2;
+    padding: 20px;
+    float: left;
+    width:1224px;
+    margin-top:40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
 }
+.contactUs input[type=text], select, textarea {
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+    .contactUs input[type=email], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .contactUs input[type=tel], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .contactUs input[type=text], select, textarea {
+        width: 300px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+#subject, select, textarea {
+    height: 200px;
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+
 
