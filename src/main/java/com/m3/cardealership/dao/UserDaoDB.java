@@ -26,6 +26,17 @@ public class UserDaoDB implements UserDao{
     
     @Autowired
    JdbcTemplate jdbc;
+    
+    @Override
+    public User getUserById(int id) {
+        try {
+            final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE userId = ?";
+            User user = jdbc.queryForObject(SELECT_USER_BY_ID, new UserMapper(), id);
+            return user;
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
 
     @Override
     public User getUserByEmailPW(String email, String pw) {

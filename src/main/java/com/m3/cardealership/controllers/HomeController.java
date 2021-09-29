@@ -36,17 +36,9 @@ public class HomeController {
     SpecialDao specialdao;
     
     @Autowired 
-    VehicleDao vehicledao;
-    
-    @GetMapping("/Specials")
-    public String displaySpecials(Model model){
-        List<Special> specials = specialdao.getAllSpecials();
-        model.addAttribute("specials", specials);
-        return "Specials";
-    }
-    
+    VehicleDao vehicledao;    
 
-    @RequestMapping(value={"", "/home"}, method= RequestMethod.GET)
+    @RequestMapping(value={"", "/Index"}, method= RequestMethod.GET)
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);
