@@ -19,6 +19,55 @@ public class User {
     private String userEmail;
     private String password;
 
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName + ", userType=" + userType + ", userEmail=" + userEmail + ", password=" + password + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.userId;
+        hash = 59 * hash + Objects.hashCode(this.userFirstName);
+        hash = 59 * hash + Objects.hashCode(this.userLastName);
+        hash = 59 * hash + Objects.hashCode(this.userType);
+        hash = 59 * hash + Objects.hashCode(this.userEmail);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (this.userId != other.userId) {
+            return false;
+        }
+        if (!Objects.equals(this.userFirstName, other.userFirstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.userLastName, other.userLastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.userType, other.userType)) {
+            return false;
+        }
+        if (!Objects.equals(this.userEmail, other.userEmail)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return true;
+    }
 
     public int getUserId() {
         return userId;
@@ -68,55 +117,7 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.userId;
-        hash = 83 * hash + Objects.hashCode(this.userFirstName);
-        hash = 83 * hash + Objects.hashCode(this.userLastName);
-        hash = 83 * hash + Objects.hashCode(this.userType);
-        hash = 83 * hash + Objects.hashCode(this.userEmail);
-        hash = 83 * hash + Objects.hashCode(this.password);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (this.userId != other.userId) {
-            return false;
-        }
-        if (!Objects.equals(this.userFirstName, other.userFirstName)) {
-            return false;
-        }
-        if (!Objects.equals(this.userLastName, other.userLastName)) {
-            return false;
-        }
-        if (!Objects.equals(this.userType, other.userType)) {
-            return false;
-        }
-        if (!Objects.equals(this.userEmail, other.userEmail)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "userId=" + userId + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName + ", userType=" + userType + ", userEmail=" + userEmail + ", password=" + password + '}';
-    }
-    
+  
     
 }

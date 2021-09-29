@@ -22,8 +22,12 @@ com\m3\cardealership\dao\VehicleDaoDB$VehicleMapper.class
 com\m3\cardealership\dao\UserDaoDB.class
 com\m3\cardealership\security\WebSecurityConfig.class
 com\m3\cardealership\security\MvcConfig.class
+com\m3\cardealership\controller\UserController.class
 com\m3\cardealership\dao\UserDaoDB$UserMapper.class
 com\m3\cardealership\entities\Contact.class
+com\m3\cardealership\dao\SpeicalDaoDB$SpecialMapper.class
+com\m3\cardealership\dao\SpeicalDaoDB.class
+com\m3\cardealership\controller\VehicleController.class
 com\m3\cardealership\dao\SaleDaoDB$SaleMapper.class
 com\m3\cardealership\dao\SaleDaoDB.class
 com\m3\cardealership\entities\Sale.class

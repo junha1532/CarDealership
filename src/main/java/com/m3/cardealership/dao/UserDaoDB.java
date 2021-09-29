@@ -68,6 +68,21 @@ public class UserDaoDB implements UserDao{
         return user;
     }
     
+    @Override
+    public void updateUser(User user) {
+        final String UPDATE_USER = "UPDATE user SET userFirstName = ?, userLastName = ?, userType = ?, userEmail = ?,password = ? "
+                + "WHERE userEmail = ?";
+        jdbc.update(UPDATE_USER,
+                user.getUserFirstName(),
+                user.getUserLastName(),
+                user.getUserType(),
+                user.getUserEmail(),
+                user.getPassword(),
+                
+                user.getUserEmail()
+        );
+    }
+    
     public static final class UserMapper implements RowMapper<User> {
 
         @Override
