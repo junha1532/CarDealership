@@ -1,5 +1,6 @@
 com\m3\cardealership\CardealershipApplication.class
 com\m3\cardealership\dao\ContactDao.class
+com\m3\cardealership\controllers\AdminController.class
 com\m3\cardealership\dao\UserDao.class
 com\m3\cardealership\entities\Make.class
 com\m3\cardealership\dao\MakeDao.class
@@ -8,9 +9,12 @@ com\m3\cardealership\dao\MakeDaoDB$MakeMapper.class
 com\m3\cardealership\dao\ModelDao.class
 com\m3\cardealership\dao\SaleDao.class
 com\m3\cardealership\dao\SpecialDao.class
+com\m3\cardealership\controllers\AccountController.class
 com\m3\cardealership\dao\ContactDaoDB$ContactMapper.class
 com\m3\cardealership\dao\ModelDaoDB.class
+com\m3\cardealership\controllers\InventoryController.class
 com\m3\cardealership\dao\ModelDaoDB$ModelMapper.class
+com\m3\cardealership\controllers\ReportsController.class
 com\m3\cardealership\dao\ContactDaoDB.class
 com\m3\cardealership\entities\Special.class
 com\m3\cardealership\entities\Model.class
@@ -29,6 +33,8 @@ com\m3\cardealership\dao\SpeicalDaoDB$SpecialMapper.class
 com\m3\cardealership\dao\SpeicalDaoDB.class
 com\m3\cardealership\controller\VehicleController.class
 com\m3\cardealership\dao\SaleDaoDB$SaleMapper.class
+com\m3\cardealership\controllers\HomeController.class
 com\m3\cardealership\dao\SaleDaoDB.class
 com\m3\cardealership\entities\Sale.class
 com\m3\cardealership\dao\VehicleDaoDB.class
+com\m3\cardealership\controllers\SalesController.class

@@ -42,13 +42,13 @@ public class InventoryController {
     }
     
     //MSRP
-    @GetMapping ("/Inventory/New")
-    public String showNewVehicles(Model model){
-        Boolean isNew = true;
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
-        model.addAttribute("vehicles",vehicles);
-        return "/Inventory/New";
-    }
+//    @GetMapping ("/Inventory/New")
+//    public String showNewVehicles(Model model){
+//        Boolean isNew = true;
+//        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
+//        model.addAttribute("vehicles",vehicles);
+//        return "/Inventory/New";
+//    }
     
     
     //search queries
@@ -68,13 +68,13 @@ public class InventoryController {
     
     
     //sorted by MSRP
-    @GetMapping ("/Inventory/Used")
-    public String showUsedVehicles(Model model){
-        Boolean isNew = false;
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
-        model.addAttribute("vehicles",vehicles);
-        return "/Inventory/Used";
-    }
+//    @GetMapping ("/Inventory/Used")
+//    public String showUsedVehicles(Model model){
+//        Boolean isNew = false;
+//        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
+//        model.addAttribute("vehicles",vehicles);
+//        return "/Inventory/Used";
+//    }
     
     
     //SEARCH query

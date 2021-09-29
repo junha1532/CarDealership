@@ -7,6 +7,7 @@
 </head>
 <body>
 <div><h1>This page for admins only</h1></div>
+        <a th:href="@{/Index.html}">Home Page</a>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>

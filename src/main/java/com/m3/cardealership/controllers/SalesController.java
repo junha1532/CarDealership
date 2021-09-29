@@ -30,10 +30,10 @@ public class SalesController {
     @Autowired
     VehicleDao vehicleDao;
     
-    @GetMapping("Sales") //MSRP
-    public String getVehicles(Model model){
-        return "sales";
-    }
+//    @GetMapping("Sales") //MSRP
+//    public String getVehicles(Model model){
+//        return "sales";
+//    }
     
         
     @GetMapping("Sales") //Search like queries
