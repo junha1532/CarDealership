@@ -25,7 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/Contact.html").setViewName("Contact");
 		registry.addViewController("/home/index").setViewName("Index");
                 registry.addViewController("/index").setViewName("Index");
-                registry.addViewController("/Inventory/New").setViewName("InventoyNew");
+                registry.addViewController("/Inventory/New").setViewName("InventoryNew");
 
                 registry.addViewController("/Inventory/Used").setViewName("InventoryUsed");
 
@@ -36,6 +36,11 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
+                
+                
+                registry.addViewController("/Sales.html").setViewName("Sales");
+                registry.addViewController("/Sales").setViewName("Sales");
+
 
         }
         
