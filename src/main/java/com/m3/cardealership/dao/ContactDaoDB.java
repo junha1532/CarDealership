@@ -26,6 +26,8 @@ public class ContactDaoDB implements ContactDao{
     @Autowired
     JdbcTemplate jdbc;
 
+    
+    //For Admin
     @Override
     public Contact getContactById(int id) { 
         try{
@@ -38,7 +40,7 @@ public class ContactDaoDB implements ContactDao{
     }
 
     
-
+    //For admin
     @Override
     public List<Contact> getAllContacts() {
         final String GET_ALL_CONTACTS = "SELECT * FROM teacher";
@@ -55,6 +57,8 @@ public class ContactDaoDB implements ContactDao{
         return contact;
     }
 
+    
+    //unused
     @Override
     public void updateContact(Contact contact) {
         final String UPDATE_CONTACT = "UPDATE contact SET ContactName = ?, Message = ?, ContactEmail = ?, ContactPhone = ? WHERE id = ?";
@@ -68,7 +72,7 @@ public class ContactDaoDB implements ContactDao{
 
     
     
-    
+    //For Admin
     @Override
     @Transactional
     public void deleteContactById(int id) {

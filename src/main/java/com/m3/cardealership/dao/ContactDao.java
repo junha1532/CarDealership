@@ -16,6 +16,6 @@ public interface ContactDao {
     Contact getContactById(int id);
     List<Contact> getAllContacts();
     Contact addContact(Contact contact);
-    void updateContact(Contact teacher);
+    void updateContact(Contact contact);
     void deleteContactById(int id);  
 }

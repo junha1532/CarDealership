@@ -15,13 +15,10 @@ import java.util.List;
  */
 public interface SaleDao {
     Sale getSaleById(int id);
-    Sale getSaleByVehicleiId(int id);
     List<Sale> getAllSales();
     List<Sale> getUsedSales();
     List<Sale> getNewSales();
-    Sale addSale(Sale contact);
-    void updateSale(Sale teacher);
+    Sale addSale(Sale sale);
+    void updateSale(Sale sale);
     void deleteSaleById(int id);
-    
-    
 }

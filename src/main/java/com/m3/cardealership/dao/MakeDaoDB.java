@@ -8,6 +8,7 @@ package com.m3.cardealership.dao;
 import com.m3.cardealership.entities.Make;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -41,14 +42,7 @@ public class MakeDaoDB implements MakeDao {
         final String GET_ALL_MAKES = "SELECT * FROM make";
         return jdbc.query(GET_ALL_MAKES, new MakeMapper());
     }
-    
-//    @Override
-//    public List<Make> getMakeFromUserId(int userId) {
-//        final String SELECT_MAKES_FROM_COURSE = "SELECT s.* FROM student s "
-//            + "JOIN course_student cs ON cs.studentId = s.id WHERE cs.courseId = ?";
-//        return jdbc.query(SELECT_STUDENTS_FOR_COURSE, new MakeMapper(), userId);
-//    }
-
+   
     @Override
     public Make addMake(Make make) {
         final String INSERT_MAKE = "INSERT INTO make(userId,MakeName,dateAdded) VALUES(?,?,?)";
@@ -91,8 +85,16 @@ public class MakeDaoDB implements MakeDao {
             Make make = new Make();
             make.setMakeId(rs.getInt("MakeId"));
             make.setUserId(rs.getInt("userId"));
+            make.setDateAdded(LocalDate.parse(rs.getString("dateAdded")));
 //            make.setDateAdded(rs.getString("dateAdded"));
             return make;
         }
     }
+    
+    //    @Override
+//    public List<Make> getMakeFromUserId(int userId) {
+//        final String SELECT_MAKES_FROM_COURSE = "SELECT s.* FROM student s "
+//            + "JOIN course_student cs ON cs.studentId = s.id WHERE cs.courseId = ?";
+//        return jdbc.query(SELECT_STUDENTS_FOR_COURSE, new MakeMapper(), userId);
+//    }
 }
