@@ -59,7 +59,7 @@ public class InventoryController {
     
     
     //search queries
-    @GetMapping ("/New/query")
+    @GetMapping("/New/query")
     public String showNewVehicles(Model model, HttpServletRequest request){
         Boolean isNew = true;
         String likeQuery = "";

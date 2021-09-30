@@ -46,15 +46,19 @@
             <button type="submit" class="search">Search</button>
         </form>
     </div>
-    <div class="col text-center m-3">
-        <table class="table table-striped">
-        <tr th:each="vehicle : ${vehicles}">
-            <p th:text="${vehicle.VehicleId}"> </p>
-            <p th:text="${vehicle.make.makeName}"> </p>
-            <p th:text="${vehicle.model.modelName}"> </p> 
-            <p th:text="${vehicle.SalePrice}"> </p>
-        </tr>
-        </table>
-    </div>
+    <div class="col text-center m-3"><div class="Container">
+        <div class="col text-center m-3">
+            <div class="col text-center m-3">
+                <table class="table table-striped">
+                <tr th:each="vehicle : ${vehicles}">
+                    <td th:text="${vehicle.VehicleId}"> </td>
+                    <td th:text="${vehicle.make.makeName}"> </td>
+                    <td th:text="${vehicle.model.modelName}"> </td> 
+                    <td th:text="${vehicle.SalePrice}"> </td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        </div>
 </body>
 </html>

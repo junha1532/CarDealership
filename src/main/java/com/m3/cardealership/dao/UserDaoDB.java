@@ -52,7 +52,7 @@ public class UserDaoDB implements UserDao{
     @Override
     public User getUserByEmailPW(String email, String pw) {
         try {
-            final String SELECT_USER_BY_EMAIL = "SELECT * FROM student WHERE userEmail = ?";
+            final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE userEmail = ?";
             User user = jdbc.queryForObject(SELECT_USER_BY_EMAIL, new UserMapper(), email);
             if(user.getPassword().equals(pw)) {
                 return user;
@@ -63,6 +63,9 @@ public class UserDaoDB implements UserDao{
         }
     }
 
+    
+    
+    
     @Override
     public List<User> getAllUsers() {
                final String SELECT_ALL_USERS = "SELECT * FROM user";
@@ -103,6 +106,19 @@ public class UserDaoDB implements UserDao{
                 
                 user.getUserEmail()
         );
+    }
+
+    @Override
+    public Integer getUserIdByEmail(String email) {
+       try {
+            final String SELECT_USER_BY_EMAIL = "SELECT * FROM user WHERE userEmail = ?";
+            int user = jdbc.queryForObject(SELECT_USER_BY_EMAIL, new UserMapper(), email).getUserId();
+            System.out.println(user);
+            return 1;
+
+        } catch (DataAccessException ex) {
+            return -1;
+        }
     }
     
     public static final class UserMapper implements RowMapper<User> {

@@ -8,6 +8,7 @@ package com.m3.cardealership.controllers;
 import com.m3.cardealership.dao.MakeDao;
 import com.m3.cardealership.dao.ModelDao;
 import com.m3.cardealership.dao.SaleDao;
+import com.m3.cardealership.dao.UserDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Sale;
@@ -43,6 +44,9 @@ public class SalesController {
     
     @Autowired
     VehicleDao vehicleDao;
+    
+    @Autowired 
+    UserDao userdao;
     
 
 //    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
@@ -88,7 +92,8 @@ public class SalesController {
     
    
     @GetMapping("Purchase")
-    public String addSale(Integer id, Model model) {
+    public String addSale(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
         return "Purchase";
@@ -96,21 +101,25 @@ public class SalesController {
     
     
     @Transactional
-    @PostMapping("Purchase/query")
+    @PostMapping("PurchaseSend")
     public String performAddSale(Vehicle vehicle, HttpServletRequest request) {
         
-        String salespersonId = request.getParameter("salespersonId");
         String customerName = request.getParameter("customerName");
         String customerEmail = request.getParameter("customerEmail");
         String customerAddress = request.getParameter("customerAddress");
         String customerAddress2 = request.getParameter("customerAddress2");
         String customerCity = request.getParameter("customerCity");
         String customerZipCode = request.getParameter("customerZipCode");
+        String customerState = request.getParameter("customerState");
         String purchasePrice = request.getParameter("purchasePrice");
         String purchaseType = request.getParameter("purchaseType");
+        String userName = request.getParameter("userName");
         
+        int vehicleId = Integer.parseInt(request.getParameter("vehicleId"));
+        int salespersonId = userdao.getUserIdByEmail(userName);
+
         Sale sale = new Sale();
-        sale.setSalespersonId(Integer.valueOf(salespersonId));
+        sale.setSalespersonId(salespersonId);
         sale.setCustomerName(customerName);
         sale.setCustomerEmail(customerEmail);
         sale.setCustomerAddress(customerAddress);
@@ -119,8 +128,19 @@ public class SalesController {
         sale.setCustomerZipCode(customerZipCode);
         sale.setPurchasePrice(Integer.valueOf(purchasePrice));
         sale.setPurchaseType(purchaseType);
-        
-     
+////        
+//        System.out.println(userName);
+//        System.out.println(salespersonId);
+//        System.out.println(customerName);
+//        System.out.println(customerEmail);
+//        System.out.println(customerAddress);
+//        System.out.println(customerAddress2 );
+//        System.out.println(customerCity );
+//        System.out.println(customerZipCode);
+//        System.out.println(purchasePrice );
+//       System.out.println(purchaseType);
+
+       System.out.println(sale.toString());
         saleDao.addSale(sale);
         vehicleDao.deleteVehicleById(vehicle.getVehicleId());
 
