@@ -23,8 +23,8 @@
     <div class="navbar">
         <a th:href="@{/Index}">Home</a>
         <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a href="UsedInventory">Used Inventory</a>
-        <a href="Specials">Specials</a>
+        <a th:href="@{Inventory/UsedInventory}">Used Inventory</a>
+        <a th:href="@{Specials}">Specials</a>
         <a href="Contact">Contact</a>
         <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> <!-- change these links -->
         <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
@@ -37,7 +37,7 @@
 >>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c
         <a th:href="@{/Inventory/Specials}">
             <div class="jumbotron">
-                <img src="ImageJumbotron.jpg" class="image"/>
+                <img th:src="@{/ImageJumbotron.jpg}" />
                 <p th:each="special : ${specials}">
                     <span th:text="${special.SpecialTitle}"> </span>
                 </p>
@@ -49,10 +49,21 @@
         <div class="featuredVehicles">
             <h2>Featured Vehicles</h2>
         </div>
-            <div class="tableOne" id='featuredTable'>
-                <p th:each="vehicle : ${featuredVehicles}">
+        <table>
+            <tr >
+                        <th th:each="vehicle : ${featuredVehicles}">
+                            <!--<p th:text="${vehicle.VehicleId}"> </p>-->
+                            <p th:text="${vehicle.make.makeName}"> </p>
+                            <p th:text="${vehicle.model.modelName}"> </p> 
+                            <p th:text="${vehicle.SalePrice}"> </p> 
+                    
+                        </th>
+<!--            <div class="tableOne" id='featuredTable'>
+                <p >
                     <span th:text="${vehicle.DESCRIPTION}"> </span>
-                </p>
+                </p>-->
+            </tr>
+                </table>
 <!--                <table>
                     <tr>
                         <th>
