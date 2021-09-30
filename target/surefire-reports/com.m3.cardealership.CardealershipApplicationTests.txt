@@ -1,6 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: com.m3.cardealership.CardealershipApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.411 s <<< FAILURE! - in com.m3.cardealership.CardealershipApplicationTests
 contextLoads  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext
@@ -11,3 +12,6 @@ Caused by: org.springframework.beans.BeanInstantiationException: Failed to insta
 Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
 
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.176 s - in com.m3.cardealership.CardealershipApplicationTests
+>>>>>>> d641287fcd5391acfba46acc60ad80546f9440fe

@@ -29,7 +29,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/Inventory/New").setViewName("InventoryNew");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
                 registry.addViewController("*/StyleSheet.css").setViewName("StyleSheet.css");
-                registry.addViewController("/Inventory/UsedInventory.html").setViewName("UsedInventory");
+                registry.addViewController("/Inventory/UsedInventory").setViewName("UsedInventory");
                 registry.addViewController("Inventory/Script1.js").setViewName("Script1.js");
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
@@ -38,7 +38,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
-                
+                registry.addViewController("/ImageJumbotron.jpg").setViewName("ImageJumbotron.jpg");
                 
                 registry.addViewController("/Sales.html").setViewName("Sales");
                 registry.addViewController("/Sales").setViewName("Sales");
