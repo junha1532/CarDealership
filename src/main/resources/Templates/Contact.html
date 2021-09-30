@@ -4,6 +4,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="StyleSheet.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <meta charset="utf-8" />
     <title>Contact</title>
 </head>
@@ -14,8 +15,8 @@
         <a th:href="@{/Inventory/Used}">Used Inventory</a>
         <a th:href="@{/Inventory/Specials}">Specials</a>
         <a th:href="@{/Contact}">Contact</a>
-        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
 
     <div class="contactUs">

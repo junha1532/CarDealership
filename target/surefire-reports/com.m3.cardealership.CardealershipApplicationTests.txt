@@ -2,6 +2,9 @@
 Test set: com.m3.cardealership.CardealershipApplicationTests
 -------------------------------------------------------------------------------
 <<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.514 s - in com.m3.cardealership.CardealershipApplicationTests
+=======
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.278 s - in com.m3.cardealership.CardealershipApplicationTests
 =======
@@ -14,3 +17,4 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.173 s - in com
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.476 s - in com.m3.cardealership.CardealershipApplicationTests
 >>>>>>> 853895f0911912778296793b98b884d99043bce3
 >>>>>>> 74c4ebe5f24683f56e9b950018f007048b7c18e4
+>>>>>>> f0505d11d1ea3712c3af39123669027a86933208

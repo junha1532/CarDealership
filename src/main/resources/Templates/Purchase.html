@@ -15,28 +15,22 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" th:href="@{/EditVehicle.css}" />
       <script
-         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-         defer
-         ></script>
+         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script
-         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-         defer
-         ></script>
-      <script th:src="@{/EditVehicle.js}" defer></script>
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script th:src="@{/EditVehicle.js}"></script>
       <title>TEMP VEHICLE PAGE!</title>
    </head>
    <body>
       <div class="navbar">
-         <a href="Index.html">Home</a>
-         <a href="InventoyNew.html">New Inventory</a>
-         <a href="UsedInventory.html">Used Inventory</a>
-         <a href="Specials.html">Specials</a>
-         <a href="Contact.html">Contact</a>
-         <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-         <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
-            >Sales</a
-            >
-      </div>
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+    </div>
                <div sec:authorize="isAuthenticated()">
 
       <div class="container">
