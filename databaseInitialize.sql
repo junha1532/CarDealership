@@ -114,15 +114,6 @@ Values(1, "Mercedes", "2021-09-10");
 INSERT INTO Make(userId, makeName, dateAdded) 
 Values(1, "Ferrarri", "2021-09-14");
 
-INSERT INTO Make(userId, makeName, dateAdded) 
-Values(1, "Audi", "2021-09-01");
-
-INSERT INTO Make(userId, makeName, dateAdded) 
-Values(1, "Mercedes", "2021-09-10");
-
-INSERT INTO Make(userId, makeName, dateAdded) 
-Values(1, "Ferrarri", "2021-09-14");
-
 INSERT INTO MODEL(MakeId, userId, modelName, dateAdded) 
 Values(1, 1, "R8", "2021-09-14");
 
