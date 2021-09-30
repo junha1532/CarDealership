@@ -35,6 +35,12 @@ public class ModelDaoDB implements ModelDao{
     }
     
     @Override
+    public List<Model> getModelFromMakeName(String makeName) {
+        final String SELECT_MODEL_BY_MAKENAME = "SELECT * FROM model mo LEFT JOIN make ma ON mo.MakeId = ma.MakeId WHERE MakeName = \"" + makeName + "\"";
+            return jdbc.query(SELECT_MODEL_BY_MAKENAME, new ModelMapper());
+    }
+    
+    @Override
     public Model getModelFromModelName(String modelName){
         try {
             final String SELECT_MODEL_BY_MODELNAME = "SELECT * FROM model WHERE modelName = ?";

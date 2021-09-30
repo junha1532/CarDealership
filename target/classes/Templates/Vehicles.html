@@ -73,11 +73,10 @@
       </div>
       <h1>Search Results</h1>
       <li id="vehicle-list">
-        <ul>
+        <ul th:each="vehicle : ${vehicles}">
           <div
             class="container"
             id="vehicle-container"
-            th:each="vehicle : ${vehicles}"
           >
             <h3>
               <span id="year" th:text="${vehicle.year}"></span>
@@ -85,7 +84,11 @@
               <span id="model" th:text="${vehicle.model.modelName}"></span>
             </h3>
             <div id="vehicle-details-container">
-              <img th:src="@{/acar.png}" alt="CAR" class="img-thumbnail float-left" />
+              <img
+                th:src="@{/car.png}"
+                alt="CAR"
+                class="img-thumbnail float-left"
+              />
               <p>
                 Body Style:
                 <span id="bodyStyle" th:text="${vehicle.bodyStyle}"></span>
