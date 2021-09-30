@@ -23,56 +23,80 @@
       </div>
         <!--style = "display:none;-->
       <div class="SearchBar">
-         <form action="/query" method = "GET">
-<!--            <input type="hidden" id="isNew" name="isNew" value="Both">-->
+          <form action="/query" method="GET">
+              <!--            <input type="hidden" id="isNew" name="isNew" value="Both">-->
 
-            <select name="isNew" id="isNew">
-               <option value="Both">New and Used</option>
-               <option value="New">New</option>
-               <option value="Used">Used</option>
+              <select name="isNew" id="isNew">
+                  <option value="Both">New and Used</option>
+                  <option value="New">New</option>
+                  <option value="Used">Used</option>
 
-            </select>
-                
-            <input type="search" value ="" name="likeQuery" id ="likeQuery" placeholder="Enter make, model, or year...">
-<!--            <label for="minPrice">Price</label>-->
+              </select>
 
+              <input type="search" value="" name="likeQuery" id="likeQuery" placeholder="Enter make, model, or year...">
+              <!--            <label for="minPrice">Price</label>-->
 
-            <select name="minPrice" id="minPrice">
-               <option value="0">NO MIN</option>
-               <option value="5000">5000</option>
-               <option value="10000">10000</option>
-               <option value="15000">15000</option>
-            </select>
-            <select name="maxPrice" id="maxPrice">
-               <option value="9999999999999">NO MAX</option>
-               <option value="5000">5000</option>
-               <option value="10000">10000</option>
-               <option value="15000">15000</option>
-               <option value="100000">100000</option>
-            </select>
-            <label for="minYear">Year</label>
-            <select name="minYear" id="minYear">
-               <option value="0">NO MIN</option>
-               <option value="1960">1960</option>
-               <option value="1970">1970</option>
-               <option value="1980">1980</option>
-               <option value="1990">1990</option>
-               <option value="2000">2000</option>
-               <option value="2010">2010</option>
-               <option value="2020">2020</option>
-            </select>
-            <select name="maxYear" id="maxYear">
-               <option value="9999">NO MAX</option>
-               <option value="1980">1980</option>
-               <option value="1990">1990</option>
-               <option value="2000">2000</option>
-               <option value="2010">2010</option>
-               <option value="2020">2020</option>
-               <option value="2030">2030</option>
-            </select>
+              <
+                  <form name="formS" id="Searchform" action="Script1.js">
+                      <input type="search" id="query" name="q" placeholder="Enter make, model, or year...">
+                      <div class="dropdown">
+                          Prices: <select name="subject" class="dropbtn" id="subject">
+                              <option value="" selected="selected">Min Price</option>
+                          </select>
+                          <select name="subject" class="dropbtn" id="subject">
+                              <option value="" selected="selected">Max Price</option>
+                          </select>
+                      </div>
 
-            <input type="submit" value="Submit">
-         </form>
+                      <div class="dropdown2">
+                          Year:
+                          <select name="subject" class="dropbtn" id="subject">
+                              <option value="" selected="selected">Min Year</option>
+                          </select>
+                          <select name="subject" class="dropbtn" id="subject">
+                              <option value="" selected="selected">Max Year</option>
+                          </select>
+                      </div>
+
+                      <button type="submit" class="search">Search</button>
+                  </form>
+              </div>
+              <select name="minPrice" id="minPrice">
+                  <option value="0">NO MIN</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                  <option value="15000">15000</option>
+              </select>
+              <select name="maxPrice" id="maxPrice">
+                  <option value="9999999999999">NO MAX</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                  <option value="15000">15000</option>
+                  <option value="100000">100000</option>
+              </select>
+              <label for="minYear">Year</label>
+              <select name="minYear" id="minYear">
+                  <option value="0">NO MIN</option>
+                  <option value="1960">1960</option>
+                  <option value="1970">1970</option>
+                  <option value="1980">1980</option>
+                  <option value="1990">1990</option>
+                  <option value="2000">2000</option>
+                  <option value="2010">2010</option>
+                  <option value="2020">2020</option>
+              </select>
+              <select name="maxYear" id="maxYear">
+                  <option value="9999">NO MAX</option>
+                  <option value="1980">1980</option>
+                  <option value="1990">1990</option>
+                  <option value="2000">2000</option>
+                  <option value="2010">2010</option>
+                  <option value="2020">2020</option>
+                  <option value="2030">2030</option>
+              </select>
+
+              <input type="submit" value="Submit">
+          </form>
       </div>
        <hr>
       <div>
