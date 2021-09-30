@@ -32,9 +32,9 @@ public class AccountController {
     }
     
     @PostMapping("/Account/updatePassword")
-    public String updatePassword(HttpServletRequest request, @RequestParam("password") String newpassword, @RequestParam("email") String email){
-        User user = userDao.getUserByEmail(email);
-        user.setPassword(newpassword);
+    public String updatePassword(HttpServletRequest request, @RequestParam("email") String email){
+        User user = userDao.getUserByEmail(request.getRemoteUser());//issue getting logged in user
+        user.setPassword(request.getParameter("password"));
         // 1. UserDao updates existing user in database
         userDao.updateUser(user);
         
