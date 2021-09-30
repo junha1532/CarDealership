@@ -31,15 +31,13 @@
   </head>
   <body>
     <div class="navbar">
-      <a href="Index.html">Home</a>
-      <a href="InventoyNew.html">New Inventory</a>
-      <a href="UsedInventory.html">Used Inventory</a>
-      <a href="Specials.html">Specials</a>
-      <a href="Contact.html">Contact</a>
-      <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-      <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
-        >Sales</a
-      >
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
     <div class="container">
       <h1>Edit Vehicle</h1>
@@ -55,13 +53,22 @@
             <select class="form-control" id="make" name="make">
               <option selected disabled>Select Make</option>
               <option
+                th:if="${(param.makeName == null)}"
                 th:each="make : ${makes}"
                 th:value="${make.makeName}"
                 th:text="${make.makeName}"
-                th:selected="${vehicle.model.modelName}"
+                th:selected="${make.makeName == vehicle.make.makeName}"
+              ></option>
+              <option
+                th:unless="${(param.makeName == null)}"
+                th:each="make : ${makes}"
+                th:value="${make.makeName}"
+                th:text="${make.makeName}"
+                th:selected="${make.makeName == param.makeName[0]}"
               ></option>
             </select>
           </div>
+          <input type="hidden" id="modelsEmpty" th:value="${models.empty}" />
           <div>
             <label for="model">Model</label>
             <select class="form-control" id="model" name="model">
@@ -70,9 +77,10 @@
                 th:each="model : ${models}"
                 th:value="${model.modelName}"
                 th:text="${model.modelName}"
-                th:selected="${vehicle.model.modelName}"
+                th:selected="${model.modelName == vehicle.model.modelName}"
               ></option>
             </select>
+          </div>
         </div>
 
         <div id="form-element-container">
@@ -174,7 +182,12 @@
           class="form-control"
           th:text="${vehicle.DESCRIPTION}"
         ></textarea>
-        <input type="hidden" name="vehicleId" th:value="${vehicle.vehicleId}" />
+        <input
+          type="hidden"
+          id="vehicleId"
+          name="vehicleId"
+          th:value="${vehicle.vehicleId}"
+        />
         <div>
           <button type="submit" class="btn btn-primary">Save</button>
           <button type="submit" class="btn btn-danger">

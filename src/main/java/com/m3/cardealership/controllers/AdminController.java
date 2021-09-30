@@ -73,13 +73,10 @@ public class AdminController {
         return "Specials";
     }
     
-    
-    
-    @GetMapping("Vehicles")
+    @GetMapping("/vehicles")
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
-        
         return "Vehicles";
     }
     
@@ -97,11 +94,11 @@ public class AdminController {
             minYear = request.getParameter("minYear");
             maxYear = request.getParameter("maxYear");
         }
-        List<Vehicle> vehicles = vehicledao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicledao.getVehicleBySearch("Both", likeQuery, minPrice, maxPrice, minYear, maxYear);
         
         model.addAttribute("vehicles", vehicles);
         
-        return "Sales";
+        return "/vehicles";
     }
     
     @PostMapping("/addVehicle")
@@ -119,7 +116,7 @@ public class AdminController {
     }
 
     @GetMapping("/editVehicle")
-    public String editVehicle(HttpServletRequest request, Model model) {
+    public String editVehicle(HttpServletRequest request, @RequestParam(defaultValue="") String makeName, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
@@ -127,8 +124,23 @@ public class AdminController {
         List<Make> makes = makedao.getAllMakes();
         model.addAttribute("makes", makes);
         
+        List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
+        
+            model.addAttribute("models", models);
+            System.out.println(model);
+        
+        
         return "editVehicle";
     }    
+    
+//    @GetMapping("/editVehicle/queryModels")
+//    public String getVehicleMovels(HttpServletRequest request, Model model) {
+//        String makeName = request.getParameter("makeName");
+//        List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
+////        model.addAttribute("models", models);
+//        
+//        return "editVehicle";
+//    }    
     
     @PostMapping("/editVehicle")
     public String performEditVehicle(HttpServletRequest request) {
@@ -221,7 +233,7 @@ public class AdminController {
 //    }
     
 
-    @PostMapping ("AddSpecial")
+    @PostMapping ("addSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
         String specialDescription = request.getParameter("specialDescription");
@@ -231,14 +243,19 @@ public class AdminController {
         special.setSpecialDescription(specialDescription);
         special.setPromotionAmount(0);//where do we get this from?
         specialdao.addSpecial(special);
-        return "redirect:/specials";
-    }
+        return "redirect:/Inventory/Specials";
+    }   
 
 
-    @PostMapping("specials/deleteSpecial")
+    @GetMapping("deleteSpecial")
     public String deleteSpecial(HttpServletRequest request) {
-        specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
-        return "redirect:/specials";
+        
+        String title = request.getParameter("title");
+        
+        System.out.println("test");
+        System.out.println(title);
+        specialdao.deleteSpecialByTitle(title);
+        return "redirect:/Inventory/Specials";
     }
 
 //    @GetMapping("deleteSpecial")

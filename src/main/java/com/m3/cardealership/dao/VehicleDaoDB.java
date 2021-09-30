@@ -73,7 +73,6 @@ public class VehicleDaoDB implements VehicleDao {
         SELECT_FEATURED_VEHICLES += ") ORDER BY v.salePrice LIMIT 20";
         List<Vehicle> featuredVehicles = jdbc.query(SELECT_FEATURED_VEHICLES, new VehicleMapper());
         associateModelAndMake(featuredVehicles);
-
         return featuredVehicles;
     }
     
@@ -145,7 +144,7 @@ public class VehicleDaoDB implements VehicleDao {
 
     @Override
     public void deleteVehicleById(int id) {
-        final String DELETE_VEHICLE = "DELETE FROM vehicle WHERE id = ?";
+        final String DELETE_VEHICLE = "DELETE FROM vehicle WHERE vehicleId = ?";
         jdbc.update(DELETE_VEHICLE, id);
     }
 

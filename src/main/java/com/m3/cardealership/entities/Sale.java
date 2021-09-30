@@ -29,6 +29,10 @@ public class Sale {
         return "Sale{" + "saleId=" + saleId + ", specialTitle=" + specialTitle + ", salespersonId=" + salespersonId + ", customerName=" + customerName + ", customerEmail=" + customerEmail + ", customerAddress=" + customerAddress + ", customerAddress2=" + customerAddress2 + ", customerCity=" + customerCity + ", customerZipCode=" + customerZipCode + ", purchasePrice=" + purchasePrice + ", purchaseType=" + purchaseType + '}';
     }
 
+    
+    public Sale(){
+    customerAddress2 = "";
+}
     @Override
     public int hashCode() {
         int hash = 5;
@@ -46,6 +50,8 @@ public class Sale {
         return hash;
     }
 
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
