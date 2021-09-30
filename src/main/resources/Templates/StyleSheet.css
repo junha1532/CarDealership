@@ -23,6 +23,7 @@
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 8px;
+    height:300px;
     color: inherit;
     background-color: #eee;
 }
@@ -191,6 +192,24 @@ h3{
      width:100px;
      height:25px;
 }
+
+
+.newMake {
+    border-block-style: solid;
+    border-block-color: black;
+    margin: 15px 20px 15px 20px;
+    border-right: solid black;
+    border-left: solid black;
+    background-color: #eee;
+    height: 50px;
+
+}
+
+p{
+    padding-left:8px;
+    padding-top:8px;
+}
+
 
 
 

@@ -27,6 +27,31 @@
 
     <div class="SearchBar " ><h1>Specials</h1>   
     
+    <br />
+    <br />
+    <br />
+    <div class="container"><h1>Specials</h1></div>    
+    
+    <div sec:authorize="hasRole('ADMIN')">
+        <div>
+            <form  th:action="@{/admin/addSpecial}" method="post">
+                <label for="name">Title</label> <br />
+                <input type="text" id="specialTitle" name="specialTitle" />
+                <br />
+                <label for="description">Description</label> <br />
+                <textarea id="specialDescription" name="specialDescription"></textarea>
+                <br />
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+        <table>
+        <tr th:each="special : ${specials}">
+            <th th:text="${special.SpecialTitle}"> </th>
+            <th th:text="${special.SpecialDescription}"> </th>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
+        </tr>
+        </table>
         <div sec:authorize="hasRole('ADMIN')">
             <div>
                 <form  th:action="@{/addSpecial}" method="post" class="form-group">

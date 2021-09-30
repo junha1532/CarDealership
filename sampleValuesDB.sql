@@ -72,4 +72,18 @@ USE cardealership;
 
 
 -- SELECT * FROM VEHICLE;
-SELECT v.* FROM VEHICLE v JOIN model m ON m.modelId = v.modelId JOIN make ma on ma.makeId = m.makeId WHERE v.mileage = 0 AND ma.makeName LIKE '%%' and m.modelName LIKE '%%' and v.year LIKE '%%'  AND v.salePrice BETWEEN 0 AND 9999999999999 AND v.year BETWEEN 0 AND 9999 LIMIT 20
+-- SELECT v.* FROM VEHICLE v JOIN model m ON m.modelId = v.modelId JOIN make ma on ma.makeId = m.makeId WHERE v.mileage > 0 AND ma.makeName LIKE '%%' and m.modelName LIKE '%%' and v.year LIKE '%%'  AND v.salePrice BETWEEN 0 AND 9999999999999 AND v.year BETWEEN 0 AND 9999 LIMIT 20
+
+
+-- INSERT INTO sale(SpecialTitle,salesPersonId,customerName,customerEmail,customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType 
+-- VALUES(1,'Dan Huynh','danh8953@gmail.com','492 Wismer St.','','Waterloo','N2K');
+
+-- INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType )
+-- Values(1, "Aubrey", "aubrey@cool.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "CASH");
+
+-- INSERT INTO user(userFirstName, userLastName, userType, userEmail, password)
+-- Values("Dan", "H", "SALES", "dan@sales.com", "123");
+
+SELECT * FROM SPECIAL;
+
+-- SELECT * FROM SALE;

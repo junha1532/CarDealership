@@ -16,13 +16,27 @@
     <meta charset="utf-8" />
     <title>Home</title>
 </head>
-  <body>
+<body>
     <div class="navbar">
         <a th:href="@{/Index}">Home</a>
         <a th:href="@{/Inventory/New}">New Inventory</a>
         <a th:href="@{/Inventory/Used}">Used Inventory</a>
         <a th:href="@{/Inventory/Specials}">Specials</a>
         <a th:href="@{/Contact}">Contact</a>
+<<<<<<< HEAD
+        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+    </div>
+
+    <div class="container"></div>
+    
+        <a th:href="@{/Inventory/Specials}">
+            <div class="jumbotron" img src="ImageJumbotron.jpg">
+    <!--        <p th:each="special : ${specials}">
+        <span th:text="${special.SpecialTitle}"> </span>
+        </p>-->
+=======
+        <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')">Admin</a> 
         <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
         <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
@@ -41,27 +55,28 @@
                 <p th:each="special : ${specials}">
                     <span th:text="${special.SpecialTitle}"> </span>
                 </p>-->
+>>>>>>> 05a1a95ba9f1cb9e6a758991611eab045f1b10cc
             </div>
         </a>
-    </div>
+
 
     <div class="container">
         <div class="featuredVehicles">
             <h2>Featured Vehicles</h2>
         </div>
-        <table  >
-            <tr >
-                        <th th:each="vehicle, vehStat : ${featuredVehicles}">
-                            <p th:text="${vehicle.VehicleId}"> </p>
-                            <p th:text="${vehicle.make.makeName}"> </p>
-                            <p th:text="${vehicle.model.modelName}"> </p> 
-                            <p th:text="${vehicle.SalePrice}"> </p> 
-                    
-                        </th>
+        <table>
+            <tr>
+                <th th:each="vehicle, vehStat : ${featuredVehicles}">
+                    <p th:text="${vehicle.VehicleId}"> </p>
+                    <p th:text="${vehicle.make.makeName}"> </p>
+                    <p th:text="${vehicle.model.modelName}"> </p>
+                    <p th:text="${vehicle.SalePrice}"> </p>
+
+                </th>
             </tr>
-                </table>
-            </div>
-        </div>  
+        </table>
+    </div>
+    </div>
 
 
 </body>

@@ -73,17 +73,10 @@ public class AdminController {
         return "Specials";
     }
     
-<<<<<<< HEAD
     @GetMapping("/vehicles")
-=======
-    
-    
-    @GetMapping("Vehicles")
->>>>>>> a755d2599531dab5b453fc0f396b9ee1a173bb29
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
-        
         return "Vehicles";
     }
     
@@ -105,7 +98,7 @@ public class AdminController {
         
         model.addAttribute("vehicles", vehicles);
         
-        return "Sales";
+        return "/vehicles";
     }
     
     @PostMapping("/addVehicle")
@@ -247,7 +240,7 @@ public class AdminController {
 //    }
     
 
-    @PostMapping ("AddSpecial")
+    @PostMapping ("addSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
         String specialDescription = request.getParameter("specialDescription");
@@ -257,14 +250,19 @@ public class AdminController {
         special.setSpecialDescription(specialDescription);
         special.setPromotionAmount(0);//where do we get this from?
         specialdao.addSpecial(special);
-        return "redirect:/specials";
-    }
+        return "redirect:/Inventory/Specials";
+    }   
 
 
-    @PostMapping("specials/deleteSpecial")
+    @GetMapping("deleteSpecial")
     public String deleteSpecial(HttpServletRequest request) {
-        specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
-        return "redirect:/specials";
+        
+        String title = request.getParameter("title");
+        
+        System.out.println("test");
+        System.out.println(title);
+        specialdao.deleteSpecialByTitle(title);
+        return "redirect:/Inventory/Specials";
     }
 
 //    @GetMapping("deleteSpecial")

@@ -3,9 +3,45 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Add Make </title>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
 </head>
 <body>
+    <div class="navbar">
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+    </div>
+
+    <div>
+        <h3>Makes </h3>
+        <div class="newMake">
+            <form name="formNM" id="NMform" action="">
+                <p>New Make</p>
+                <input type="text" id="newMake" name="newMake" />
+                <button type="submit"> Save </button>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="DisplayMakes">
+        <table>
+            <tr>Make</tr>
+            <tr>Date Added</tr>
+            <tr>User</tr>
+        </table>
+    </div>
 
 </body>
 </html>
