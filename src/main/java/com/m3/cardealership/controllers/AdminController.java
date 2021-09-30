@@ -73,6 +73,8 @@ public class AdminController {
         return "Specials";
     }
     
+    
+    
     @GetMapping("Vehicles")
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();

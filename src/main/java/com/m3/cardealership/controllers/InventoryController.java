@@ -6,8 +6,10 @@
 package com.m3.cardealership.controllers;
 
 import com.m3.cardealership.dao.ContactDao;
+import com.m3.cardealership.dao.SpecialDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Contact;
+import com.m3.cardealership.entities.Special;
 import com.m3.cardealership.entities.Vehicle;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,9 @@ public class InventoryController {
     
     @Autowired
     ContactDao contactDao;
+    
+    @Autowired
+    SpecialDao specialdao;
     
 
     //pathvariable
@@ -112,6 +117,13 @@ public class InventoryController {
         
         contactDao.addContact(contact);
         return "redirect:/Inventory/Detail?"+id;
+    }
+    
+    @GetMapping("/Specials")
+    public String displaySpecials(Model model){
+        List<Special> specials = specialdao.getAllSpecials();
+        model.addAttribute("specials", specials);
+        return "Specials";
     }
     
     

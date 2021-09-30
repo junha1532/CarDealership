@@ -12,7 +12,7 @@
         <a th:href="@{/Index}">Home</a>
         <a th:href="@{/Inventory/New}">New Inventory</a>
         <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a href="Specials">Specials</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
         <a th:href="@{/Contact}">Contact</a>
         <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> 
         <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
