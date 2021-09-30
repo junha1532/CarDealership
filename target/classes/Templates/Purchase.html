@@ -1,11 +1,277 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>TEMP PURCHASE PAGE!</title>
-    </head>
-    <body>
-        <h1>THIS IS TEMP PURCHASE PAGE!</h1>  
-        
-    </body>
+<html
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="https://www.thymeleaf.org"
+   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+   >
+   <head>
+      <!-- Bootstrap CSS -->
+      <link
+         rel="stylesheet"
+         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+         crossorigin="anonymous"
+         />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" th:href="@{/EditVehicle.css}" />
+      <script
+         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+         defer
+         ></script>
+      <script
+         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+         defer
+         ></script>
+      <script th:src="@{/EditVehicle.js}" defer></script>
+      <title>TEMP VEHICLE PAGE!</title>
+   </head>
+   <body>
+      <div class="navbar">
+         <a href="Index.html">Home</a>
+         <a href="InventoyNew.html">New Inventory</a>
+         <a href="UsedInventory.html">Used Inventory</a>
+         <a href="Specials.html">Specials</a>
+         <a href="Contact.html">Contact</a>
+         <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
+         <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+            >Sales</a
+            >
+      </div>
+               <div sec:authorize="isAuthenticated()">
+
+      <div class="container">
+                <form
+
+         id="edit-vehicle-form"
+
+         >
+      <h1>Purchase Vehicle</h1>
+         <div id="form-element-container">
+         <div>
+            <label for="make"><b>Make</b></label>
+            <!-- th:onchange='" -->
+            <p th:text="${vehicle.make.makeName}"> </p>
+         </div>
+         <div>
+            <label for="model"><b>Model</b></label>
+            <p th:text="${vehicle.model.modelName}"> </p>
+         </div>
+         <div id="form-element-container">
+            <div>
+               <label for="bodyStyle"><b>Body Style</b></label>
+               <p th:text="${vehicle.bodyStyle}"> </p>
+            </div>
+            <div>
+               <label for="year"><b>Year</b></label>
+               <p th:text="${vehicle.year}"> </p>
+            </div>
+         </div>
+         <div id="form-element-container">
+            <div>
+               <label for="transmission"><b>Transmission</b></label>
+               <p th:text="${vehicle.transmission}"> </p>
+            </div>
+            <div>
+               <label for="color"><b>Color</b></label>
+               <p th:text="${vehicle.color}"> </p>
+            </div>
+         </div>
+         <div id="form-element-container">
+            <div>
+               <label for="mileage"><b>Mileage</b></label>
+               <p th:text="${vehicle.mileage}"> </p>
+            </div>
+            <div>
+               <label for="VIN"><b>VIN #</b></label>
+               <p th:text="${vehicle.VIN}"> </p>
+            </div>
+         </div>
+         <div id="form-element-container">
+            <div>
+               <label for="MSRP"><b>MSRP</b></label>
+               <p th:text="${vehicle.MSRP}"> </p>
+            </div>
+            <div>
+               <label for="salePrice"><b>Sale Price</b></label>            
+               <p th:text="${vehicle.salePrice}"> </p>
+            </div>
+         </div>
+         <div id="form-element-container">
+            <label for="DESCRIPTION"><b>Description</b></label>
+            <p th:text="${vehicle.DESCRIPTION}"> </p>
+            </form>
+         </div>
+             
+             
+         <div>
+         <h1>Sales Information</h1>
+      <form
+         action="PurchaseSend"
+         id="edit-vehicle-form"
+         method="POST"
+         >
+         <div id="form-element-container">
+            <div>
+               <label for="customerName"><b>Customer Name</b></label>
+               <input
+                  type="text"
+                  name="customerName"
+                  id="customerName"
+                  class="form-control"
+                  />
+            </div>
+            <div>
+               <label for="customerPhone"><b>Phone Number</b></label>
+               <input
+                  type="tel"
+                  name="customerPhone"
+                  id="customerPhone"
+                  class="form-control"
+                  />
+            </div>
+            <div id="form-element-container">
+               <div>
+                  <label for="customerEmail"><b>Email</b></label>
+                  <input
+                     type="email"
+                     name="customerEmail"
+                     id="customerEmail"
+                     class="form-control"
+                     />
+               </div>
+               <div id="form-element-container">
+                  <div>
+                     <label for="customerAddress"><b>Street Address 1</b></label>
+                     <input
+                        type="text"
+                        name="customerAddress"
+                        id="customerAddress"
+                        class="form-control"
+                        />
+                  </div>
+                  <div>
+                     <label for="customerAddress"><b>Street Address 2</b></label>
+                     <input
+                        type="text"
+                        name="customerAddress2"
+                        id="customerAddress"
+                        class="form-control"
+                        />
+                  </div>
+               </div>
+               <div id="form-element-container">
+                  <div>
+                     <label for="customerCity"><b>City</b></label>
+                     <input
+                        type="text"
+                        name="customerCity"
+                        id="customerCity"
+                        class="form-control"
+                        />
+                     <div>
+                        <label for="customerState"><b>State</b></label>
+                        <select name = "customerState" id = "customerState">
+                           <option value="AL">Alabama</option>
+                           <option value="AK">Alaska</option>
+                           <option value="AZ">Arizona</option>
+                           <option value="AR">Arkansas</option>
+                           <option value="CA">California</option>
+                           <option value="CO">Colorado</option>
+                           <option value="CT">Connecticut</option>
+                           <option value="DE">Delaware</option>
+                           <option value="DC">District Of Columbia</option>
+                           <option value="FL">Florida</option>
+                           <option value="GA">Georgia</option>
+                           <option value="HI">Hawaii</option>
+                           <option value="ID">Idaho</option>
+                           <option value="IL">Illinois</option>
+                           <option value="IN">Indiana</option>
+                           <option value="IA">Iowa</option>
+                           <option value="KS">Kansas</option>
+                           <option value="KY">Kentucky</option>
+                           <option value="LA">Louisiana</option>
+                           <option value="ME">Maine</option>
+                           <option value="MD">Maryland</option>
+                           <option value="MA">Massachusetts</option>
+                           <option value="MI">Michigan</option>
+                           <option value="MN">Minnesota</option>
+                           <option value="MS">Mississippi</option>
+                           <option value="MO">Missouri</option>
+                           <option value="MT">Montana</option>
+                           <option value="NE">Nebraska</option>
+                           <option value="NV">Nevada</option>
+                           <option value="NH">New Hampshire</option>
+                           <option value="NJ">New Jersey</option>
+                           <option value="NM">New Mexico</option>
+                           <option value="NY">New York</option>
+                           <option value="NC">North Carolina</option>
+                           <option value="ND">North Dakota</option>
+                           <option value="OH">Ohio</option>
+                           <option value="OK">Oklahoma</option>
+                           <option value="OR">Oregon</option>
+                           <option value="PA">Pennsylvania</option>
+                           <option value="RI">Rhode Island</option>
+                           <option value="SC">South Carolina</option>
+                           <option value="SD">South Dakota</option>
+                           <option value="TN">Tennessee</option>
+                           <option value="TX">Texas</option>
+                           <option value="UT">Utah</option>
+                           <option value="VT">Vermont</option>
+                           <option value="VA">Virginia</option>
+                           <option value="WA">Washington</option>
+                           <option value="WV">West Virginia</option>
+                           <option value="WI">Wisconsin</option>
+                           <option value="WY">Wyoming</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div>
+                     <label for="customerZipCode"><b>Zip Code</b></label>
+                     <input
+                        type="text"
+                        name="customerZipCode"
+                        id="customerZipCode"
+                        class="form-control"
+                        />
+                  </div>
+               </div>
+               <div id="form-element-container">
+                  <div>
+                     <label for="purchasePrice"><b>Sale Price</b></label>
+                     <input
+                        type="text"
+                        name="purchasePrice"
+                        id="purchasePrice"
+                        class="form-control"
+                        th:value="${vehicle.salePrice}"
+                        />
+                  </div>
+               </div>
+               <div id="form-element-container">
+                  <div>
+                     <label for="purchaseType"><b>Purchase Type</b></label>
+                        <select name = "purchaseType" id = "purchaseType">                        
+                        <option value="Bank Finance">Bank Finance</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Dealer Finance">Dealer Finance</option>
+                     </select>
+                  </div>
+               </div>
+      </form>
+      </div>
+      <div>
+      <button type="submit" class="btn btn-primary">
+          Save
+      </button>
+    <input type="hidden" name="vehicleId" th:value="${vehicle.vehicleId}" />
+
+          
+          
+            <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
+
+        </div>
+      </div>
+      </div>
+      <!-- Optional JavaScript -->
+   </body>
 </html>

@@ -1,25 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.m3.cardealership.CardealershipApplicationTests
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.411 s <<< FAILURE! - in com.m3.cardealership.CardealershipApplicationTests
-contextLoads  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'springSecurityFilterChain' defined in class path resource [org/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'users' defined in class path resource [com/m3/cardealership/security/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.core.userdetails.UserDetailsService]: Factory method 'users' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.servlet.Filter]: Factory method 'springSecurityFilterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'users' defined in class path resource [com/m3/cardealership/security/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.core.userdetails.UserDetailsService]: Factory method 'users' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'users' defined in class path resource [com/m3/cardealership/security/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.core.userdetails.UserDetailsService]: Factory method 'users' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.core.userdetails.UserDetailsService]: Factory method 'users' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
-
-=======
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.807 s - in com.m3.cardealership.CardealershipApplicationTests
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.443 s - in com.m3.cardealership.CardealershipApplicationTests
->>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c
->>>>>>> f4a0283282f866dd56f488a3776c20f6affe7900
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.176 s - in com.m3.cardealership.CardealershipApplicationTests
->>>>>>> d641287fcd5391acfba46acc60ad80546f9440fe
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.278 s - in com.m3.cardealership.CardealershipApplicationTests

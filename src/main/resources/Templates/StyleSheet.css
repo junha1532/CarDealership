@@ -5,7 +5,7 @@
     border-right: solid;
     border-left: solid;
     border-width: 2px;
-    width: 1261px;
+
     text-align: center;
     overflow: hidden;
     position: fixed;
@@ -154,8 +154,10 @@ th {
     border-right: solid;
     border-left: solid;
     border-width: 2px;
-    width: 1261px;
+    width: 100%;
     background-color: #eee;
+
+
 }
 h3{
     margin-left: 10px;
@@ -164,12 +166,12 @@ h3{
     margin-top: 5px;
     font-size: 17px;
     border: none;
-    display: flex;
     justify-content: space-around;
+    display: grid;
 }
 
-#query{
-    width:250px;
+#likeQuery{
+    width:350px;
     height:35px;
 }
 
@@ -186,8 +188,16 @@ h3{
     color: white;
     padding:5px;
     border:none;
-    max-height:25px;
-    max-width:100px;
+    max-height:40px;
+    max-width:120px;
+}
+.dropbtnnewUsed {
+    background-color: cornflowerblue;
+    color: white;
+    padding:5px;
+    border:none;
+    max-height:40px;
+    max-width:145px;
 
 }.search{
      width:100px;

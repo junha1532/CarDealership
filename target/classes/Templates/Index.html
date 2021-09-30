@@ -37,11 +37,7 @@
 >>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c
         <a th:href="@{/Inventory/Specials}">
             <div class="jumbotron">
-<<<<<<< HEAD
-                <img src="ImageJumbotron.jpg" class="image"/>
-=======
-                <img th:src="@{/ImageJumbotron.jpg}" />
->>>>>>> d641287fcd5391acfba46acc60ad80546f9440fe
+                <img th:src="@{ImageJumbotron.jpg}" />
                 <p th:each="special : ${specials}">
                     <span th:text="${special.SpecialTitle}"> </span>
                 </p>
