@@ -204,13 +204,55 @@ h3{
     border-right: solid black;
     border-left: solid black;
     background-color: #eee;
-    height: 50px;
+    height:50px;
+    
+}
+
+#NMform{
+    display:flex;
+    align-content:space-between;
+}
+
+#newMake{
+    max-height:29px;
+    margin-top:8px ;
+    margin-left:15px;
+    margin-right:15px;
+    
+}
+
+#NMsubmit{
+    max-height: 30px;
+    width:55px;
+    background-color:cornflowerblue;
+    color:white;
+    margin-top:8px;
+    text-align:center;
 
 }
 
-p{
-    padding-left:8px;
-    padding-top:8px;
+
+p {
+    padding-left: 10px;
+    padding-top: 8px;
+}
+
+#displayMakesTable{
+margin-left: 20px;
+}
+
+#displayMakesTable td {
+    border: 2px solid black;
+    text-align: left;
+    height:50px;
+    width:120px;
+
+    
+}
+
+#displayMakesTable td content{
+    text-align:center;
+    padding-left:5px;
 }
 
 
