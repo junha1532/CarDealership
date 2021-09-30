@@ -79,7 +79,7 @@
             </form>
          </div>
          <hr>
-         <div>
+         <div th:if="${not #lists.isEmpty(vehicles)}">
             <h3>Search Results</h3>
             <div class="row m-4 border border-dark">
                <div class="col text-center m-3">
