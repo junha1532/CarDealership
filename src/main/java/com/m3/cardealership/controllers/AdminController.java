@@ -133,6 +133,13 @@ public class AdminController {
         return "editVehicle";
     }    
     
+    @GetMapping("/deleteVehicle")
+    public String editVehicle(HttpServletRequest request){
+        int id = Integer.parseInt(request.getParameter("id"));
+        vehicledao.deleteVehicleById(id);
+        return "redirect:/vehicles";
+    }
+    
 //    @GetMapping("/editVehicle/queryModels")
 //    public String getVehicleMovels(HttpServletRequest request, Model model) {
 //        String makeName = request.getParameter("makeName");
