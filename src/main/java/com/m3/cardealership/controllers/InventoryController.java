@@ -54,19 +54,19 @@ public class InventoryController {
     
     
     //search queries
-    @GetMapping ("/New/query")
-    public String showNewVehicles(Model model, HttpServletRequest request){
-        Boolean isNew = true;
-        String likeQuery = request.getParameter("likeQuery");
-        String minPrice = request.getParameter("minPrice");
-        String maxPrice = request.getParameter("maxPrice");
-        String minYear = request.getParameter("minYear");
-        String maxYear = request.getParameter("maxYear");
-        
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
-        model.addAttribute("vehicles",vehicles);
-        return "InventoryNew";
-    }
+//    @GetMapping ("/New/query")
+//    public String showNewVehicles(Model model, HttpServletRequest request){
+//        Boolean isNew = true;
+//        String likeQuery = request.getParameter("likeQuery");
+//        String minPrice = request.getParameter("minPrice");
+//        String maxPrice = request.getParameter("maxPrice");
+//        String minYear = request.getParameter("minYear");
+//        String maxYear = request.getParameter("maxYear");
+//        
+//        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
+//        model.addAttribute("vehicles",vehicles);
+//        return "InventoryNew";
+//    }
     
     
     //sorted by MSRP

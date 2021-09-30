@@ -16,6 +16,8 @@
         <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> 
         <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
+                      <div sec:authorize="isAuthenticated()">
+
       <div>
          <h3>Sales</h3>
       </div>
@@ -83,7 +85,7 @@
                             <tr th:each="vehicle : ${vehicles}">
 
                                 <td th:text="${vehicle.make.makeName} +' ' + ${vehicle.model.modelName}  +' ' + ${vehicle.year}+' Price: $' + ${vehicle.salePrice}+' mileage: ' + ${vehicle.mileage} ">Vehicle Info</td>
-                                <td><a href="#" th:href="@{Sales/purchase(id=${vehicle.vehicleId})}">Purchase</a></td>
+                                <td><a href="#" th:href="@{/Purchase(id=${vehicle.vehicleId})}">Purchase</a></td>
 
                             </tr>
                         </tbody>
@@ -92,5 +94,6 @@
             </div>
         </div> 
       </div>
+   </div>
    </body>
 </html>
