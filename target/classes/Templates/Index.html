@@ -31,16 +31,13 @@
     </div>
 
     <div class="container">
-<<<<<<< HEAD
 
-=======
->>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c
         <a th:href="@{/Inventory/Specials}">
             <div class="jumbotron">
-                <img th:src="@{/ImageJumbotron.jpg}"/>
-                <p th:each="special : ${specials}">
+                <img src="ImageJumbotron.jpg"/>
+<!--                <p th:each="special : ${specials}">
                     <span th:text="${special.SpecialTitle}"> </span>
-                </p>
+                </p>-->
             </div>
         </a>
     </div>
@@ -49,15 +46,18 @@
         <div class="featuredVehicles">
             <h2>Featured Vehicles</h2>
         </div>
-        <table>
+        <table  >
             <tr >
-                        <th th:each="vehicle : ${featuredVehicles}">
-                            <!--<p th:text="${vehicle.VehicleId}"> </p>-->
+                        <th th:each="vehicle, vehStat : ${featuredVehicles}">
+                            <p th:text="${vehicle.VehicleId}"> </p>
                             <p th:text="${vehicle.make.makeName}"> </p>
                             <p th:text="${vehicle.model.modelName}"> </p> 
                             <p th:text="${vehicle.SalePrice}"> </p> 
                     
                         </th>
+<!--                <div th:each="vehicle, row: ${featuredVehicles}" th:with="numList=${#strings.listSplit('3,2,1,0', ',')}" th:if="${row.current} % 4 == 0" class="span3">
+                    <span th:each="num : ${numList}" th:with="dataIndex=(${row.index} - ${num})" th:text="${datas[dataIndex]}">data</span>
+                </div>-->
 <!--            <div class="tableOne" id='featuredTable'>
                 <p >
                     <span th:text="${vehicle.DESCRIPTION}"> </span>
@@ -124,8 +124,5 @@
 
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c
+
