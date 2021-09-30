@@ -7,7 +7,7 @@ $(document).ready(function () {
     type: 'double',
     grid: true,
     min: 0,
-    max: 100000,
+    max: 500000,
     from: minPrice,
     to: maxPrice,
     prefix: '$',
