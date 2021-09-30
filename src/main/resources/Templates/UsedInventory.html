@@ -46,8 +46,8 @@
             <button type="submit" class="search">Search</button>
         </form>
     </div>
-    <div id="container">
-        <table>
+    <div class="col text-center m-3">
+        <table class="table table-striped">
         <tr th:each="vehicle : ${vehicles}">
             <p th:text="${vehicle.VehicleId}"> </p>
             <p th:text="${vehicle.make.makeName}"> </p>
