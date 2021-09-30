@@ -19,24 +19,12 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 public class MvcConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-<<<<<<< HEAD
-		registry.addViewController("/Index.html").setViewName("Index.html");
-		registry.addViewController("/").setViewName("Index");
-                registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
-                registry.addViewController("/Specials.html").setViewName("Specials");
-                registry.addViewController("/Contact.html").setViewName("Contact");
-		registry.addViewController("/home/index").setViewName("Index");
-                registry.addViewController("/index").setViewName("Index");
-                registry.addViewController("/Inventory/New").setViewName("InventoyNew");
-                registry.addViewController("/Inventory/New/query").setViewName("InventoyNew");
-                registry.addViewController("/Inventory/Used").setViewName("InventoryUsed");
-                registry.addViewController("/Inventory/Used/query").setViewName("InventoryUsed");
-=======
 		registry.addViewController("/Index.html").setViewName("Index");
                 registry.addViewController("/Index").setViewName("Index.html");
 		registry.addViewController("/").setViewName("Index");
                 registry.addViewController("/Inventory/Specials").setViewName("Specials");
                 registry.addViewController("/Admin/Specials").setViewName("Specials");
+                registry.addViewController("/admin/editVehicle").setViewName("EditVehicle");
                 registry.addViewController("/Contact.html").setViewName("Contact");
 		registry.addViewController("/home/index").setViewName("Index");
                 registry.addViewController("/Inventory/New").setViewName("InventoryNew");
@@ -44,8 +32,6 @@ public class MvcConfig implements WebMvcConfigurer {
                 registry.addViewController("*/StyleSheet.css").setViewName("StyleSheet.css");
                 registry.addViewController("/Inventory/UsedInventory.html").setViewName("UsedInventory");
                 registry.addViewController("Inventory/Script1.js").setViewName("Script1.js");
-                
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");

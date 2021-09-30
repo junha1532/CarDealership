@@ -12,11 +12,8 @@ import com.m3.cardealership.dao.UserDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Special;
-<<<<<<< HEAD
 import com.m3.cardealership.entities.User;
 import com.m3.cardealership.entities.Vehicle;
-=======
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import com.m3.cardealership.entities.Vehicle;
@@ -30,12 +27,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-=======
-import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
+
 
 /**
  *
@@ -63,8 +57,7 @@ public class AdminController {
     
     @Autowired
     SpecialDao specialdao;
-    
-<<<<<<< HEAD
+ 
     private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
     @Autowired
@@ -73,20 +66,32 @@ public class AdminController {
     }
     
     @GetMapping("/vehicles")
-=======
-    @GetMapping("/Admin/Specials")
-    public String displaySpecials(Model model){
-        List<Special> specials = specialdao.getAllSpecials();
-        model.addAttribute("specials", specials);
-        return "Specials";
-    }
-    
-    @GetMapping("Vehicles")
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
+        
         return "Vehicles";
+    }
+    
+    @GetMapping("/vehicles/query")
+    public String getVehicles(Model model, HttpServletRequest request){
+        String likeQuery = "";
+        String minPrice = "0";
+        String maxPrice = "9999999999999";
+        String minYear = "0";
+        String maxYear = "9999";
+        if(request.getParameter("likeQuery") != null){
+            likeQuery = request.getParameter("likeQuery");
+            minPrice = request.getParameter("minPrice");
+            maxPrice = request.getParameter("maxPrice");
+            minYear = request.getParameter("minYear");
+            maxYear = request.getParameter("maxYear");
+        }
+        List<Vehicle> vehicles = vehicledao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        
+        model.addAttribute("vehicles", vehicles);
+        
+        return "Sales";
     }
     
     @PostMapping("/addVehicle")
@@ -108,13 +113,17 @@ public class AdminController {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
+        
+        List<Make> makes = makedao.getAllMakes();
+        model.addAttribute("makes", makes);
+        
         return "editVehicle";
     }    
     
     @PostMapping("/editVehicle")
-    public String performEditTeacher(HttpServletRequest request) {
+    public String performEditVehicle(HttpServletRequest request) {
         
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("vehicleId"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
@@ -194,7 +203,6 @@ public class AdminController {
         return "users";
     }
 
-<<<<<<< HEAD
     @GetMapping("/specials")
     public String displaySpecials(Model model){
         List<Special> specials = specialdao.getAllSpecials();
@@ -204,41 +212,16 @@ public class AdminController {
     
     @PostMapping("/specials")
     public String addSpecial(Special special, Model model){        
-=======
-//    @PostMapping("addUser")
-//    public String addUser(HttpServletRequest request){
-//        return "redirect:/users";
-//    }
-
-//    @GetMapping ("editUser")
-//    @PostMapping ("editUser")
-
-    @PostMapping ("addSpecial")
-    public String addSpecial(HttpServletRequest request){     
-        String specialTitle = request.getParameter("specialTitle");
-        String specialDescription = request.getParameter("specialDescription");
- 
-        Special special = new Special();
-        special.setSpecialTitle(specialTitle);
-        special.setSpecialDescription(specialDescription);
-        special.setPromotionAmount(0);//where do we get this from?
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
         specialdao.addSpecial(special);
         return "redirect:/specials";
     }
 
-<<<<<<< HEAD
 
     @PostMapping("specials/deleteSpecial")
     public String deleteSpecial(HttpServletRequest request) {
         specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
         return "redirect:/specials";
-=======
-    @GetMapping("deleteSpecial")
-    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
-        specialdao.deleteSpecialByTitle(title);
-        return "redirect:/Admin/Specials";
->>>>>>> df32d39c79c0c60c91f44c93d0b695e6502920b0
+
     }   
     
     private boolean convertToBoolean(String value) {

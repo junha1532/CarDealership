@@ -52,28 +52,6 @@ public class SalesController {
         return "Sales";
     }
 
-    
-    @RequestMapping(value={"/query", "/index/query"}, method= RequestMethod.GET)
-    public String getVehicles(Model model, HttpServletRequest request){
-        String likeQuery = "";
-        String minPrice = "0";
-        String maxPrice = "9999999999999";
-        String minYear = "0";
-        String maxYear = "9999";
-        if(request.getParameter("likeQuery") != null){
-            likeQuery = request.getParameter("likeQuery");
-            minPrice = request.getParameter("minPrice");
-            maxPrice = request.getParameter("maxPrice");
-            minYear = request.getParameter("minYear");
-            maxYear = request.getParameter("maxYear");
-        }
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
-        
-        model.addAttribute("vehicles", vehicles);
-        
-        return "Sales";
-    }
-
     @GetMapping("Sales/query") //Search like queries
     public String getVehicles(Model model,String queries){
         return "Sales";
