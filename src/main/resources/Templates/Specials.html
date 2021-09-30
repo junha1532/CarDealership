@@ -7,6 +7,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 
     <meta charset="utf-8" />
     <title>
@@ -16,39 +17,44 @@
 <body>
     <div class="navbar">
         <a th:href="@{/Index}">Home</a>
-        <a href="InventoryNew.html">New Inventory</a>
-        <a href="UsedInventory.html">Used Inventory</a>
-        <a href="Specials.html">Specials</a>
-        <a href="Contact.html">Contact</a>
-        <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
+
+    <div class="SearchBar " ><h1>Specials</h1>   
     
-    <div class="container"><h1>Specials</h1></div>
-        
-    
-    <div class="container col-md-8 offset-md-2 border border-primary">
-        <div class="col-md-8 offset-md-2">
-        <form th:action="@{/addSpecial}" method="post">
-            <label for="name">Title</label> <br />
-            <input type="text" id="specialTitle" name="specialTitle" />
-            <br />
-            <label for="description">Description</label> <br />
-            <textarea id="specialDescription" name="specialDescription"></textarea>
-            <br />
-            <input type="submit" value="Submit">
-        </form>
+        <div sec:authorize="hasRole('ADMIN')">
+            <div>
+                <form  th:action="@{/addSpecial}" method="post" class="form-group">
+                    <label for="name">Title</label> <br />
+                    <input type="text" id="specialTitle" name="specialTitle" class="form-group"/>
+                    <br />
+                    <label for="description">Description</label> <br />
+                    <textarea id="specialDescription" name="specialDescription" class="form-group"></textarea>
+                    <br />
+                    <input type="submit" value="Submit">
+                </form>
             </div>
-    </div>
-    <div class = "container">
-        <p th:each="special : ${specials}">
-            <span th:text="${special.SpecialTitle}"> </span>
-            <br>
-            <span th:text="${special.SpecialDescription}"> </span>
-            <br>
-            <a th:href="@{/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
-        </p>
-    </div>
+        </div>
+        <div th:if="${not #lists.isEmpty(specials)}" class="Container">
+            <div class="col text-center m-3">
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                    <tr th:each="special : ${specials}">
+                        <td th:text="${special.SpecialTitle}"> </td>
+                        <td th:text="${special.SpecialDescription}"> </td>
+                        <td sec:authorize="hasRole('ADMIN')" ><a th:href="@{/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a> </td> 
+                    </tr>
+                    </table>
+                </div>
+            </div>
+            </div>
+        <div th:if="${#lists.isEmpty(specials)}"><h1>No Specials Available</h1></div>
+        </div> 
 </body>
 </html>
 

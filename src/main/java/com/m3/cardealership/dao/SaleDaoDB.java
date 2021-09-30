@@ -5,7 +5,6 @@
  */
 package com.m3.cardealership.dao;
 
-import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Sale;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -58,14 +58,13 @@ public class SaleDaoDB implements SaleDao {
         return jdbc.query(GET_NEW_SALES, new SaleMapper());    
     }
     
-
+    @Transactional
     @Override
     public Sale addSale(Sale sale) {
-        final String INSERT_SALE = "INSERT INTO sale(SpecialTitle,salesPersonId,customerName,customerEmail,"
-                + "customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+        final String INSERT_SALE = "INSERT INTO sale(salesPersonId,customerName,customerEmail, "
+                + "customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType )"
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
         jdbc.update(INSERT_SALE, 
-                sale.getSpecialTitle(),
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
                 sale.getCustomerEmail(),

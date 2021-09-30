@@ -6,8 +6,10 @@
 package com.m3.cardealership.controllers;
 
 import com.m3.cardealership.dao.ContactDao;
+import com.m3.cardealership.dao.SpecialDao;
 import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Contact;
+import com.m3.cardealership.entities.Special;
 import com.m3.cardealership.entities.Vehicle;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,9 @@ public class InventoryController {
     @Autowired
     ContactDao contactDao;
     
+    @Autowired
+    SpecialDao specialdao;
+    
 
     //pathvariable
     @GetMapping("/Detail/{id}")
@@ -44,54 +49,74 @@ public class InventoryController {
     
     //MSRP
 
-    @GetMapping ("/New")
-    public String showNewVehicles(Model model){
-        Boolean isNew = true;
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
-        model.addAttribute("vehicles",vehicles);
-        return "InventoryNew";
-    }
+//    @GetMapping ("/New")
+//    public String showNewVehicles(Model model){
+//        Boolean isNew = true;
+//        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
+//        model.addAttribute("vehicles",vehicles);
+//        return "Inventory/New";
+//    }
     
     
     //search queries
-    @GetMapping ("/New/query")
+    @GetMapping("/New/query")
     public String showNewVehicles(Model model, HttpServletRequest request){
         Boolean isNew = true;
-        String likeQuery = request.getParameter("likeQuery");
-        String minPrice = request.getParameter("minPrice");
-        String maxPrice = request.getParameter("maxPrice");
-        String minYear = request.getParameter("minYear");
-        String maxYear = request.getParameter("maxYear");
+        String likeQuery = "";
+        if(request.getParameter("likeQuery") != null)
+            likeQuery = request.getParameter("likeQuery");
+        String minPrice = "0";
+        if(request.getParameter("minPrice") != null)
+            minPrice = request.getParameter("minPrice");
+        String maxPrice = "999999999";
+        if(request.getParameter("maxPrice") != null)
+            maxPrice = request.getParameter("maxPrice");
+        String minYear = "0";
+        if(request.getParameter("minYear") != null)
+            minYear = request.getParameter("minYear");
+        String maxYear = "9999";
+        if(request.getParameter("maxYear") != null)
+            maxYear = request.getParameter("maxYear");
         
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
         return "InventoryNew";
     }
     
     
     //sorted by MSRP
-    @GetMapping ("/Used")
-    public String showUsedVehicles(Model model){
-        Boolean isNew = false;
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
-        model.addAttribute("vehicles",vehicles);
-        return "UsedInventory";
-    }
+//    @GetMapping ("/Used")
+//    public String showUsedVehicles(Model model){
+//        Boolean isNew = false;
+//        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew);
+//        model.addAttribute("vehicles",vehicles);
+//        return "UsedInventory";
+//    }
     
     
     //SEARCH query
-    @GetMapping ("/Used/query")
+    @GetMapping("/Used/query")
     public String showUsedVehicles(Model model, HttpServletRequest request){
         Boolean isNew = false;
-        String likeQuery = request.getParameter("likeQuery");
-        String minPrice = request.getParameter("minPrice");
-        String maxPrice = request.getParameter("maxPrice");
-        String minYear = request.getParameter("minYear");
-        String maxYear = request.getParameter("maxYear");
+        String likeQuery = "";
+        if(request.getParameter("likeQuery") != null)
+            likeQuery = request.getParameter("likeQuery");
+        String minPrice = "0";
+        if(request.getParameter("minPrice") != null)
+            minPrice = request.getParameter("minPrice");
+        String maxPrice = "999999999";
+        if(request.getParameter("maxPrice") != null)
+            maxPrice = request.getParameter("maxPrice");
+        String minYear = "0";
+        if(request.getParameter("minYear") != null)
+            minYear = request.getParameter("minYear");
+        String maxYear = "9999";
+        if(request.getParameter("maxYear") != null)
+            maxYear = request.getParameter("maxYear");
         
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
-        return "InventoryNew";
+        return "UsedInventory";
     }
     
     
@@ -112,6 +137,13 @@ public class InventoryController {
         
         contactDao.addContact(contact);
         return "redirect:/Inventory/Detail?"+id;
+    }
+    
+    @GetMapping("/Specials")
+    public String displaySpecials(Model model){
+        List<Special> specials = specialdao.getAllSpecials();
+        model.addAttribute("specials", specials);
+        return "Specials";
     }
     
     

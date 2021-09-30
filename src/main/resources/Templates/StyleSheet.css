@@ -2,13 +2,12 @@
     background-color: cornflowerblue;
     border-block: solid;
     border-block-color: black;
-    border-right:solid;
-    border-left:solid;
+    border-right: solid;
+    border-left: solid;
     border-width: 2px;
-    width:1261px;
     text-align: center;
     overflow: hidden;
-    position:fixed;
+    position: fixed;
 }
 
 .navbar a {
@@ -20,33 +19,14 @@
     font-size: 17px;
 }
 
-.Login {
-    padding: 14px 16px;
-    float:right;
-}
-
 .jumbotron {
-    padding-top: 30px;
-    padding-bottom: 30px;
     border-bottom-style: solid;
     border-bottom-color: black;
     border-bottom-width: 8px;
     color: inherit;
-    height: 250px;
-    width:1205px;
-    
+    background-color: #eee;
 }
 
-.image {
-    width:1265px;
-    height:250px;
-    
-}
-
-.jumbotron > hr {
-    border-top-color: #d5d5d5
-
-}
 
 @media screen and (min-width:768px) {
     .jumbotron {
@@ -95,7 +75,7 @@ th {
     padding: 20px;
     float: left;
     width:1224px;
-    margin-top:40px;
+    /*margin-top:40px;*/
     display:flex;
     align-items:center;
     justify-content:space-around;
@@ -155,13 +135,15 @@ th {
 .SearchBar {
     float: left;
     padding-bottom: 30px;
-    border-block: solid;
-    border-block-color: black;
+    /*border-block: solid;*/
+    /*border-block-color: black;*/
     border-right: solid;
     border-left: solid;
     border-width: 2px;
-    width: 1261px;
+    width: 100%;
     background-color: #eee;
+
+
 }
 h3{
     margin-left: 10px;
@@ -170,12 +152,13 @@ h3{
     margin-top: 5px;
     font-size: 17px;
     border: none;
-    display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    margin-left: 30px;
+    display: grid;
 }
 
-#query{
-    width:250px;
+#likeQuery{
+    width:350px;
     height:35px;
 }
 
@@ -192,12 +175,22 @@ h3{
     color: white;
     padding:5px;
     border:none;
-    max-height:25px;
-    max-width:100px;
-}.search{
+    max-height:40px;
+    max-width:120px;
+}
+.dropbtnnewUsed {
+    background-color: cornflowerblue;
+    color: white;
+    padding:5px;
+    border:none;
+    max-height:40px;
+    max-width:145px;
+
+}
+.search{
      width:100px;
      height:25px;
- }
+}
 
 
 

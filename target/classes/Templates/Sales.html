@@ -2,98 +2,98 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
    <head>
-      <link rel="stylesheet" href="StyleSheet.css">
-      <title>TEMP SALES PAGE!</title>
+      <link rel="stylesheet" href="StyleSheet.css"/>
+      <title>SALES PAGE!</title>
+      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+
    </head>
    <body>
       <div class="navbar">
-         <a href="Index.html">Home</a>
-         <a href="InventoryNew.html">New Inventory</a>
-         <a href="UsedInventory.html">Used Inventory</a>
-         <a href="Specials.html">Specials</a>
-         <a href="Contact.html">Contact</a>
-         <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-         <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
-      </div>
-      <div>
-         <h3>Sales</h3>
-      </div>
-      <div class="SearchBar" style = "display:none;">
-         <form action="/New" method = "GET">
-            <label for="likeQuery">
-               <h3>Quick Search</h3>
-            </label>
-            <input type="search" id="likeQuery" name="likeQuery" placeholder="Enter make, model, or year...">
-            <label for="minPrice">Price</label>
-            
-            <select name="minPrice" id="minPrice">
-               <option value="volvo">NO MIN</option>
-               <option value="saab">5000</option>
-               <option value="opel">10000</option>
-               <option value="audi">15000</option>
-            </select>
-            <select name="maxPrice" id="maxPrice">
-               <option value="">NO MAX</option>
-               <option value="5000">20000</option>
-               <option value="10000">30000</option>
-               <option value="15000">40000</option>
-               <option value="100000">100000</option>
-            </select>
-            <label for="minYear">Year</label>
-            <select name="minYear" id="minYear">
-               <option value="">NO MIN</option>
-               <option value="1960">1960</option>
-               <option value="1970">1970</option>
-               <option value="1980">1980</option>
-               <option value="1990">1990</option>
-               <option value="2000">2000</option>
-               <option value="2010">2010</option>
-               <option value="2020">2020</option>
-            </select>
-            <select name="maxYear" id="maxYear">
-               <option value="">NO MAX</option>
-               <option value="1960">1960</option>
-               <option value="1970">1970</option>
-               <option value="1980">1980</option>
-               <option value="1990">1990</option>
-               <option value="2000">2000</option>
-               <option value="2010">2010</option>
-               <option value="2020">2020</option>
-               <option value="2030">2030</option>
-            </select>
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+    </div>
+      <div sec:authorize="isAuthenticated()">
+         <div>
+            <h3>Sales</h3>
+        <a href="Specials">Add Make</a>
+         <a th:href="@{/Contact}">Add Model</a>
+         </div>
+          
 
-            <input type="submit" value="Submit">
-         </form>
-      </div>
-       <hr>
-      <div>
-         <h3>Search Results</h3>
-                  <div class="row m-4 border border-dark">
-                <div class="col text-center m-3">
-                    <table class="table table-striped">
-<!--                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Specialty</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>-->
-                        <tbody>
-                            <tr th:each="vehicle : ${vehicles}">
-                                <td th:text="${vehicle}" >Teacher ID</td>
 
-                                <td><a href="#" th:href="@{/purchase(id=${vehicle.vehicleId})}">Purchase</a></td>
-<!--                                <h5 th:text="${vehicle}">Teacher ID</h5>-->
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+              <input type="search" value="" name="likeQuery" id="likeQuery" placeholder="Enter make, model, or year..." class="form-group"/>
+              <!--            <label for="minPrice">Price</label>-->
+
+         <!--style = "display:none;-->
+         <div class="SearchBar">
+                     <h3>Quick Search</h3>
+            <form action="/query" id ="SearchForm" method = "GET" class="form-group">
+               <!--            <input type="hidden" id="isNew" name="isNew" value="Both">-->
+               <select name="isNew" class="dropbtnnewUsed form-group" id="isNew" >
+                  <option value="Both">New and Used</option>
+                  <option value="New">New</option>
+                  <option value="Used">Used</option>
+               </select>
+               <input type="search" value ="" name="likeQuery" id ="likeQuery" placeholder="Enter make, model, or year..."/>
+                           <label for="minPrice">Price</label>
+               <select name="minPrice" class="dropbtnnewUsed" id="minPrice">
+                  <option value="0">NO MIN</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                  <option value="15000">15000</option>
+               </select>
+               <select name="maxPrice"  class="dropbtnnewUsed" id="maxPrice">
+                  <option value="9999999999999">NO MAX</option>
+                  <option value="5000">5000</option>
+                  <option value="10000">10000</option>
+                  <option value="15000">15000</option>
+                  <option value="100000">100000</option>
+               </select>
+               <label for="minYear">Year</label>
+               <select name="minYear" class="dropbtnnewUsed"id="minYear">
+                  <option value="0">NO MIN</option>
+                  <option value="1960">1960</option>
+                  <option value="1970">1970</option>
+                  <option value="1980">1980</option>
+                  <option value="1990">1990</option>
+                  <option value="2000">2000</option>
+                  <option value="2010">2010</option>
+                  <option value="2020">2020</option>
+               </select>
+               <select name="maxYear"class="dropbtnnewUsed" id="maxYear">
+                  <option value="9999">NO MAX</option>
+                  <option value="1980">1980</option>
+                  <option value="1990">1990</option>
+                  <option value="2000">2000</option>
+                  <option value="2010">2010</option>
+                  <option value="2020">2020</option>
+                  <option value="2030">2030</option>
+               </select>
+               <input type="submit" value="Submit">
+            </form>
+         </div>
+         <hr>
+         <div th:if="${not #lists.isEmpty(vehicles)}">
+            <h3>Search Results</h3>
+            <div class="row m-4 border border-dark">
+               <div class="col text-center m-3">
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr th:each="vehicle : ${vehicles}">
+                           <td th:text="${vehicle.make.makeName} +' ' + ${vehicle.model.modelName}  +' ' + ${vehicle.year}+' Price: $' + ${vehicle.salePrice}+' mileage: ' + ${vehicle.mileage} ">Vehicle Info</td>
+                           <td><a href="#" th:href="@{/Purchase(id=${vehicle.vehicleId})}">Purchase</a></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
-        </div> 
+         </div>
+      </div>
       </div>
    </body>
 </html>

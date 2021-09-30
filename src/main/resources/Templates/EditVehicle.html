@@ -31,15 +31,13 @@
   </head>
   <body>
     <div class="navbar">
-      <a href="Index.html">Home</a>
-      <a href="InventoyNew.html">New Inventory</a>
-      <a href="UsedInventory.html">Used Inventory</a>
-      <a href="Specials.html">Specials</a>
-      <a href="Contact.html">Contact</a>
-      <a href="login.html" sec:authorize="hasRole('ADMIN')">Admin</a>
-      <a href="login.html" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
-        >Sales</a
-      >
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
     <div class="container">
       <h1>Edit Vehicle</h1>

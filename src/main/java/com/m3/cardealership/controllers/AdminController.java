@@ -73,7 +73,13 @@ public class AdminController {
         return "Specials";
     }
     
+<<<<<<< HEAD
     @GetMapping("/vehicles")
+=======
+    
+    
+    @GetMapping("Vehicles")
+>>>>>>> a755d2599531dab5b453fc0f396b9ee1a173bb29
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
@@ -95,7 +101,7 @@ public class AdminController {
             minYear = request.getParameter("minYear");
             maxYear = request.getParameter("maxYear");
         }
-        List<Vehicle> vehicles = vehicledao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicledao.getVehicleBySearch("Both", likeQuery, minPrice, maxPrice, minYear, maxYear);
         
         model.addAttribute("vehicles", vehicles);
         
@@ -234,7 +240,7 @@ public class AdminController {
 //    }
     
 
-    @PostMapping ("addSpecial")
+    @PostMapping ("AddSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
         String specialDescription = request.getParameter("specialDescription");
@@ -260,19 +266,6 @@ public class AdminController {
 //        return "redirect:/Admin/Specials";
 //
 //    }   
-    
-    @PostMapping("updatePassword")
-    public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
-        User user = userDao.getUserByEmailPW(email, password);
-        user.setPassword(newpassword);
-        // 1. UserDao updates existing user in database
-        userDao.updateUser(user);
-        
-        // 2. Reload the in memory user details
-        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
-        
-        return "redirect:/admin";
-    }
     
     private boolean convertToBoolean(String value) {
         boolean returnValue = false;

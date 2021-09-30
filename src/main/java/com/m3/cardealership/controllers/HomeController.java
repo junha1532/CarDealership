@@ -36,9 +36,10 @@ public class HomeController {
     SpecialDao specialdao;
     
     @Autowired 
-    VehicleDao vehicledao;    
+        VehicleDao vehicledao;    
 
     @RequestMapping(value={"", "/Index"}, method= RequestMethod.GET)
+    @GetMapping("Index")
     public String displayAll(Model model){
         List<Special> specials = specialdao.getAllSpecials();
         model.addAttribute("specials", specials);
@@ -63,7 +64,7 @@ public class HomeController {
         contact.setContactPhone(contactPhone);
         contactDao.addContact(contact);
         
-        return "Contact";
+        return "redirect:/Contact";
     }
     
 
