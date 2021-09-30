@@ -54,61 +54,29 @@ public class VehicleDaoDB implements VehicleDao {
     }
     
     
-    public List<Vehicle> getVehicleBySearch(Boolean isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear){
-        String SELECT_FEATURED_VEHICLES = "SELECT v.* FROM VEHICLE v JOIN model m ON m.modelId = v.modelId JOIN make ma on ma.makeId = m.makeId";
-        
-        //new
-        if (isNew)
-            SELECT_FEATURED_VEHICLES += " WHERE v.mileage =0";
-        //used
-        else SELECT_FEATURED_VEHICLES += " WHERE v.mileage >0";
-        
-        //Quick Search
-        if (likeQuery != "")
-            SELECT_FEATURED_VEHICLES+= " AND ma.makeName LIKE \'%" + likeQuery 
-                    + "\'% AND m.modelName LIKE \'%" + likeQuery + "\'% AND v.year LIKE " + likeQuery;
-        
-        //Price Min_max
-        if (minPrice.equals("")){
-            if (maxPrice.equals(""))
-                SELECT_FEATURED_VEHICLES += " AND v.salePrice BETWEEN " + minPrice +" AND " + maxPrice;
-            else
-                SELECT_FEATURED_VEHICLES += " AND v.salePrice >= " +minPrice;
-        }
-        if (maxPrice.equals(""))
-            SELECT_FEATURED_VEHICLES += " AND v.salePrice <= " +maxPrice;
-        
-        //Year
-        if (minYear.equals("")){
-            if (maxYear.equals(""))
-                SELECT_FEATURED_VEHICLES += " AND v.year BETWEEN " + minYear +" AND " + maxYear;
-            else
-                SELECT_FEATURED_VEHICLES += " AND v.year >= " +minYear;
-        }
-        if (maxYear.equals(""))
-            SELECT_FEATURED_VEHICLES += " AND v.year <= " +maxYear;
-        
-        SELECT_FEATURED_VEHICLES += " LIMIT 20";
-        List<Vehicle> featuredVehicles = jdbc.query(SELECT_FEATURED_VEHICLES, new VehicleMapper());
-        return featuredVehicles;
-    }
-    
-    
-    
-    public List<Vehicle> getVehicleBySearch(Boolean isNew){
-        
-        String SELECT_FEATURED_VEHICLES = "SELECT * FROM VEHICLE v ";
-        if (isNew)
-            SELECT_FEATURED_VEHICLES += "WHERE v.mileage =0";
-        else SELECT_FEATURED_VEHICLES += "WHERE v.mileage >0";
-        
-        SELECT_FEATURED_VEHICLES += " ORDER BY MSRP DESC LIMIT 20";
-        
-        List<Vehicle> featuredVehicles = jdbc.query(SELECT_FEATURED_VEHICLES, new VehicleMapper());
-        return featuredVehicles;
-    }
-    
+    public List<Vehicle> getVehicleBySearch(String isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear){
+        String SELECT_FEATURED_VEHICLES = "SELECT v.* FROM VEHICLE v JOIN model m ON m.modelId = v.modelId JOIN make ma on ma.makeId = m.makeId WHERE";
 
+        //new
+        if (isNew.equalsIgnoreCase("New")){
+            SELECT_FEATURED_VEHICLES += " v.mileage = 0 AND";
+        }
+        //used
+        if(isNew.equalsIgnoreCase("Used")){ 
+            System.out.println("hi");
+            SELECT_FEATURED_VEHICLES += " v.mileage >0 AND";
+        }
+
+        SELECT_FEATURED_VEHICLES+= " (ma.makeName LIKE '%" + likeQuery +"%' OR m.modelName LIKE '%" + likeQuery + "%' OR v.year LIKE '%" + likeQuery + "%')";
+        SELECT_FEATURED_VEHICLES += " AND v.salePrice BETWEEN " + minPrice +" AND " + maxPrice;
+        SELECT_FEATURED_VEHICLES += " AND v.year BETWEEN " + minYear +" AND " + maxYear;
+        SELECT_FEATURED_VEHICLES += " ORDER BY v.salePrice LIMIT 20";
+        List<Vehicle> featuredVehicles = jdbc.query(SELECT_FEATURED_VEHICLES, new VehicleMapper());
+        associateModelAndMake(featuredVehicles);
+
+        return featuredVehicles;
+    }
+    
     @Override
     public List<Vehicle> getAllVehicles() {
         final String SELECT_ALL_VEHICLES = "SELECT * FROM vehicle";

@@ -2,13 +2,13 @@
     background-color: cornflowerblue;
     border-block: solid;
     border-block-color: black;
-    border-right:solid;
-    border-left:solid;
+    border-right: solid;
+    border-left: solid;
     border-width: 2px;
-    width:1261px;
+    width: 1261px;
     text-align: center;
     overflow: hidden;
-    position:fixed;
+    position: fixed;
 }
 
 .navbar a {
@@ -20,10 +20,7 @@
     font-size: 17px;
 }
 
-.Login {
-    padding: 14px 16px;
-    float:right;
-}
+
 
 .jumbotron {
     padding-top: 30px;
@@ -32,15 +29,12 @@
     border-bottom-color: black;
     border-bottom-width: 8px;
     color: inherit;
-    height: 250px;
-    width:1205px;
-    
+    background-color: #eee;
 }
 
 .image {
-    width:1265px;
     height:250px;
-    
+    width:100%;
 }
 
 .jumbotron > hr {
@@ -194,6 +188,7 @@ h3{
     border:none;
     max-height:25px;
     max-width:100px;
+
 }.search{
      width:100px;
      height:25px;

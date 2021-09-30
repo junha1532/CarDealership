@@ -10,12 +10,12 @@
 <body>
     <div class="navbar">
         <a th:href="@{/Index}">Home</a>
-        <a href="InventoryNew.html">New Inventory</a>
-        <a href="UsedInventory.html">Used Inventory</a>
-        <a href="Specials.html">Specials</a>
-        <a href="Contact.html">Contact</a>
-        <a sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a href="Specials">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
     <br />
     <br />
@@ -46,6 +46,6 @@
             <button type="submit" class="search">Search</button>
         </form>
     </div>
-
+    <div id="myDropdown"></div>
 </body>
 </html>

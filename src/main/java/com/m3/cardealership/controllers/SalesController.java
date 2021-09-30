@@ -46,20 +46,47 @@ public class SalesController {
     
 
 //    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
-    @GetMapping("Sales")
+//    @GetMapping("Sales")
     public String getVehicles(Model model){
         List<Vehicle> vehicles = vehicleDao.getAllVehicles();
         model.addAttribute("vehicles",vehicles); 
         return "Sales";
     }
 
-    @GetMapping("Sales/query") //Search like queries
-    public String getVehicles(Model model,String queries){
+    
+    @RequestMapping(value={"/query", "/index/query"}, method= RequestMethod.GET)
+    public String getVehicles(Model model, HttpServletRequest request){
+        String likeQuery = "";
+        String minPrice = "0";
+        String maxPrice = "9999999999999";
+        String minYear = "0";
+        String maxYear = "9999";
+
+        String isNew = "Both";
+//        if(request.getParameter("likeQuery") != null){
+            likeQuery = request.getParameter("likeQuery");
+            minPrice = request.getParameter("minPrice");
+            maxPrice = request.getParameter("maxPrice");
+            minYear = request.getParameter("minYear");
+            maxYear = request.getParameter("maxYear");
+//        }
+
+        isNew = request.getParameter("isNew");
+        
+        
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        
+        
+        model.addAttribute("vehicles", vehicles);       
         return "Sales";
     }
+
+//    @GetMapping("Sales/query") //Search like queries
+//    public String getVehicles(Model model,String queries){
+//        return "Sales";
+//    }
     
-    
-    
+   
     @GetMapping("Purchase")
     public String addSale(Integer id, Model model) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);

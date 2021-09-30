@@ -95,7 +95,7 @@ public class AdminController {
             minYear = request.getParameter("minYear");
             maxYear = request.getParameter("maxYear");
         }
-        List<Vehicle> vehicles = vehicledao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicledao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
         
         model.addAttribute("vehicles", vehicles);
         
