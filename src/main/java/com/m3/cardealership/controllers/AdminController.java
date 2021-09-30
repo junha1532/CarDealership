@@ -73,8 +73,6 @@ public class AdminController {
         return "Specials";
     }
     
-    
-    
     @GetMapping("/vehicles")
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
@@ -118,7 +116,7 @@ public class AdminController {
     }
 
     @GetMapping("/editVehicle")
-    public String editVehicle(HttpServletRequest request, Model model) {
+    public String editVehicle(HttpServletRequest request, @RequestParam(defaultValue="") String makeName, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
@@ -126,8 +124,23 @@ public class AdminController {
         List<Make> makes = makedao.getAllMakes();
         model.addAttribute("makes", makes);
         
+        List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
+        
+            model.addAttribute("models", models);
+            System.out.println(model);
+        
+        
         return "editVehicle";
     }    
+    
+//    @GetMapping("/editVehicle/queryModels")
+//    public String getVehicleMovels(HttpServletRequest request, Model model) {
+//        String makeName = request.getParameter("makeName");
+//        List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
+////        model.addAttribute("models", models);
+//        
+//        return "editVehicle";
+//    }    
     
     @PostMapping("/editVehicle")
     public String performEditVehicle(HttpServletRequest request) {
