@@ -63,14 +63,14 @@ public class VehicleDaoDB implements VehicleDao {
         }
         //used
         if(isNew.equalsIgnoreCase("Used")){ 
-            System.out.println("hi");
+//            System.out.println("hi");
             SELECT_FEATURED_VEHICLES += " v.mileage >0 AND";
         }
 
-        SELECT_FEATURED_VEHICLES+= " (ma.makeName LIKE '%" + likeQuery +"%' OR m.modelName LIKE '%" + likeQuery + "%' OR v.year LIKE '%" + likeQuery + "%')";
+        SELECT_FEATURED_VEHICLES+= " (ma.makeName LIKE '%" + likeQuery +"%' OR m.modelName LIKE '%" + likeQuery + "%'";
         SELECT_FEATURED_VEHICLES += " AND v.salePrice BETWEEN " + minPrice +" AND " + maxPrice;
         SELECT_FEATURED_VEHICLES += " AND v.year BETWEEN " + minYear +" AND " + maxYear;
-        SELECT_FEATURED_VEHICLES += " ORDER BY v.salePrice LIMIT 20";
+        SELECT_FEATURED_VEHICLES += ") ORDER BY v.salePrice LIMIT 20";
         List<Vehicle> featuredVehicles = jdbc.query(SELECT_FEATURED_VEHICLES, new VehicleMapper());
         associateModelAndMake(featuredVehicles);
         return featuredVehicles;

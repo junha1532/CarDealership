@@ -19,8 +19,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 public class MvcConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/Index.html").setViewName("Index");
-                registry.addViewController("/Index").setViewName("Index.html");
+                registry.addViewController("/Index").setViewName("Index");
 		registry.addViewController("/").setViewName("Index");
                 registry.addViewController("/Inventory/Specials").setViewName("Specials");
                 registry.addViewController("/Admin/Specials").setViewName("Specials");
@@ -31,16 +30,17 @@ public class MvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/Inventory/New").setViewName("InventoryNew");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
                 registry.addViewController("*/StyleSheet.css").setViewName("StyleSheet.css");
-                registry.addViewController("/Inventory/UsedInventory").setViewName("UsedInventory");
+                registry.addViewController("Inventory/New/StyleSheet.css").setViewName("StyleSheet.css");
+                registry.addViewController("/Inventory/Used/StyleSheet.css").setViewName("StyleSheet.css");
+                registry.addViewController("/Inventory/Used").setViewName("UsedInventory");
                 registry.addViewController("Inventory/Script1.js").setViewName("Script1.js");
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");
-		registry.addViewController("/hello").setViewName("hello");
 		registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");
-                registry.addViewController("/ImageJumbotron.jpg").setViewName("ImageJumbotron.jpg");
+                registry.addViewController("/static/ImageJumbotron.jpg").setViewName("ImageJumbotron.jpg");
                 
                 registry.addViewController("/Purchase.html").setViewName("Purchase");
                 registry.addViewController("/Purchase").setViewName("Purchase");
