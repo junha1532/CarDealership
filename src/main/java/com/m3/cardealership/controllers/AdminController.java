@@ -13,6 +13,7 @@ import com.m3.cardealership.dao.VehicleDao;
 import com.m3.cardealership.entities.Make;
 import com.m3.cardealership.entities.Special;
 import com.m3.cardealership.entities.User;
+import com.m3.cardealership.entities.Vehicle;
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import com.m3.cardealership.entities.Vehicle;
@@ -56,13 +57,14 @@ public class AdminController {
     
     @Autowired
     SpecialDao specialdao;
-    
+
     private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
     @Autowired
     public AdminController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
     }
+
 
     @GetMapping("/Admin/Specials")
     public String displaySpecials(Model model){
@@ -75,7 +77,29 @@ public class AdminController {
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
+        
         return "Vehicles";
+    }
+    
+    @GetMapping("/vehicles/query")
+    public String getVehicles(Model model, HttpServletRequest request){
+        String likeQuery = "";
+        String minPrice = "0";
+        String maxPrice = "9999999999999";
+        String minYear = "0";
+        String maxYear = "9999";
+        if(request.getParameter("likeQuery") != null){
+            likeQuery = request.getParameter("likeQuery");
+            minPrice = request.getParameter("minPrice");
+            maxPrice = request.getParameter("maxPrice");
+            minYear = request.getParameter("minYear");
+            maxYear = request.getParameter("maxYear");
+        }
+        List<Vehicle> vehicles = vehicledao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        
+        model.addAttribute("vehicles", vehicles);
+        
+        return "Sales";
     }
     
     @PostMapping("/addVehicle")
@@ -97,13 +121,17 @@ public class AdminController {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
+        
+        List<Make> makes = makedao.getAllMakes();
+        model.addAttribute("makes", makes);
+        
         return "editVehicle";
     }    
     
     @PostMapping("/editVehicle")
-    public String performEditTeacher(HttpServletRequest request) {
+    public String performEditVehicle(HttpServletRequest request) {
         
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("vehicleId"));
         Vehicle vehicle = vehicledao.getVehicleById(id);
         
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
@@ -183,6 +211,14 @@ public class AdminController {
         return "users";
     }
 
+//    @GetMapping("/specials")
+//    public String displaySpecials(Model model){
+//        List<Special> specials = specialdao.getAllSpecials();
+//        model.addAttribute("specials", specials);
+//        return "specials";
+//    }
+    
+
     @PostMapping ("addSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
@@ -196,12 +232,19 @@ public class AdminController {
         return "redirect:/specials";
     }
 
-    @GetMapping("deleteSpecial")
-    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
-        specialdao.deleteSpecialByTitle(title);
-        return "redirect:/Admin/Specials";
 
-    }   
+    @PostMapping("specials/deleteSpecial")
+    public String deleteSpecial(HttpServletRequest request) {
+        specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
+        return "redirect:/specials";
+    }
+
+//    @GetMapping("deleteSpecial")
+//    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
+//        specialdao.deleteSpecialByTitle(title);
+//        return "redirect:/Admin/Specials";
+//
+//    }   
     
     @PostMapping("updatePassword")
     public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
