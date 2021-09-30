@@ -27,6 +27,6 @@ public interface VehicleDao {
     Make getMakeforVehicle(int id);
     
     
-    List<Vehicle> getVehicleBySearch(Boolean isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear);
-    List<Vehicle> getVehicleBySearch(Boolean isNew);
+    List<Vehicle> getVehicleBySearch(String isNew, String likeQuery, String minPrice, String maxPrice, String minYear, String maxYear);
+//    List<Vehicle> getVehicleBySearch(Boolean isNew);
 }

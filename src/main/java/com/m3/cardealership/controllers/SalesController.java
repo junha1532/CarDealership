@@ -46,7 +46,7 @@ public class SalesController {
     
 
 //    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
-    @GetMapping("Sales")
+//    @GetMapping("Sales")
     public String getVehicles(Model model){
         List<Vehicle> vehicles = vehicleDao.getAllVehicles();
         model.addAttribute("vehicles",vehicles); 
@@ -61,27 +61,40 @@ public class SalesController {
         String maxPrice = "9999999999999";
         String minYear = "0";
         String maxYear = "9999";
-        if(request.getParameter("likeQuery") != null){
+        
+        String isNew = "Both";
+//        if(request.getParameter("likeQuery") != null){
             likeQuery = request.getParameter("likeQuery");
             minPrice = request.getParameter("minPrice");
             maxPrice = request.getParameter("maxPrice");
             minYear = request.getParameter("minYear");
             maxYear = request.getParameter("maxYear");
-        }
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(Boolean.TRUE, likeQuery, minPrice, maxPrice, minYear, maxYear);
+//        }
+
+//        
+        isNew = request.getParameter("isNew");
+        System.out.println(likeQuery);
+//        System.out.println(minPrice);
+//        System.out.println(maxPrice);
+//        System.out.println(minYear);
+//        System.out.println(maxYear);
+    
         
-        model.addAttribute("vehicles", vehicles);
         
+        
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
+        
+        
+        model.addAttribute("vehicles", vehicles);       
         return "Sales";
     }
 
-    @GetMapping("Sales/query") //Search like queries
-    public String getVehicles(Model model,String queries){
-        return "Sales";
-    }
+//    @GetMapping("Sales/query") //Search like queries
+//    public String getVehicles(Model model,String queries){
+//        return "Sales";
+//    }
     
-    
-    
+   
     @GetMapping("Purchase")
     public String addSale(Integer id, Model model) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
