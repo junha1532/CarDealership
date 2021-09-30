@@ -78,7 +78,7 @@ public class InventoryController {
         if(request.getParameter("maxYear") != null)
             maxYear = request.getParameter("maxYear");
         
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("New", likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
         return "InventoryNew";
     }
@@ -114,7 +114,7 @@ public class InventoryController {
         if(request.getParameter("maxYear") != null)
             maxYear = request.getParameter("maxYear");
         
-        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("true", likeQuery, minPrice, maxPrice, minYear, maxYear);
+        List<Vehicle> vehicles = vehicleDao.getVehicleBySearch("Used", likeQuery, minPrice, maxPrice, minYear, maxYear);
         model.addAttribute("vehicles",vehicles);
         return "UsedInventory";
     }

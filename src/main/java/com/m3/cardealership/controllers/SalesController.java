@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Daniel
  */
 @Controller
-//@RequestMapping("/sales")
+@RequestMapping("/sales")
 public class SalesController {
     
     @Autowired 
@@ -49,13 +49,13 @@ public class SalesController {
     UserDao userdao;
     
 
-//    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
-//    @GetMapping("Sales")
-    public String getVehicles(Model model){
-        List<Vehicle> vehicles = vehicleDao.getAllVehicles();
-        model.addAttribute("vehicles",vehicles); 
-        return "Sales";
-    }
+////    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
+////    @GetMapping("Sales")
+//    public String getVehicles(Model model){
+//        List<Vehicle> vehicles = vehicleDao.getAllVehicles();
+//        model.addAttribute("vehicles",vehicles); 
+//        return "Sales";
+//    }
 
     
     @RequestMapping(value={"/query", "/index/query"}, method= RequestMethod.GET)
@@ -82,7 +82,7 @@ public class SalesController {
         
         
         model.addAttribute("vehicles", vehicles);       
-        return "Sales";
+        return "sales";
     }
 
 //    @GetMapping("Sales/query") //Search like queries
@@ -91,7 +91,7 @@ public class SalesController {
 //    }
     
    
-    @GetMapping("Purchase")
+    @GetMapping("/purchase")
     public String addSale(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         Vehicle vehicle = vehicleDao.getVehicleById(id);
@@ -144,7 +144,7 @@ public class SalesController {
         saleDao.addSale(sale);
         vehicleDao.deleteVehicleById(vehicle.getVehicleId());
 
-        return "redirect:/Sales";
+        return "redirect:/sales";
     }
     
     

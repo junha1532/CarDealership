@@ -24,6 +24,8 @@
         <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
         <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
-
+        <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')">Vehicle</a> 
+<a >User</a> 
+<a >Report</a> 
 </body>
 </html>

@@ -50,7 +50,7 @@
           <div>
             <label for="make">Make</label>
             <!-- th:onchange='" -->
-            <select class="form-control" id="make" name="make">
+            <select class="form-control" id="make" name="makeName">
               <option selected disabled>Select Make</option>
               <option
                 th:if="${(param.makeName == null)}"
@@ -71,7 +71,7 @@
           <input type="hidden" id="modelsEmpty" th:value="${models.empty}" />
           <div>
             <label for="model">Model</label>
-            <select class="form-control" id="model" name="model">
+            <select class="form-control" id="model" name="modelName">
               <option selected disabled>Select Model</option>
               <option
                 th:each="model : ${models}"
@@ -94,6 +94,7 @@
               th:value="${vehicle.bodyStyle}"
             />
           </div>
+            
           <div>
             <label for="year">Year</label>
             <input
@@ -152,6 +153,21 @@
           </div>
         </div>
 
+            <div id="form-element-container">
+          <div>
+            <label for="interior">Interior</label>
+            <input
+              type="text"
+              name="interior"
+              id="interior"
+              class="form-control"
+              th:value="${vehicle.interior}"
+            />
+          </div>
+
+        </div>
+          
+          
         <div id="form-element-container">
           <div>
             <label for="MSRP">MSRP</label>
@@ -197,6 +213,8 @@
               >Delete</a
             >
           </button>
+        <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
+
         </div>
       </form>
     </div>

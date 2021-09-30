@@ -126,18 +126,17 @@ public class AdminController {
         
         List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
         
-            model.addAttribute("models", models);
-            System.out.println(model);
+        model.addAttribute("models", models);
         
         
         return "editVehicle";
     }    
     
     @GetMapping("/deleteVehicle")
-    public String editVehicle(HttpServletRequest request){
+    public String deleteVehicle(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
         vehicledao.deleteVehicleById(id);
-        return "redirect:/vehicles";
+        return "redirect:/admin/vehicles";
     }
     
 //    @GetMapping("/editVehicle/queryModels")
@@ -149,15 +148,19 @@ public class AdminController {
 //        return "editVehicle";
 //    }    
     
-    @PostMapping("/editVehicle")
+    @PostMapping("/vehicles/editVehicle")
     public String performEditVehicle(HttpServletRequest request) {
-        
+//        System.out.println(request.getParameter("vehicleId"));
         int id = Integer.parseInt(request.getParameter("vehicleId"));
+        System.out.println(id);
         Vehicle vehicle = vehicledao.getVehicleById(id);
-        
+        System.out.println(vehicle.toString());
+//        
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
         com.m3.cardealership.entities.Model model = modeldao.getModelFromModelName(request.getParameter("modelName"));
-        
+//        
+//System.out.println(make.toString());
+//System.out.println(model.toString());
         String VIN = request.getParameter("VIN");
         String color =request.getParameter("color");
         String interior = request.getParameter("interior");
@@ -165,13 +168,29 @@ public class AdminController {
         String transmission = request.getParameter("transmission");
         String DESCRIPTION =  request.getParameter("DESCRIPTION"); ;
         
-        int userId = Integer.valueOf(request.getParameter("userId"));
+        int userId = userdao.getUserIdByEmail(request.getParameter("userName"));
         int year = Integer.valueOf(request.getParameter("year"));
         int mileage = Integer.valueOf(request.getParameter("mileage"));
         int salePrice = Integer.valueOf(request.getParameter("salePrice"));;
         int MSRP = Integer.valueOf(request.getParameter("mileage"));;
-        boolean featured = convertToBoolean(request.getParameter("isFeatured"));
         
+        boolean featured = false;
+        
+        System.out.println(id);
+System.out.println(vehicle.toString());
+System.out.println(make.toString());
+        System.out.println(model.toString());
+                System.out.println(VIN);
+                        System.out.println(color);
+                                System.out.println(interior);
+                                        System.out.println(bodyStyle);
+                                                System.out.println(transmission);
+                                                        System.out.println(DESCRIPTION);
+                                                                System.out.println(userId);
+                                                                        System.out.println(year);
+                                                                                System.out.println(mileage);
+                                                                                        System.out.println(salePrice);
+                                                                                                System.out.println(MSRP);
         vehicle.setUserId(userId);
         vehicle.setVIN(VIN);
         vehicle.setYear(year);
@@ -187,10 +206,10 @@ public class AdminController {
         vehicle.setFeatured(featured);
         vehicle.setDateAdded(LocalDate.now());
         vehicle.setDESCRIPTION(DESCRIPTION);
-        
+//        
         vehicledao.updateVehicle(vehicle);
-        
-        return "redirect:/vehicles";
+//        
+        return "redirect:/admin/vehicles";
     }
     
     

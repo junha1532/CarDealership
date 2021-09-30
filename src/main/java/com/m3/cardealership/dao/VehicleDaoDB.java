@@ -122,10 +122,11 @@ public class VehicleDaoDB implements VehicleDao {
     public void updateVehicle(Vehicle vehicle) {
                final String UPDATE_VEHICLE = "UPDATE vehicle SET userId = ?, VIN = ?, Year = ?, MakeId = ?, ModelId = ?, Color = ?, "
                        + "Interior = ?, BodyStyle = ?, Transmission = ?, Mileage = ?, SalePrice = ?, MSRP = ?, featured = ?, "
-                       + "dateAdded = ?, DESCRIPTION = ? WHERE id = ?";
+                       + "dateAdded = ?, DESCRIPTION = ? WHERE vehicleid = ?";
         jdbc.update(UPDATE_VEHICLE, 
                 vehicle.getUserId(),
                 vehicle.getVIN(),
+                vehicle.getYear(),
                 vehicle.getMake().getMakeId(),
                 vehicle.getModel().getModelId(),
                 vehicle.getColor(),
