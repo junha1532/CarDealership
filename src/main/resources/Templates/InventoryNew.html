@@ -4,6 +4,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="StyleSheet.css" />
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
     <meta charset="utf-8" />
     <title>NewInventory</title>
 </head>
@@ -14,17 +15,14 @@
         <a th:href="@{/Inventory/Used}">Used Inventory</a>
         <a th:href="@{/Inventory/Specials}">Specials</a>
         <a th:href="@{/Contact}">Contact</a>
-        <a href="login" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a href="login" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
-    <br />
-    <br />
-    <br />
     <div class="SearchBar">
-        <h3>Quick Search</h3>
-        <form name="formS" id="Searchform" action="/Inventory/New/query" method="GET">
-            <input type="search" id="likeQuery" name="likeQuery" placeholder="Enter make, model, or year...">
-            <div class="dropdown">
+        <h3>Search New Vehicles</h3>
+        <form name="formS" id="Searchform" action="/Inventory/New/query" method="GET" clas="form-group">
+            <input type="search" id="likeQuery" name="likeQuery" placeholder="Enter make, model, or year..." class="form-group">
+            <div class="dropdown form-group">
                 Prices: <select name="subject" class="dropbtn" id="minPrice">
                     <option value="" selected="minPrice">Min Price</option>
                 </select>
@@ -33,7 +31,7 @@
                 </select>
             </div>
 
-            <div class="dropdown2">
+            <div class="dropdown2 form-group">
                 Year:
                 <select name="subject" class="dropbtn" id="minYear">
                     <option value="" selected="minYear">Min Year</option>
@@ -46,10 +44,16 @@
             <button type="submit" class="search">Search</button>
         </form>
     </div>
-    <div class="Container">
+    <div th:if="${not #lists.isEmpty(vehicles)}" class="Container">
         <div class="col text-center m-3">
             <div class="col text-center m-3">
                 <table class="table table-striped">
+                    <tr>
+                        <td class="col text-center m-3">VehicleID</td>
+                        <td class="col text-center m-3">Vehicle Make</td>
+                        <td class="col text-center m-3">Vehicle Model</td>
+                        <td class="col text-center m-3">Vehicle Price</td>
+                    </tr>
                 <tr th:each="vehicle : ${vehicles}">
                     <td th:text="${vehicle.VehicleId}"> </td>
                     <td th:text="${vehicle.make.makeName}"> </td>

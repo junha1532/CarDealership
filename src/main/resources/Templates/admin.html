@@ -7,6 +7,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 
     <meta charset="utf-8" />
     <title>
@@ -15,16 +16,13 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="Index.html">Home</a>
-        <a href="InventoryNew.html">New Inventory</a>
-        <a href="UsedInventory.html">Used Inventory</a>
-        <a href="Specials.html">Specials</a>
-        <a href="Contact.html">Contact</a>
-        <a sec:authorize="hasRole('ADMIN')">Admin
-        </a>
-        <a sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales
-        </a>
-        
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
+        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
 
 </body>
