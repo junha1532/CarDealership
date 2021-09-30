@@ -61,7 +61,7 @@ public class SalesController {
         String maxPrice = "9999999999999";
         String minYear = "0";
         String maxYear = "9999";
-        
+
         String isNew = "Both";
 //        if(request.getParameter("likeQuery") != null){
             likeQuery = request.getParameter("likeQuery");
@@ -71,15 +71,7 @@ public class SalesController {
             maxYear = request.getParameter("maxYear");
 //        }
 
-//        
         isNew = request.getParameter("isNew");
-        System.out.println(likeQuery);
-//        System.out.println(minPrice);
-//        System.out.println(maxPrice);
-//        System.out.println(minYear);
-//        System.out.println(maxYear);
-    
-        
         
         
         List<Vehicle> vehicles = vehicleDao.getVehicleBySearch(isNew, likeQuery, minPrice, maxPrice, minYear, maxYear);
