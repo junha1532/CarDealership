@@ -98,6 +98,7 @@ public class MakeDaoDB implements MakeDao {
             Make make = new Make();
             make.setMakeId(rs.getInt("MakeId"));
             make.setUserId(rs.getInt("userId"));
+            make.setMakeName(rs.getString("makeName"));
             make.setDateAdded(LocalDate.parse(rs.getString("dateAdded")));
             make.setMakeName(rs.getString("MakeName"));
 //            make.setDateAdded(rs.getString("dateAdded"));

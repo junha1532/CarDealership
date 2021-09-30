@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Daniel
  */
 @Controller
-@RequestMapping("/sales")
+//@RequestMapping("/sales")
 public class SalesController {
     
     @Autowired 
@@ -45,7 +45,8 @@ public class SalesController {
     VehicleDao vehicleDao;
     
 
-    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
+//    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
+    @GetMapping("Sales")
     public String getVehicles(Model model){
         List<Vehicle> vehicles = vehicleDao.getAllVehicles();
         model.addAttribute("vehicles",vehicles); 

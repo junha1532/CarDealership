@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.m3.cardealership.CardealershipApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.807 s - in com.m3.cardealership.CardealershipApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.443 s - in com.m3.cardealership.CardealershipApplicationTests
+>>>>>>> 73b24e369f4cc0e74a949e4c71e6ba715ad6812c

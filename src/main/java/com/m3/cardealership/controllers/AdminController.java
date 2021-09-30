@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -57,15 +57,23 @@ public class AdminController {
     
     @Autowired
     SpecialDao specialdao;
- 
+
     private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
 
     @Autowired
     public AdminController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
     }
+
+
+    @GetMapping("/Admin/Specials")
+    public String displaySpecials(Model model){
+        List<Special> specials = specialdao.getAllSpecials();
+        model.addAttribute("specials", specials);
+        return "Specials";
+    }
     
-    @GetMapping("/vehicles")
+    @GetMapping("Vehicles")
     public String displayVehicles(Model model){
         List<Vehicle> vehicles = vehicledao.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
@@ -203,15 +211,23 @@ public class AdminController {
         return "users";
     }
 
-    @GetMapping("/specials")
-    public String displaySpecials(Model model){
-        List<Special> specials = specialdao.getAllSpecials();
-        model.addAttribute("specials", specials);
-        return "specials";
-    }
+//    @GetMapping("/specials")
+//    public String displaySpecials(Model model){
+//        List<Special> specials = specialdao.getAllSpecials();
+//        model.addAttribute("specials", specials);
+//        return "specials";
+//    }
     
-    @PostMapping("/specials")
-    public String addSpecial(Special special, Model model){        
+
+    @PostMapping ("addSpecial")
+    public String addSpecial(HttpServletRequest request){     
+        String specialTitle = request.getParameter("specialTitle");
+        String specialDescription = request.getParameter("specialDescription");
+ 
+        Special special = new Special();
+        special.setSpecialTitle(specialTitle);
+        special.setSpecialDescription(specialDescription);
+        special.setPromotionAmount(0);//where do we get this from?
         specialdao.addSpecial(special);
         return "redirect:/specials";
     }
@@ -221,17 +237,33 @@ public class AdminController {
     public String deleteSpecial(HttpServletRequest request) {
         specialdao.deleteSpecialByTitle(request.getParameter("specialTitle"));
         return "redirect:/specials";
+    }
 
-    }   
+//    @GetMapping("deleteSpecial")
+//    public String deleteTeacher(HttpServletRequest request, @RequestParam("title") String title) {
+//        specialdao.deleteSpecialByTitle(title);
+//        return "redirect:/Admin/Specials";
+//
+//    }   
+    
+    @PostMapping("updatePassword")
+    public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
+        User user = userDao.getUserByEmailPW(email, password);
+        user.setPassword(newpassword);
+        // 1. UserDao updates existing user in database
+        userDao.updateUser(user);
+        
+        // 2. Reload the in memory user details
+        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
+        
+        return "redirect:/admin";
+    }
     
     private boolean convertToBoolean(String value) {
-    boolean returnValue = false;
-    if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
-        "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
-        returnValue = true;
-    return returnValue;
-}
-    
-    
-    
+        boolean returnValue = false;
+        if ("1".equalsIgnoreCase(value) || "yes".equalsIgnoreCase(value) || 
+            "true".equalsIgnoreCase(value) || "on".equalsIgnoreCase(value))
+                returnValue = true;
+        return returnValue;
+    }    
 }
