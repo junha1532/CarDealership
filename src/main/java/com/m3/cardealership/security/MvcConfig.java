@@ -19,8 +19,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 public class MvcConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/Index.html").setViewName("Index");
-                registry.addViewController("/Index").setViewName("Index.html");
+                registry.addViewController("/Index").setViewName("Index");
 		registry.addViewController("/").setViewName("Index");
                 registry.addViewController("/Inventory/Specials").setViewName("Specials");
                 registry.addViewController("/Admin/Specials").setViewName("Specials");
@@ -35,7 +34,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/admin").setViewName("admin");
                 registry.addViewController("/forbidden").setViewName("forbidden");
                 registry.addViewController("/403").setViewName("forbidden");
-		registry.addViewController("/hello").setViewName("hello");
+//		registry.addViewController("/hello").setViewName("hello");
 		registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/StyleSheet.css").setViewName("StyleSheet.css");

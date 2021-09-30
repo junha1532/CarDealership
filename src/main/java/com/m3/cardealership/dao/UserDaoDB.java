@@ -37,6 +37,17 @@ public class UserDaoDB implements UserDao{
             return null;
         }
     }
+    
+    @Override
+    public User getUserByEmail(String email) {
+        try {
+            final String SELECT_USER_BY_ID = "SELECT * FROM user WHERE userEmail = ?";
+            User user = jdbc.queryForObject(SELECT_USER_BY_ID, new UserMapper(), email);
+            return user;
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
 
     @Override
     public User getUserByEmailPW(String email, String pw) {

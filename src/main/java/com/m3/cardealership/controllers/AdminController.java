@@ -221,7 +221,7 @@ public class AdminController {
 //    }
     
 
-    @PostMapping ("addSpecial")
+    @PostMapping ("AddSpecial")
     public String addSpecial(HttpServletRequest request){     
         String specialTitle = request.getParameter("specialTitle");
         String specialDescription = request.getParameter("specialDescription");
@@ -247,19 +247,6 @@ public class AdminController {
 //        return "redirect:/Admin/Specials";
 //
 //    }   
-    
-    @PostMapping("updatePassword")
-    public String updatePassword(@RequestParam("newpassword") String newpassword, @RequestParam("email") String email, @RequestParam("password") String password){
-        User user = userDao.getUserByEmailPW(email, password);
-        user.setPassword(newpassword);
-        // 1. UserDao updates existing user in database
-        userDao.updateUser(user);
-        
-        // 2. Reload the in memory user details
-        inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
-        
-        return "redirect:/admin";
-    }
     
     private boolean convertToBoolean(String value) {
         boolean returnValue = false;

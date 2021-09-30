@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface UserDao {
     User getUserById(int id);
+    public User getUserByEmail(String email);
     User getUserByEmailPW(String email, String pw);
     List<User> getAllUsers();
     User addUser(User user);
