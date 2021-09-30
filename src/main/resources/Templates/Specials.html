@@ -27,11 +27,6 @@
 
     <div class="SearchBar " ><h1>Specials</h1>   
     
-    <br />
-    <br />
-    <br />
-    <div class="container"><h1>Specials</h1></div>    
-    
     <div sec:authorize="hasRole('ADMIN')">
         <div>
             <form  th:action="@{/admin/addSpecial}" method="post">
@@ -45,14 +40,14 @@
             </form>
         </div>
     </div>
-        <table>
+<!--        <table>
         <tr th:each="special : ${specials}">
             <th th:text="${special.SpecialTitle}"> </th>
             <th th:text="${special.SpecialDescription}"> </th>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
         </tr>
-        </table>
-        <div sec:authorize="hasRole('ADMIN')">
+        </table>-->
+<!--        <div sec:authorize="hasRole('ADMIN')">
             <div>
                 <form  th:action="@{/addSpecial}" method="post" class="form-group">
                     <label for="name">Title</label> <br />
@@ -64,7 +59,7 @@
                     <input type="submit" value="Submit">
                 </form>
             </div>
-        </div>
+        </div>-->
         <div th:if="${not #lists.isEmpty(specials)}" class="Container">
             <div class="col text-center m-3">
                 <div class="col text-center m-3">
