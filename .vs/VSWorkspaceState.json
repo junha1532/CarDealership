@@ -4,8 +4,11 @@
     "\\src",
     "\\src\\main",
     "\\src\\main\\resources",
-    "\\src\\main\\resources\\Templates"
+    "\\src\\main\\resources\\Templates",
+    "\\src\\test",
+    "\\src\\test\\java",
+    "\\src\\test\\java\\com",
+    "\\src\\test\\java\\com\\m3"
   ],
-  "SelectedNode": "\\src\\main\\resources\\Templates\\admin.html",
   "PreviewInSolutionExplorer": false
 }
