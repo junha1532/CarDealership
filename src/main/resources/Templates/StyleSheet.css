@@ -233,9 +233,14 @@ th {
   padding: 20px;
   float: left;
   /*margin-top:40px;*/
+  margin: 0px;
+  width:100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+#map{
+    padding-left:20px;
 }
 .contactUs input[type='text'],
 select,
