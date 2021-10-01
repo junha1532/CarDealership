@@ -1,5 +1,4 @@
 .navbar {
-  top: 0px;
   background-color: cornflowerblue;
   border-block: solid;
   border-block-color: black;
@@ -8,14 +7,6 @@
   border-width: 2px;
   text-align: center;
   overflow: hidden;
-  width: 100vw;
-  position: fixed !important;
-}
-
-#dummy-section:before {
-  height: 54px;
-  content: '';
-  display: block;
 }
 
 .navbar a {
@@ -27,55 +18,26 @@
   font-size: 17px;
 }
 
+body {
+  overflow: scroll;
+}
+
 .jumbotron {
-  overflow: hidden;
+  width: 100vw;
+  overflow: scroll;
   border-bottom-style: solid;
   border-bottom-color: black;
   border-bottom-width: 8px;
   color: inherit;
   background-color: #eee;
+  margin: 0;
   padding: 0 !important;
-  margin: 0 !important;
 }
 .jumbotron img {
-  overflow: hidden;
-  width: 100vw;
+  width: 100%;
 }
-
-#featuredVehicles-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 30px 0 200px;
-}
-#featuredVehicles-container #vehicle-element {
-  padding: 5px;
-  border: black 2px solid;
-  margin-right: 30px;
-}
-
-#featuredVehicles-container #vehicle-element div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-#featuredVehicles-name {
-  margin-top: 10px;
-}
-
-#featuredVehicles-container #featuredVehicles-name span {
-  margin-right: 5px;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-#featuredVehicles-price span {
-  font-weight: 800;
-  font-size: 30px;
+.container {
+  margin: 0 !important;
 }
 
 @media screen and (min-width: 768px) {
