@@ -194,7 +194,7 @@ public class AdminController {
     public String deleteVehicle(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
         vehicledao.deleteVehicleById(id);
-        return "redirect:/admin/vehicles";
+        return "vehicles";
     }
     
 //    @GetMapping("/editVehicle/queryModels")
@@ -270,10 +270,16 @@ public class AdminController {
         // 2. Reload the in memory user details
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         grantedAuthorityList.add(new SimpleGrantedAuthority(user.getUserType()));
-        inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getPassword(),  grantedAuthorityList));
+        inMemoryUserDetailsManager.createUser(
+                        org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder().username(user.getUserEmail())
+                                .password(user.getPassword())
+                                .roles(user.getUserType())
+                                .build());
+//        inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getPassword(),  grantedAuthorityList));
 
         return "redirect:/admin/users";
     }
+
     
     @GetMapping("/editUser")
     public String getEditUser(Integer id, Model model) {
@@ -290,6 +296,16 @@ public class AdminController {
         // 2. Reload the in memory user details
         inMemoryUserDetailsManager.deleteUser(user.getUserEmail());
         
+        
+         // 3. Reload the in memory user details
+        List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        grantedAuthorityList.add(new SimpleGrantedAuthority(user.getUserType()));
+        inMemoryUserDetailsManager.createUser(
+                        org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder().username(user.getUserEmail())
+                                .password(user.getPassword())
+                                .roles(user.getUserType())
+                                .build());
+
         return "redirect:/admin/users";
     }
 

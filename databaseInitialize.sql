@@ -12,7 +12,7 @@ CREATE TABLE User(
 	userFirstName varchar(20) not null, 
     userLastName varchar(20) not null,
     userType varchar(10) NOT NULL, /*admin/sales/*/ 
-	userEmail varchar(60) NOT NULL UNIQUE,
+	userEmail varchar(100) NOT NULL UNIQUE,
     Primary key (userId),
     password varchar(60) NOT NULL
 );
@@ -65,7 +65,6 @@ CREATE TABLE Special(
 	SpecialTitle varChar(20) NOT NULL,
     SpecialDescription varchar(200) NOT NULL,
     promotionAmount int,
-    
     PRIMARY KEY (SpecialTitle)
 );
 
@@ -74,7 +73,7 @@ CREATE TABLE Contact(
     ContactName varchar(20) NOT NULL,
     Message varchar(200) NOT NULL,
     
-    ContactEmail varchar(20),
+    ContactEmail varchar(100),
 	ContactPhone varchar(20),
     PRIMARY KEY (ContactId)
 );
@@ -88,9 +87,9 @@ Create TABLE SALE(
     SpecialTitle varchar(20),
     salespersonId int not null,
     customerName varchar(20) NOT NULL,
-	customerEmail varchar(20) NOT NULL,
-	customerAddress varchar(20) NOT NULL,
-	customerAddress2 varchar(20),
+	customerEmail varchar(100) NOT NULL,
+	customerAddress varchar(100) NOT NULL,
+	customerAddress2 varchar(100),
 	customerCity varchar(20) NOT NULL,
 	customerZipCode varchar(10) NOT NULL,
     purchasePrice INT NOT NULL,
@@ -168,21 +167,10 @@ Values(1, "Dan", "dan@abc.com", "Somewhere in Canada", "", "Waterloo", "ZIP12", 
 INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType,purchaseDate )
 Values(1, "Paul", "paul@abc.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "Bank Finance", "2021-10-01");
 
+
 INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title", "Desc", 100);
+Values ("DEAL OF THE MONTH!", "Cash Purchase: $3,000 cash incentive on some models.", 100);
 INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title1", "Desc", 100);
+Values ("FINANCING!", "Financing Purchase: $750 rebate plus 0.99% interest financing for 84 months. ", 100);
 INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title2", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title3", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title4", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title5", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title6", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title7", "Desc", 100);
-INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
-Values ("Title8", "Desc", 100);
+Values ("NEW CARS IN STOCK!", "CHECK OUT NEW IN STOCK AUDIS1", 100);

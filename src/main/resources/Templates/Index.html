@@ -66,6 +66,10 @@
 
         <div id="featuredVehicles-container">
             <div id="vehicle-element" th:each="vehicle, vehStat : ${featuredVehicles}">
+                   <div id="featuredVehicles-name"> <a
+                  href="#"
+                  th:href="@{/Inventory/detail(id=${vehicle.vehicleId})}"
+                  >
                 <img th:src="@{/car.png}"
                 alt="CAR"
                 class="img-thumbnail float-left">
@@ -78,7 +82,7 @@
                 <div id=featuredVehicles-price>
                     <span>$</span><span th:text="${vehicle.SalePrice}"></span>
                 </div>
-                
+                    </div>
             </div>
         </div>
 

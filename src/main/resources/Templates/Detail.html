@@ -24,37 +24,96 @@
   <body>
     <div id="dummy-section"></div>
     <div class="navbar">
-      <div>
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a
-          th:href="@{/sales}"
-          sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
-          >Sales</a
-        >
-      </div>
-      <div>
-        <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
-        <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">
-          [[${#httpServletRequest.remoteUser}]] - ADMIN
-        </h4>
-        <h4 th:inline="text" sec:authorize="hasRole('SALES')">
-          [[${#httpServletRequest.remoteUser}]] - SALES
-        </h4>
-        <form
-          th:action="@{/logout}"
-          method="post"
-          sec:authorize="isAuthenticated()"
-        >
-          <input class="btn btn-warning" type="submit" value="Sign Out" />
-        </form>
-      </div>
+        <div><a th:href="@{/Index}">Home</a>
+            <a th:href="@{/Inventory/New}">New Inventory</a>
+            <a th:href="@{/Inventory/Used}">Used Inventory</a>
+            <a th:href="@{/Inventory/Specials}">Specials</a>
+            <a th:href="@{/Contact}">Contact</a>
+    
+            <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+            <a th:href="@{/sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a></div>
+        <div>
+            
+            <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+        <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">[[${#httpServletRequest.remoteUser}]] - ADMIN</h4>
+        <h4 th:inline="text" sec:authorize="hasRole('SALES')">[[${#httpServletRequest.remoteUser}]] - SALES</h4>
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <input class="btn btn-warning" type="submit" value="Sign Out" />
+          </form>
+        </div>  
     </div>
-    <h1>THIS IS TEMP DETAIL PAGE!</h1>
-  </body>
-</html>
+
+
+            <div class="container">
+                <form
+
+                    id="edit-vehicle-form"
+
+                    >
+                    <h1>Vehicle Details</h1>
+                    <div id="form-element-container">
+                        <div>
+                            <label for="make"><b>Make</b></label>
+                            <!-- th:onchange='" -->
+                            <p th:text="${vehicle.make.makeName}"> </p>
+                        </div>
+                        <div>
+                            <label for="model"><b>Model</b></label>
+                            <p th:text="${vehicle.model.modelName}"> </p>
+                        </div>
+                        <div id="form-element-container">
+                            <div>
+                                <label for="bodyStyle"><b>Body Style</b></label>
+                                <p th:text="${vehicle.bodyStyle}"> </p>
+                            </div>
+                            <div>
+                                <label for="year"><b>Year</b></label>
+                                <p th:text="${vehicle.year}"> </p>
+                            </div>
+                        </div>
+                        <div id="form-element-container">
+                            <div>
+                                <label for="transmission"><b>Transmission</b></label>
+                                <p th:text="${vehicle.transmission}"> </p>
+                            </div>
+                            <div>
+                                <label for="color"><b>Color</b></label>
+                                <p th:text="${vehicle.color}"> </p>
+                            </div>
+                        </div>
+                        <div id="form-element-container">
+                            <div>
+                                <label for="mileage"><b>Mileage</b></label>
+                                <p th:text="${vehicle.mileage}"> </p>
+                            </div>
+                            <div>
+                                <label for="VIN"><b>VIN #</b></label>
+                                <p th:text="${vehicle.VIN}"> </p>
+                            </div>
+                        </div>
+                        <div id="form-element-container">
+                            <div>
+                                <label for="MSRP"><b>MSRP</b></label>
+                                <p th:text="${vehicle.MSRP}"> </p>
+                            </div>
+                            <div>
+                                <label for="salePrice"><b>Sale Price</b></label>            
+                                <p th:text="${vehicle.salePrice}"> </p>
+                            </div>
+                        </div>
+                        <div id="form-element-container">
+                            <div>
+                                <label for="DESCRIPTION"><b>Description</b></label>
+                                <p th:text="${vehicle.DESCRIPTION}"> </p>
+                            </div>
+                            <div><button type="button" class="btn-lg btn-primary">
+
+
+                                    <a th:href="@{/Contact(VIN=${vehicle.VIN})}">Contact</a>
+                                </button></div>
+                        </div>
+
+
+
+                    </body>
+                    </html>

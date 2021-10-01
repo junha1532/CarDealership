@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(users());
+            auth.userDetailsService(inMemoryUserDetailsManager());
         }
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -45,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/index").permitAll()
                                 .antMatchers("/admin**").hasRole("ADMIN")
-                                .antMatchers("/sales**").hasRole("SALES")
-                                .antMatchers("/sales**").hasRole("ADMIN")
+                                .antMatchers("/sales**").access("hasRole('SALES') or hasRole('ADMIN')")
+
                                 .antMatchers("/Admin/**").hasRole("ADMIN")
                                 .antMatchers("/Account/ChangePassword").authenticated()
 //				.anyRequest().authenticated()
@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         }        
 
 	@Bean
-        public UserDetailsService users() {
+        public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
             InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
             List<com.m3.cardealership.entities.User> userList = userdao.getAllUsers();
 
@@ -86,11 +86,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             return manager;
         }
         
-        @Bean
-        public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-            final Properties users = new Properties();
-            users.put("user","pass,ROLE_USER,enabled"); //add whatever other user you need
-            return new InMemoryUserDetailsManager(users);
-        }
+//        @Bean
+//        public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+//            final Properties users = new Properties();
+//            users.put("user","pass,ROLE_USER,enabled"); //add whatever other user you need
+//            return new InMemoryUserDetailsManager(users);
+//        }
+        
+        
         
 }

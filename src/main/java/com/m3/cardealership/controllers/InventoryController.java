@@ -40,13 +40,23 @@ public class InventoryController {
     
 
     //pathvariable
-    @GetMapping("/Detail/{id}")
-    public String vehicleDetail(@PathVariable String id, Model model) {
-        Vehicle vehicle = vehicleDao.getVehicleById(1);
-        model.addAttribute("vehicle", vehicle);
-        return "Detail";
-    }
+//    @GetMapping("/Detail/{id}")
+//    public String vehicleDetail(@PathVariable String id, Model model) {
+//        Vehicle vehicle = vehicleDao.getVehicleById(1);
+//        model.addAttribute("vehicle", vehicle);
+//        return "Detail";
+//    }
     
+    
+        @GetMapping("/detail")
+    public String viewDetail(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Vehicle vehicle = vehicleDao.getVehicleById(id);
+        model.addAttribute(vehicle);
+        
+        
+        return "detail";
+    }    
     //MSRP
 
 //    @GetMapping ("/New")
@@ -120,7 +130,7 @@ public class InventoryController {
     }
     
     
-    @PostMapping("/Contact/add")
+   @PostMapping("/Contact/add")
     public String addContact(@PathVariable Integer id, HttpServletRequest request) {
         Vehicle vehicle = vehicleDao.getVehicleById(id);
         
