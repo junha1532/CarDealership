@@ -102,19 +102,70 @@ public class AdminController {
     }
     
     @PostMapping("/addVehicle")
-    public String addVehicle(Vehicle vehicle, HttpServletRequest request){
+    public String addVehicle(HttpServletRequest request){
+        
+        int userId = userdao.getUserIdByEmail(request.getParameter("userName"));
+        int year = Integer.valueOf(request.getParameter("year"));
+        int mileage = Integer.valueOf(request.getParameter("mileage"));
+        int salePrice = Integer.valueOf(request.getParameter("salePrice"));;
+        int MSRP = Integer.valueOf(request.getParameter("MSRP"));;
+        String VIN = request.getParameter("VIN");
+        String color =request.getParameter("color");
+        String interior = request.getParameter("interior");
+        String bodyStyle = request.getParameter("bodyStyle");
+        String transmission = request.getParameter("transmission");
+        String DESCRIPTION =  request.getParameter("DESCRIPTION"); ;
+        
+        boolean isFeatured = convertToBoolean(request.getParameter("isFeatured"));
+        
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
         com.m3.cardealership.entities.Model model = modeldao.getModelFromModelName(request.getParameter("modelName"));
 
+        Vehicle vehicle = new Vehicle();
+
+        vehicle.setUserId(userId);
+        vehicle.setVIN(VIN);
+        vehicle.setYear(year);
+        vehicle.setMake(make);
+        vehicle.setModel(model);
+        vehicle.setColor(color);
+        vehicle.setInterior(interior);
+        vehicle.setBodyStyle(bodyStyle);
+        vehicle.setTransmission(transmission);
+        vehicle.setMileage(mileage);
+        vehicle.setSalePrice(salePrice);
+        vehicle.setMSRP(MSRP);
+        vehicle.setFeatured(isFeatured);
+        vehicle.setDateAdded(LocalDate.now());
+        vehicle.setDESCRIPTION(DESCRIPTION);
         vehicle.setMake(make);
         vehicle.setModel(model);
         vehicle.setDateAdded(LocalDate.now());
-        
+       
+        System.out.println(vehicle);
         vehicledao.addVehicle(vehicle);
  
-        return "redirect:/vehicles";
+        return "redirect:/admin/vehicles";
     }
 
+    @GetMapping("/addVehicle")
+    public String addVehicle(HttpServletRequest request, @RequestParam(defaultValue="") String makeName, Model model) {
+//        
+        List<Make> makes = makedao.getAllMakes();
+        model.addAttribute("makes", makes);
+        
+        List<com.m3.cardealership.entities.Model> models = modeldao.getModelFromMakeName(makeName);
+        System.out.println(models);        
+        model.addAttribute("models", models);
+        
+        
+        
+        
+        
+        return "addVehicle";
+    }    
+    
+    
     @GetMapping("/editVehicle")
     public String editVehicle(HttpServletRequest request, @RequestParam(defaultValue="") String makeName, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -154,7 +205,7 @@ public class AdminController {
         int id = Integer.parseInt(request.getParameter("vehicleId"));
         System.out.println(id);
         Vehicle vehicle = vehicledao.getVehicleById(id);
-        System.out.println(vehicle.toString());
+//        System.out.println(vehicle.toString());
 //        
         Make make = makedao.getMakeFromMakeName(request.getParameter("makeName"));
         com.m3.cardealership.entities.Model model = modeldao.getModelFromModelName(request.getParameter("modelName"));
@@ -172,25 +223,27 @@ public class AdminController {
         int year = Integer.valueOf(request.getParameter("year"));
         int mileage = Integer.valueOf(request.getParameter("mileage"));
         int salePrice = Integer.valueOf(request.getParameter("salePrice"));;
-        int MSRP = Integer.valueOf(request.getParameter("mileage"));;
+        int MSRP = Integer.valueOf(request.getParameter("MSRP"));;
         
-        boolean featured = false;
+        boolean isFeatured = convertToBoolean(request.getParameter("isFeatured"));
         
-        System.out.println(id);
-System.out.println(vehicle.toString());
-System.out.println(make.toString());
-        System.out.println(model.toString());
-                System.out.println(VIN);
-                        System.out.println(color);
-                                System.out.println(interior);
-                                        System.out.println(bodyStyle);
-                                                System.out.println(transmission);
-                                                        System.out.println(DESCRIPTION);
-                                                                System.out.println(userId);
-                                                                        System.out.println(year);
-                                                                                System.out.println(mileage);
-                                                                                        System.out.println(salePrice);
-                                                                                                System.out.println(MSRP);
+//System.out.println(id);
+//System.out.println(vehicle.toString());
+//System.out.println(make.toString());
+//System.out.println(model.toString());
+//System.out.println(VIN);
+//System.out.println(color);
+//System.out.println(interior);
+//System.out.println(bodyStyle);
+//System.out.println(transmission);
+//System.out.println(DESCRIPTION);
+//System.out.println(userId);
+//System.out.println(year);
+//System.out.println(mileage);
+//System.out.println(salePrice);
+//System.out.println(MSRP);
+
+
         vehicle.setUserId(userId);
         vehicle.setVIN(VIN);
         vehicle.setYear(year);
@@ -203,7 +256,7 @@ System.out.println(make.toString());
         vehicle.setMileage(mileage);
         vehicle.setSalePrice(salePrice);
         vehicle.setMSRP(MSRP);
-        vehicle.setFeatured(featured);
+        vehicle.setFeatured(isFeatured);
         vehicle.setDateAdded(LocalDate.now());
         vehicle.setDESCRIPTION(DESCRIPTION);
 //        

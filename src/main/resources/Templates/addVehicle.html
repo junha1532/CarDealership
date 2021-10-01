@@ -25,9 +25,9 @@
       src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
       defer
     ></script>
-    <script th:src="@{/EditVehicle.js}" defer></script>
+    <script th:src="@{/AddVehicle.js}" defer></script>
 
-    <title>TEMP VEHICLE PAGE!</title>
+    <title>Adding Vehicle</title>
   </head>
   <body>
     <div class="navbar">
@@ -40,24 +40,23 @@
         <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
     </div>
     <div class="container">
-      <h1>Edit Vehicle</h1>
+      <h1>Add Vehicle</h1>
       <form
-        action="/admin/vehicles/editVehicle"
+        action="/admin/addVehicle"
         id="edit-vehicle-form"
         method="POST"
       >
         <div id="form-element-container">
           <div>
             <label for="make">Make</label>
-            <!-- th:onchange='" -->
             <select class="form-control" id="make" name="makeName">
               <option selected disabled>Select Make</option>
-              <option
+              
+               <option
                 th:if="${(param.makeName == null)}"
                 th:each="make : ${makes}"
                 th:value="${make.makeName}"
                 th:text="${make.makeName}"
-                th:selected="${make.makeName == vehicle.make.makeName}"
               ></option>
               <option
                 th:unless="${(param.makeName == null)}"
@@ -77,7 +76,6 @@
                 th:each="model : ${models}"
                 th:value="${model.modelName}"
                 th:text="${model.modelName}"
-                th:selected="${model.modelName == vehicle.model.modelName}"
               ></option>
             </select>
           </div>
@@ -91,7 +89,7 @@
               name="bodyStyle"
               id="bodyStyle"
               class="form-control"
-              th:value="${vehicle.bodyStyle}"
+
             />
           </div>
             
@@ -102,7 +100,6 @@
               name="year"
               id="year"
               class="form-control"
-              th:value="${vehicle.year}"
             />
           </div>
         </div>
@@ -115,7 +112,6 @@
               name="transmission"
               id="transmission"
               class="form-control"
-              th:value="${vehicle.transmission}"
             />
           </div>
           <div>
@@ -125,7 +121,6 @@
               name="color"
               id="color"
               class="form-control"
-              th:value="${vehicle.color}"
             />
           </div>
         </div>
@@ -138,7 +133,6 @@
               name="mileage"
               id="mileage"
               class="form-control"
-              th:value="${vehicle.mileage}"
             />
           </div>
           <div>
@@ -148,7 +142,6 @@
               name="VIN"
               id="VIN"
               class="form-control"
-              th:value="${vehicle.VIN}"
             />
           </div>
         </div>
@@ -161,16 +154,17 @@
               name="interior"
               id="interior"
               class="form-control"
-              th:value="${vehicle.interior}"
             />
+            
+            
+            
           </div>
-                
-           <div>
+            <div>
             <label for="isFeatured">Featured</label>
             <select class="form-control" id="isFeatured" name="isFeatured">
               
-            <option th:selected = "${vehicle.featured==true}" value=true>Featured</option>
-            <option th:selected = "${vehicle.featured==false}" value=false>Not Featured</option>
+            <option value=true>Featured</option>
+            <option value=false>Not Featured</option>
 
             </select>
             
@@ -187,7 +181,6 @@
               name="MSRP"
               id="MSRP"
               class="form-control"
-              th:value="${vehicle.MSRP}"
             />
           </div>
           <div>
@@ -197,7 +190,6 @@
               name="salePrice"
               id="salePrice"
               class="form-control"
-              th:value="${vehicle.salePrice}"
             />
           </div>
         </div>
@@ -207,23 +199,9 @@
           name="DESCRIPTION"
           id="DESCRIPTION"
           class="form-control"
-          th:text="${vehicle.DESCRIPTION}"
         ></textarea>
-        <input
-          type="hidden"
-          id="vehicleId"
-          name="vehicleId"
-          th:value="${vehicle.vehicleId}"
-        />
-        <div>
+      <div>
           <button type="submit" class="btn btn-primary">Save</button>
-          <button type="submit" class="btn btn-danger">
-            <a
-              href="#"
-              th:href="@{/admin/deleteVehicle(id=${vehicle.vehicleId})}"
-              >Delete</a
-            >
-          </button>
         <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
 
         </div>
