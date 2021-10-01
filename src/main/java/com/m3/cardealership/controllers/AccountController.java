@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -31,7 +31,7 @@ public class AccountController {
        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
     }
     
-    @PostMapping("/Account/updatePassword")
+    @GetMapping("/Account/updatePassword")
     public String updatePassword(HttpServletRequest request, @RequestParam("Password") String password){
         String newpword = password;
         User user = userDao.getUserByEmail(request.getRemoteUser());//issue getting logged in user

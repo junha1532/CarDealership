@@ -126,32 +126,37 @@ Values(2, 1, "A-Class", "2021-09-14");
 INSERT INTO MODEL(MakeId, userId, modelName, dateAdded) 
 Values(3, 1, "SuperFast", "2021-09-14");
 
-INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "3380800793", 2016, 1, 1, "Black", "Grey", "SUV", "Auto", 80000, 20000, 25000, true, "2021-09-14", "This is a  Featured USED Black 2016 Black Audi R8!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "0417482285", 2021, 1, 1, "Red", "Grey", "Coupe", "Auto", 0, 170000, 200000, true, "2021-09-14", "This is a featured New 2021 Red Audi R8!");
+Values(1, "1432481286", 2016, 1, 1, "Black", "Grey", "Sports", "Automatic", 80000, 150250, 160000, true, "2021-09-14", "This is a Featured USED Black 2020 Black Audi R8!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "8159644154", 2021, 1, 1, "Red", "Grey", "Coupe", "Auto", 0, 170000, 200000, false, "2021-09-14", "This is a unfeatured New 2021 Red Audi R8!");
+Values(1, "2417482285", 2021, 1, 1, "Red", "Black", "Coupe", "Automatic", 0, 160000, 170250, true, "2021-09-14", "This is a featured New 2021 Red Audi R8!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "4417559305", 2021, 1, 1, "Red", "Grey", "Coupe", "Auto", 0, 170000, 200000, false, "2021-09-14", "This is a unfeatured New 2021 Red Audi R8!");
+Values(1, "8159644154", 2021, 1, 1, "Red", "Black", "Coupe", "Manual", 0, 165000, 170250, false, "2021-09-14", "This is a unfeatured New 2021 Red Audi R8!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "3059452769", 2021, 1, 2, "Silver", "Grey", "Coupe", "Auto", 0, 150000, 180000, true, "2021-09-14", "This is a featured Used 2021 Silver Audi A4!");
+Values(1, "4417559305", 2021, 1, 1, "Silver", "Tan", "Coupe", "Automatic", 0, 165000, 170250, false, "2021-09-14", "This is a unfeatured New 2021 Red Audi R8!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "0771076256 ", 2020, 2, 3, "Blue", "Grey", "SUV", "Auto", 20000, 35000, 40000, false, "2021-09-14", "This is a unfeatured Used 2021 Blue Mercedes A-Class!");
+Values(1, "3059452769", 2020, 1, 2, "Silver", "Grey", "Coupe", "Automatic", 0, 45000, 50000, true, "2021-09-15", "This is a featured New 2020 Silver Audi A4!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "7877093347 ", 1980, 3, 3, "Silver", "Grey", "Coupe", "Auto", 20000, 35000, 40000, false, "2021-09-14", "Silver unfeatured Ferrarri SuperFast ");
+Values(1, "2893498863", 2020, 1, 2, "White", "Black", "Coupe", "Automatic", 100000, 30000, 35000, false, "2021-09-01", "This is a unfeatured Used 2016 White Audi A4!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(1, "01230AJKNDSD", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, false, "2021-09-14", "COOL CAR. MUST BUY!");
+Values(1, "8771076256 ", 2020, 2, 3, "White", "Leather", "SUV", "Automatic", 20000, 37000, 39500, false, "2021-09-14", "This is a unfeatured Used 2021 White Mercedes A-Class!");
 
 INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
-Values(2, "01230AJKNDSJ", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, true, "2021-09-14", "COOL CAR. MUST BUY!");
+Values(1, "8804964844", 2021, 2, 3, "Black", "Leather", "SUV", "Automatic", 0, 40000, 42000, true, "2021-09-14", "This is a Featured New 2021 Black Mercedes A-Class!");
+
+
+INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
+Values(1, "7877093347 ", 1980, 3, 4, "Red", "Grey", "Coupe", "Manual", 20000, 350000, 400000, true, "2021-09-14", "This is a featured Used 1980 Red Ferrarri SuperFast ");
+
+INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
+Values(1, "3220149161  ", 2017, 3, 4, "Black", "Red", "Coupe", "Manual", 20000, 350000, 400000, true, "2021-09-14", "This is a featured Used 2017 Black Ferrarri SuperFast ");
 
 -- INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)
 -- Values(3, "01230AJKNDGJ", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000, 35000, 40000, true, "2021-09-14", "COOL CAR. MUST BUY!");
@@ -174,3 +179,5 @@ INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
 Values ("FINANCING!", "Financing Purchase: $750 rebate plus 0.99% interest financing for 84 months. ", 100);
 INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
 Values ("NEW CARS IN STOCK!", "CHECK OUT NEW IN STOCK AUDIS1", 100);
+
+

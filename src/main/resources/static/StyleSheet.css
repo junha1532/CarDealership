@@ -10,10 +10,10 @@
   top: 0px;
   background-color: cornflowerblue;
   border-block: solid;
-  border-block-color: black;
+/*  border-block-color: black;*/
   border-right: solid;
   border-left: solid;
-  border-width: 2px;
+/*  border-width: 2px;*/
   text-align: center;
   overflow: hidden;
   width: 100vw;
