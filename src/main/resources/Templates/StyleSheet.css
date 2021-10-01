@@ -1,4 +1,8 @@
 .navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   top: 0px;
   background-color: cornflowerblue;
   border-block: solid;
@@ -16,6 +20,20 @@
   height: 54px;
   content: '';
   display: block;
+}
+
+.navbar form {
+  margin-left: 20px;
+}
+
+.navbar div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar h4 {
+  color: #f2f2f2;
+  font-size: 17px;
 }
 
 .navbar a {
