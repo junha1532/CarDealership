@@ -30,14 +30,20 @@
     <title>TEMP VEHICLE PAGE!</title>
   </head>
   <body>
+    <div id="dummy-section"></div>
     <div class="navbar">
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
     </div>
     <div class="container">
       <h1>Edit Vehicle</h1>
@@ -94,7 +100,7 @@
               th:value="${vehicle.bodyStyle}"
             />
           </div>
-            
+
           <div>
             <label for="year">Year</label>
             <input
@@ -153,7 +159,7 @@
           </div>
         </div>
 
-            <div id="form-element-container">
+        <div id="form-element-container">
           <div>
             <label for="interior">Interior</label>
             <input
@@ -164,21 +170,20 @@
               th:value="${vehicle.interior}"
             />
           </div>
-                
-           <div>
+
+          <div>
             <label for="isFeatured">Featured</label>
             <select class="form-control" id="isFeatured" name="isFeatured">
-              
-            <option th:selected = "${vehicle.featured==true}" value=true>Featured</option>
-            <option th:selected = "${vehicle.featured==false}" value=false>Not Featured</option>
-
+              <option th:selected="${vehicle.featured==true}" value="true">
+                Featured
+              </option>
+              <option th:selected="${vehicle.featured==false}" value="false">
+                Not Featured
+              </option>
             </select>
-            
           </div>
-
         </div>
-          
-          
+
         <div id="form-element-container">
           <div>
             <label for="MSRP">MSRP</label>
@@ -224,8 +229,11 @@
               >Delete</a
             >
           </button>
-        <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
-
+          <input
+            type="hidden"
+            name="userName"
+            th:value="${#httpServletRequest.remoteUser}"
+          />
         </div>
       </form>
     </div>

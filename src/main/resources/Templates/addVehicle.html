@@ -31,28 +31,28 @@
   </head>
   <body>
     <div class="navbar">
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
     </div>
     <div class="container">
       <h1>Add Vehicle</h1>
-      <form
-        action="/admin/addVehicle"
-        id="edit-vehicle-form"
-        method="POST"
-      >
+      <form action="/admin/addVehicle" id="edit-vehicle-form" method="POST">
         <div id="form-element-container">
           <div>
             <label for="make">Make</label>
             <select class="form-control" id="make" name="makeName">
               <option selected disabled>Select Make</option>
-              
-               <option
+
+              <option
                 th:if="${(param.makeName == null)}"
                 th:each="make : ${makes}"
                 th:value="${make.makeName}"
@@ -89,18 +89,12 @@
               name="bodyStyle"
               id="bodyStyle"
               class="form-control"
-
             />
           </div>
-            
+
           <div>
             <label for="year">Year</label>
-            <input
-              type="text"
-              name="year"
-              id="year"
-              class="form-control"
-            />
+            <input type="text" name="year" id="year" class="form-control" />
           </div>
         </div>
 
@@ -116,12 +110,7 @@
           </div>
           <div>
             <label for="color">Color</label>
-            <input
-              type="text"
-              name="color"
-              id="color"
-              class="form-control"
-            />
+            <input type="text" name="color" id="color" class="form-control" />
           </div>
         </div>
 
@@ -137,16 +126,11 @@
           </div>
           <div>
             <label for="VIN">VIN #</label>
-            <input
-              type="text"
-              name="VIN"
-              id="VIN"
-              class="form-control"
-            />
+            <input type="text" name="VIN" id="VIN" class="form-control" />
           </div>
         </div>
 
-            <div id="form-element-container">
+        <div id="form-element-container">
           <div>
             <label for="interior">Interior</label>
             <input
@@ -155,33 +139,20 @@
               id="interior"
               class="form-control"
             />
-            
-            
-            
           </div>
-            <div>
+          <div>
             <label for="isFeatured">Featured</label>
             <select class="form-control" id="isFeatured" name="isFeatured">
-              
-            <option value=true>Featured</option>
-            <option value=false>Not Featured</option>
-
+              <option value="true">Featured</option>
+              <option value="false">Not Featured</option>
             </select>
-            
           </div>
-
         </div>
-          
-          
+
         <div id="form-element-container">
           <div>
             <label for="MSRP">MSRP</label>
-            <input
-              type="text"
-              name="MSRP"
-              id="MSRP"
-              class="form-control"
-            />
+            <input type="text" name="MSRP" id="MSRP" class="form-control" />
           </div>
           <div>
             <label for="salePrice">Sale Price</label>
@@ -200,10 +171,13 @@
           id="DESCRIPTION"
           class="form-control"
         ></textarea>
-      <div>
+        <div>
           <button type="submit" class="btn btn-primary">Save</button>
-        <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
-
+          <input
+            type="hidden"
+            name="userName"
+            th:value="${#httpServletRequest.remoteUser}"
+          />
         </div>
       </form>
     </div>

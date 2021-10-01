@@ -1,31 +1,40 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <link rel="stylesheet" href="StyleSheet.css" >
-    
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" href="StyleSheet.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
 
     <meta charset="utf-8" />
-    <title>
-        Home
-    </title>
-</head>
-<body>
+    <title>Home</title>
+  </head>
+  <body>
     <div class="navbar">
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
     </div>
-        <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')">Vehicle</a> 
-<a >User</a> 
-<a >Report</a> 
-</body>
+    <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')">Vehicle</a>
+    <a>User</a>
+    <a>Report</a>
+  </body>
 </html>

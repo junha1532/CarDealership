@@ -1,33 +1,48 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <link rel="stylesheet" href="StyleSheet.css"/>
-        <title>Login</title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" href="StyleSheet.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
+    </div>
+    <div th:if="${param.error}">Invalid username and password.</div>
+    <!--Not sure when this div below triggers-->
+    <div th:if="${param.logout}">You have been logged out.</div>
+
+    <div sec:authorize="isAnonymous()">
+      <form th:action="@{/login}" method="post">
+        <div>
+          <label> User Name : <input type="text" name="username" /> </label>
         </div>
-        <!--Not sure when this div below triggers-->
-        <div th:if="${param.logout}"> 
-            You have been logged out.
+        <div>
+          <label> Password: <input type="password" name="password" /> </label>
         </div>
-        
-        <div sec:authorize="isAnonymous()">
-            <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            
-            <div><input type="submit" value="Sign In"/></div>
-        </form>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-        </div>
-        
-    </body>
+
+        <div><input type="submit" value="Sign In" /></div>
+      </form>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+      <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+      <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" />
+      </form>
+    </div>
+  </body>
 </html>

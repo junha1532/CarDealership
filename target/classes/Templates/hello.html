@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-        <div sec:authorize="hasRole('ADMIN')">
-            <p>Admin view</p>
-        </div>
-        
-    </body>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
+    </div>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out" />
+    </form>
+    <div sec:authorize="hasRole('ADMIN')">
+      <p>Admin view</p>
+    </div>
+  </body>
 </html>
