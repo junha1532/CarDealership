@@ -371,6 +371,17 @@ public class AdminController {
         
         return "SalesReport";
     }
+    
+    @GetMapping("/reports/inventory")
+    public String showReportsPage(Model model) {
+        List<Report> newReports = reportDao.queryInventory(true);
+        model.addAttribute("newReports", newReports);
+        
+        List<Report> oldReports = reportDao.queryInventory(false);
+        model.addAttribute("oldReports", oldReports);
+        
+        return "InventoryReport";
+    }
 
     
     

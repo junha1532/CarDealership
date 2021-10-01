@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      defer
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
+    <title>TEMP DETAIL PAGE!</title>
+  </head>
+  <body>
+    <div id="dummy-section"></div>
+    <div class="navbar">
+      <div>
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a
+          th:href="@{/sales}"
+          sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+          >Sales</a
+        >
+      </div>
+      <div>
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+        <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">
+          [[${#httpServletRequest.remoteUser}]] - ADMIN
+        </h4>
+        <h4 th:inline="text" sec:authorize="hasRole('SALES')">
+          [[${#httpServletRequest.remoteUser}]] - SALES
+        </h4>
+        <form
+          th:action="@{/logout}"
+          method="post"
+          sec:authorize="isAuthenticated()"
+        >
+          <input class="btn btn-warning" type="submit" value="Sign Out" />
+        </form>
+      </div>
+    </div>
+    <div class="container">
+      <h1>Inventory Report</h1>
+      <h3>New Vehicles</h3>
+      <table class="table table-striped" id="users-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Count</th>
+            <th>Stock Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="newRpt : ${newReports}">
+            <td th:text="${newRpt.year}">Year</td>
+            <td th:text="${newRpt.makeName}">Make Name</td>
+            <td th:text="${newRpt.modelName}">Model Name</td>
+            <td th:text="${newRpt.count}">Count</td>
+            <td th:text="'$ '+${newRpt.stockValue}">Stock Value</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Used Vehicles</h3>
+      <table class="table table-striped" id="users-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Count</th>
+            <th>Stock Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="oldRpt : ${oldReports}">
+            <td th:text="${oldRpt.year}">Year</td>
+            <td th:text="${oldRpt.makeName}">Make Name</td>
+            <td th:text="${oldRpt.modelName}">Model Name</td>
+            <td th:text="${oldRpt.count}">Count</td>
+            <td th:text="'$ '+${oldRpt.stockValue}">Stock Value</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
