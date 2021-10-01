@@ -1,53 +1,67 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <link rel="stylesheet" href="StyleSheet.css" />
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
 
     <meta charset="utf-8" />
-    <title>
-        Specials
-    </title>
-</head>
-<body>
+    <title>Specials</title>
+  </head>
+  <body>
+    <div id="dummy-section"></div>
     <div class="navbar">
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/Sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
     </div>
 
-    <div class="SearchBar " ><h1>Specials</h1>   
-    
-    <div sec:authorize="hasRole('ADMIN')">
+    <div class="SearchBar">
+      <h1>Specials</h1>
+
+      <div sec:authorize="hasRole('ADMIN')">
         <div>
-            <form  th:action="@{/admin/addSpecial}" method="post">
-                <label for="name">Title</label> <br />
-                <input type="text" id="specialTitle" name="specialTitle" />
-                <br />
-                <label for="description">Description</label> <br />
-                <textarea id="specialDescription" name="specialDescription"></textarea>
-                <br />
-                <input type="submit" value="Submit">
-            </form>
+          <form th:action="@{/admin/addSpecial}" method="post">
+            <label for="name">Title</label> <br />
+            <input type="text" id="specialTitle" name="specialTitle" />
+            <br />
+            <label for="description">Description</label> <br />
+            <textarea
+              id="specialDescription"
+              name="specialDescription"
+            ></textarea>
+            <br />
+            <input type="submit" value="Submit" />
+          </form>
         </div>
-    </div>
-<!--        <table>
+      </div>
+      <!--        <table>
         <tr th:each="special : ${specials}">
             <th th:text="${special.SpecialTitle}"> </th>
             <th th:text="${special.SpecialDescription}"> </th>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a>
         </tr>
         </table>-->
-<!--        <div sec:authorize="hasRole('ADMIN')">
+      <!--        <div sec:authorize="hasRole('ADMIN')">
             <div>
                 <form  th:action="@{/addSpecial}" method="post" class="form-group">
                     <label for="name">Title</label> <br />
@@ -60,21 +74,28 @@
                 </form>
             </div>
         </div>-->
-        <div th:if="${not #lists.isEmpty(specials)}" class="Container">
-            <div class="col text-center m-3">
-                <div class="col text-center m-3">
-                    <table class="table table-striped">
-                    <tr th:each="special : ${specials}">
-                        <td th:text="${special.SpecialTitle}"> </td>
-                        <td th:text="${special.SpecialDescription}"> </td>
-                        <td sec:authorize="hasRole('ADMIN')" ><a th:href="@{/deleteSpecial(title=${special.SpecialTitle})}" class="btn btn-danger">Delete</a> </td> 
-                    </tr>
-                    </table>
-                </div>
-            </div>
-            </div>
-        <div th:if="${#lists.isEmpty(specials)}"><h1>No Specials Available</h1></div>
-        </div> 
-</body>
+      <div th:if="${not #lists.isEmpty(specials)}" class="Container">
+        <div class="col text-center m-3">
+          <div class="col text-center m-3">
+            <table class="table table-striped">
+              <tr th:each="special : ${specials}">
+                <td th:text="${special.SpecialTitle}"></td>
+                <td th:text="${special.SpecialDescription}"></td>
+                <td sec:authorize="hasRole('ADMIN')">
+                  <a
+                    th:href="@{/deleteSpecial(title=${special.SpecialTitle})}"
+                    class="btn btn-danger"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div th:if="${#lists.isEmpty(specials)}">
+        <h1>No Specials Available</h1>
+      </div>
+    </div>
+  </body>
 </html>
-

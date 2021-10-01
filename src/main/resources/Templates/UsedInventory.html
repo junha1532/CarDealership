@@ -1,69 +1,89 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <link rel="stylesheet" href="StyleSheet.css" />
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
     <meta charset="utf-8" />
     <title>UsedInventory</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="dummy-section"></div>
     <div class="navbar">
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a> 
-        <a th:href="@{/Sales}" sec:authorize="hasRole('ADMIN') OR hasRole('SALES')">Sales</a>
+      <a th:href="@{/Index}">Home</a>
+      <a th:href="@{/Inventory/New}">New Inventory</a>
+      <a th:href="@{/Inventory/Used}">Used Inventory</a>
+      <a th:href="@{/Inventory/Specials}">Specials</a>
+      <a th:href="@{/Contact}">Contact</a>
+      <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+      <a
+        th:href="@{/Sales}"
+        sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+        >Sales</a
+      >
     </div>
     <div class="SearchBar">
-        <h3>Search Used Vehicles</h3>
-        <form name="formS" id="Searchform" action="/Inventory/Used/query" method="GET">
-            <input type="search" id="likeQuery" name="likeQuery" placeholder="Enter make, model, or year..." class="form-group">
-            <div class="dropdown form-group">
-                Prices: <select name="subject" class="dropbtn" id="minPrice">
-                    <option value="" selected="minPrice">Min Price</option>
-                </select>
-                <select name="subject" class="dropbtn" id="maxPrice">
-                    <option value="" selected="maxPrice">Max Price</option>
-                </select>
-            </div>
+      <h3>Search Used Vehicles</h3>
+      <form
+        name="formS"
+        id="Searchform"
+        action="/Inventory/Used/query"
+        method="GET"
+      >
+        <input
+          type="search"
+          id="likeQuery"
+          name="likeQuery"
+          placeholder="Enter make, model, or year..."
+          class="form-group"
+        />
+        <div class="dropdown form-group">
+          Prices:
+          <select name="subject" class="dropbtn" id="minPrice">
+            <option value="" selected="minPrice">Min Price</option>
+          </select>
+          <select name="subject" class="dropbtn" id="maxPrice">
+            <option value="" selected="maxPrice">Max Price</option>
+          </select>
+        </div>
 
-            <div class="dropdown2 form-group">
-                Year:
-                <select name="subject" class="dropbtn" id="minYear">
-                    <option value="" selected="minYear">Min Year</option>
-                </select>
-                <select name="subject" class="dropbtn" id="maxYear">
-                    <option value="" selected="maxYear">Max Year</option>
-                </select>
-            </div>
+        <div class="dropdown2 form-group">
+          Year:
+          <select name="subject" class="dropbtn" id="minYear">
+            <option value="" selected="minYear">Min Year</option>
+          </select>
+          <select name="subject" class="dropbtn" id="maxYear">
+            <option value="" selected="maxYear">Max Year</option>
+          </select>
+        </div>
 
-            <button type="submit" class="search">Search</button>
-        </form>
+        <button type="submit" class="search">Search</button>
+      </form>
     </div>
     <div th:if="${not #lists.isEmpty(vehicles)}" class="col text-center m-3">
+      <div class="col text-center m-3">
         <div class="col text-center m-3">
-            <div class="col text-center m-3">
-                <table class="table table-striped">
-                    <tr>
-                        <td class="col text-center m-3">VehicleID</td>
-                        <td class="col text-center m-3">Vehicle Make</td>
-                        <td class="col text-center m-3">Vehicle Model</td>
-                        <td class="col text-center m-3">Vehicle Price</td>
-                    </tr>
-                    
-                <tr th:each="vehicle : ${vehicles}">
-                    <td th:text="${vehicle.VehicleId}"> </td>
-                    <td th:text="${vehicle.make.makeName}"> </td>
-                    <td th:text="${vehicle.model.modelName}"> </td> 
-                    <td th:text="${vehicle.SalePrice}"> </td>
-                </tr>
-                </table>
-            </div>
+          <table class="table table-striped">
+            <tr>
+              <td class="col text-center m-3">VehicleID</td>
+              <td class="col text-center m-3">Vehicle Make</td>
+              <td class="col text-center m-3">Vehicle Model</td>
+              <td class="col text-center m-3">Vehicle Price</td>
+            </tr>
+
+            <tr th:each="vehicle : ${vehicles}">
+              <td th:text="${vehicle.VehicleId}"></td>
+              <td th:text="${vehicle.make.makeName}"></td>
+              <td th:text="${vehicle.model.modelName}"></td>
+              <td th:text="${vehicle.SalePrice}"></td>
+            </tr>
+          </table>
         </div>
-        </div>
-</body>
+      </div>
+    </div>
+  </body>
 </html>
