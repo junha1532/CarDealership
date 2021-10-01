@@ -19,7 +19,7 @@
       type="text/css"
       href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
     />
-    <title>TEMP DETAIL PAGE!</title>
+    <title>Login</title>
   </head>
   <body>
     <div id="dummy-section"></div>
@@ -55,6 +55,38 @@
         </form>
       </div>
     </div>
-    <h1>THIS IS TEMP DETAIL PAGE!</h1>
+    <div class="container">
+      <h1>Makes</h1>
+      <form action="/sales/addMake" id="make-form" method="POST">
+        <label for="makeName">New Make</label>
+            <input
+              type="text"
+              name="makeName"
+              id="makeName"
+              class="form-control"
+              placeholder="Make Name"
+            />
+            <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
+        <button type="submit" class="btn btn-primary">Add Make</button>
+      </form>
+      
+      </button>
+      <table class="table table-striped" id="users-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Make</th>
+            <th>Date Added</th>
+            <th>User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="make : ${makes}">
+            <td th:text="${make.makeName}">Make</td>
+            <td th:text="${make.dateAdded}">Date Added</td>
+            <td th:text="${make.userEmail}">User</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

@@ -3,6 +3,12 @@ $(document).ready(function () {
   var maxPrice = 50000;
   var minYear = 2018;
   var maxYear = 2021;
+  if (getUrlParameter('maxYear')) {
+    minPrice = getUrlParameter('minPrice');
+    maxPrice = getUrlParameter('maxPrice');
+    minYear = getUrlParameter('minYear');
+    maxYear = getUrlParameter('maxYear');
+  }
   $('.js-price-slider').ionRangeSlider({
     type: 'double',
     grid: true,
@@ -43,3 +49,21 @@ $('.js-year-slider').on('change', function () {
   $('input#minYear').val(value[0]);
   $('input#maxYear').val(value[1]);
 });
+
+var getUrlParameter = function getUrlParameter(sParam) {
+  var sPageURL = window.location.search.substring(1),
+    sURLVariables = sPageURL.split('&'),
+    sParameterName,
+    i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === sParam) {
+      return typeof sParameterName[1] === undefined
+        ? true
+        : decodeURIComponent(sParameterName[1]);
+    }
+  }
+  return false;
+};

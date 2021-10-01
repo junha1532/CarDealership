@@ -94,6 +94,26 @@ public class UserDaoDB implements UserDao{
     }
     
     @Override
+    @Transactional
+    public void deleteUserById(int id) {
+        // userID 1 is the default admin - never gets deleted
+        final String UPDATE_VEHICLE = "UPDATE vehicle SET userId = 1 WHERE userId = ?";
+        jdbc.update(UPDATE_VEHICLE, id);
+        
+        final String UPDATE_MAKE = "UPDATE make SET userId = 1 WHERE userId = ?";
+        jdbc.update(UPDATE_MAKE, id);
+        
+        final String UPDATE_MODEL = "UPDATE model SET userId = 1 WHERE userId = ?";
+        jdbc.update(UPDATE_MODEL, id);
+        
+        final String UPDATE_SALE = "UPDATE sale SET salesPersonId = 1 WHERE salesPersonId = ?";
+        jdbc.update(UPDATE_SALE, id);
+        
+        final String DELETE_USER = "DELETE FROM user WHERE userId = ?";
+        jdbc.update(DELETE_USER, id);
+    }
+    
+    @Override
     public void updateUser(User user) {
         final String UPDATE_USER = "UPDATE user SET userFirstName = ?, userLastName = ?, userType = ?, userEmail = ?,password = ? "
                 + "WHERE userEmail = ?";

@@ -6,6 +6,19 @@
 >
   <head>
     <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      defer
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
     <title>Login</title>
   </head>
   <body>
@@ -42,27 +55,36 @@
         </form>
       </div>
     </div>
-    <div th:if="${param.error}">Invalid username and password.</div>
-    <!--Not sure when this div below triggers-->
-    <div th:if="${param.logout}">You have been logged out.</div>
+    <div class="container">
+      <h1>Welcome to login page</h1>
+      <div th:if="${param.error}">Invalid username and password.</div>
+      <!--Not sure when this div below triggers-->
+      <div th:if="${param.logout}">You have been logged out.</div>
 
-    <div sec:authorize="isAnonymous()">
-      <form th:action="@{/login}" method="post">
-        <div>
-          <label> User Name : <input type="text" name="username" /> </label>
-        </div>
-        <div>
-          <label> Password: <input type="password" name="password" /> </label>
-        </div>
+      <div sec:authorize="isAnonymous()">
+        <form th:action="@{/login}" method="post">
+          <div>
+            <label> User Name : <input type="text" name="username" /> </label>
+          </div>
+          <div>
+            <label> Password: <input type="password" name="password" /> </label>
+          </div>
 
-        <div><input type="submit" value="Sign In" /></div>
-      </form>
-    </div>
-    <div sec:authorize="isAuthenticated()">
-      <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-      <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" />
-      </form>
+          <div>
+            <button type="submit" class="btn btn-primary" value="Sign In">
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+      <div sec:authorize="isAuthenticated()">
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class="btn btn-danger" value="Sign In">
+            Sign Out
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

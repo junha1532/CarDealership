@@ -19,7 +19,7 @@
       type="text/css"
       href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
     />
-    <title>TEMP DETAIL PAGE!</title>
+    <title>Login</title>
   </head>
   <body>
     <div id="dummy-section"></div>
@@ -55,6 +55,46 @@
         </form>
       </div>
     </div>
-    <h1>THIS IS TEMP DETAIL PAGE!</h1>
+    <div class="container">
+      <h1>Models</h1>
+      <form action="/sales/addModel" id="make-form" method="POST">
+        <label for="modelName">New Model</label>
+            <input
+              type="text"
+              name="modelName"
+              id="modelName"
+              class="form-control"
+              placeholder="Model Name"
+            />
+            <label for="makeName">Make</label>
+            <select class="form-control" id="makeName" name="makeName">
+                <option selected disabled>Select Make</option>
+                <option value="ADMIN" th:each="make : ${makes}" th:value="${make.makeName}" th:text="${make.makeName}">
+                </option>
+              </select>
+            <input type="hidden" name="userName" th:value="${#httpServletRequest.remoteUser}" />
+        <button type="submit" class="btn btn-primary">Add Model</button>
+      </form>
+      
+      </button>
+      <table class="table table-striped" id="users-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Date Added</th>
+            <th>User</th>   
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="model : ${models}">
+            <td th:text="${model.makeName}">Make</td>
+            <td th:text="${model.modelName}">Model</td>
+            <td th:text="${model.dateAdded}">Date Added</td>
+            <td th:text="${model.userEmail}">User</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

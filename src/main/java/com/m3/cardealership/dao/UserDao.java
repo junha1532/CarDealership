@@ -18,6 +18,7 @@ public interface UserDao {
     User getUserByEmailPW(String email, String pw);
     List<User> getAllUsers();
     User addUser(User user);
+    void deleteUserById(int id);
     void updateUser(User user);
     Integer getUserIdByEmail(String email) ;
 

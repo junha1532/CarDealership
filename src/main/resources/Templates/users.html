@@ -19,7 +19,7 @@
       type="text/css"
       href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
     />
-    <title>TEMP DETAIL PAGE!</title>
+    <title>Login</title>
   </head>
   <body>
     <div id="dummy-section"></div>
@@ -55,6 +55,45 @@
         </form>
       </div>
     </div>
-    <h1>THIS IS TEMP DETAIL PAGE!</h1>
+    <div class="container">
+      <h1>Users</h1>
+      <button type="button" class="btn btn-primary">
+        <a th:href="@{/admin/addUser}">Add User</a>
+      </button>
+      <table class="table table-striped" id="users-table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${users}">
+            <td th:text="${user.userLastName}">Last Name</td>
+            <td th:text="${user.userFirstName}">First Name</td>
+            <td th:text="${user.userEmail}">Email</td>
+            <td th:text="${user.userType}">Role</td>
+            <td>
+              <button class="btn btn-info">
+                <a href="#" th:href="@{/admin/editUser(id=${user.userId})}"
+                  >Edit</a
+                >
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" th:if="${user.userId != 1}">
+                <a href="#" th:href="@{/admin/deleteUser(id=${user.userId})}"
+                  >Delete</a
+                >
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>

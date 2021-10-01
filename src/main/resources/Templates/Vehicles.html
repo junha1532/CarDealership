@@ -14,10 +14,10 @@
     />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+
     <link rel="stylesheet" th:href="@{/rangeSlider.css}" />
     <link rel="stylesheet" th:href="@{/Vehicles.css}" />
-
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
       defer
@@ -26,6 +26,12 @@
       src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
       defer
     ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
+
     <script th:src="@{/rangeSlider.js}" defer></script>
     <script th:src="@{/Vehicle.js}" defer></script>
 
@@ -66,12 +72,8 @@
       </div>
     </div>
     <div class="container">
-      <h1 sec:authorize="hasRole('ADMIN')">Admin</h1>
-      <button
-        type="button"
-        class="btn btn-primary"
-        sec:authorize="hasRole('ADMIN')"
-      >
+      <h1 sec:authorize="hasRole('ADMIN')">Manage Vehicles</h1>
+      <button type="button" class="btn btn-primary">
         <a th:href="@{/admin/addVehicle}">Add Vehicle</a>
       </button>
       <div class="container" id="vehicle-query-container">

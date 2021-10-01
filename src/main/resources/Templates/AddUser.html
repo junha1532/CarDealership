@@ -55,36 +55,69 @@
         </form>
       </div>
     </div>
+
     <div class="container">
-      <h1>Welcome to login page</h1>
-      <div th:if="${param.error}">Invalid username and password.</div>
-      <!--Not sure when this div below triggers-->
-      <div th:if="${param.logout}">You have been logged out.</div>
+      <h1>Add User</h1>
+      <form action="/admin/addUser" id="user-form" method="POST">
+        <div id="form-element-container">
+          <div>
+            <label for="userFirstName">First Name</label>
+            <input
+              type="text"
+              name="userFirstName"
+              id="userFirstName"
+              class="form-control"
+              placeholder="First Name"
+            />
+          </div>
 
-      <div sec:authorize="isAnonymous()">
-        <form th:action="@{/login}" method="post">
           <div>
-            <label> User Name : <input type="text" name="username" /> </label>
+            <label for="userLastName">Last Name</label>
+            <input
+              type="text"
+              name="userLastName"
+              id="userLastName"
+              class="form-control"
+              placeholder="Last Name"
+            />
           </div>
+        </div>
+        <div id="form-element-container">
           <div>
-            <label> Password: <input type="password" name="password" /> </label>
+            <label for="userEmail">Email</label>
+            <input
+              type="text"
+              name="userEmail"
+              id="userEmail"
+              class="form-control"
+              placeholder="abc123@abc.com"
+            />
           </div>
 
           <div>
-            <button type="submit" class="btn btn-primary" value="Sign In">
-              Sign In
-            </button>
+            <label for="userType">Role</label>
+            <select class="form-control" id="userType" name="userType">
+              <option selected disabled>Select Role</option>
+              <option value="ADMIN">Administrator</option>
+              <option value="SALES">Salesperson</option>
+              <option value="USER">User</option>
+            </select>
           </div>
-        </form>
-      </div>
-      <div sec:authorize="isAuthenticated()">
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-          <button type="submit" class="btn btn-danger" value="Sign In">
-            Sign Out
-          </button>
-        </form>
-      </div>
+        </div>
+        <div id="form-element-container">
+          <div>
+            <label for="password">Password</label>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              class="form-control"
+              placeholder="password"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
     </div>
   </body>
 </html>

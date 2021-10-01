@@ -1,4 +1,13 @@
+.btn-primary a {
+  color: #f2f2f2;
+}
+
 .navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  top: 0px;
   background-color: cornflowerblue;
   border-block: solid;
   border-block-color: black;
@@ -7,6 +16,28 @@
   border-width: 2px;
   text-align: center;
   overflow: hidden;
+  width: 100vw;
+  position: fixed !important;
+}
+
+#dummy-section:before {
+  height: 54px;
+  content: '';
+  display: block;
+}
+
+.navbar form {
+  margin-left: 20px;
+}
+
+.navbar div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar h4 {
+  color: #f2f2f2;
+  font-size: 17px;
 }
 
 .navbar a {
@@ -18,26 +49,75 @@
   font-size: 17px;
 }
 
-body {
-  overflow: scroll;
-}
-
 .jumbotron {
-  width: 100vw;
-  overflow: scroll;
+  overflow: hidden;
   border-bottom-style: solid;
   border-bottom-color: black;
   border-bottom-width: 8px;
   color: inherit;
   background-color: #eee;
-  margin: 0;
   padding: 0 !important;
+  margin: 0 !important;
 }
 .jumbotron img {
-  width: 100%;
+  overflow: hidden;
+  width: 100vw;
 }
-.container {
-  margin: 0 !important;
+
+#featuredVehicles-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px 0 200px;
+}
+#featuredVehicles-container #vehicle-element {
+  padding: 5px;
+  border: black 2px solid;
+  margin-right: 30px;
+}
+
+#featuredVehicles-container #vehicle-element div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#featuredVehicles-name {
+  margin-top: 10px;
+}
+
+#featuredVehicles-container #featuredVehicles-name span {
+  margin-right: 5px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#featuredVehicles-price span {
+  font-weight: 800;
+  font-size: 30px;
+}
+#admin-links {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  justify-content: space-between;
+}
+
+#admin-links button {
+  white-space: normal; /* css-3 */
+  word-wrap: break-word;
+
+  text-align: center;
+  width: 250px;
+}
+
+#admin-links a {
+  text-decoration: none;
+  font-size: 50px;
+  color: #f2f2f2;
 }
 
 @media screen and (min-width: 768px) {

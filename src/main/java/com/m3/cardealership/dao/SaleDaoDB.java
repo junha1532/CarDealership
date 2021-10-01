@@ -62,8 +62,8 @@ public class SaleDaoDB implements SaleDao {
     @Override
     public Sale addSale(Sale sale) {
         final String INSERT_SALE = "INSERT INTO sale(salesPersonId,customerName,customerEmail, "
-                + "customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType )"
-                + "VALUES(?,?,?,?,?,?,?,?,?)";
+                + "customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType, purchaseDate )"
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
         jdbc.update(INSERT_SALE, 
                 sale.getSalespersonId(),
                 sale.getCustomerName(),
@@ -73,7 +73,8 @@ public class SaleDaoDB implements SaleDao {
                 sale.getCustomerCity(),
                 sale.getCustomerZipCode(),
                 sale.getPurchasePrice(),
-                sale.getPurchaseType()
+                sale.getPurchaseType(),
+                sale.getPurchaseDate()
                 );
        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
        sale.setSaleId(newId);

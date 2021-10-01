@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+>
+  <head>
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      defer
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <div id="dummy-section"></div>
+    <div class="navbar">
+      <div>
+        <a th:href="@{/Index}">Home</a>
+        <a th:href="@{/Inventory/New}">New Inventory</a>
+        <a th:href="@{/Inventory/Used}">Used Inventory</a>
+        <a th:href="@{/Inventory/Specials}">Specials</a>
+        <a th:href="@{/Contact}">Contact</a>
+
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+        <a
+          th:href="@{/sales}"
+          sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+          >Sales</a
+        >
+      </div>
+      <div>
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+        <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">
+          [[${#httpServletRequest.remoteUser}]] - ADMIN
+        </h4>
+        <h4 th:inline="text" sec:authorize="hasRole('SALES')">
+          [[${#httpServletRequest.remoteUser}]] - SALES
+        </h4>
+        <form
+          th:action="@{/logout}"
+          method="post"
+          sec:authorize="isAuthenticated()"
+        >
+          <input class="btn btn-warning" type="submit" value="Sign Out" />
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Edit User</h1>
+      <form action="/admin/editUser" id="user-form" method="POST">
+        <div id="form-element-container">
+          <div>
+            <label for="userFirstName">First Name</label>
+            <input
+              type="text"
+              name="userFirstName"
+              id="userFirstName"
+              class="form-control"
+              th:value="${user.userFirstName}"
+            />
+          </div>
+
+          <div>
+            <label for="userLastName">Last Name</label>
+            <input
+              type="text"
+              name="userLastName"
+              id="userLastName"
+              class="form-control"
+              th:value="${user.userLastName}"
+            />
+          </div>
+        </div>
+        <div id="form-element-container">
+          <div>
+            <label for="userEmail">Email</label>
+            <input
+              type="text"
+              name="userEmail"
+              id="userEmail"
+              class="form-control"
+              th:value="${user.userEmail}"
+            />
+          </div>
+
+          <div>
+            <label for="userType">Role</label>
+            <select class="form-control" id="userType" name="userType">
+              <option selected disabled>Select Role</option>
+              <option value="ADMIN" th:selected="${user.userType == 'ADMIN'}">
+                Administrator
+              </option>
+              <option value="SALES" th:selected="${user.userType == 'SALES'}">
+                Salesperson
+              </option>
+              <option value="USER" th:selected="${user.userType== 'USER'}">
+                User
+              </option>
+            </select>
+          </div>
+        </div>
+        <div id="form-element-container">
+          <div>
+            <label for="password">Password</label>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              class="form-control"
+              th:value="${user.password}"
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -15,21 +15,23 @@ import java.util.Objects;
 public class Make {
     private int makeId;
     private int userId;
+    private String userEmail;
     private LocalDate dateAdded;
     private String makeName;
 
     @Override
     public String toString() {
-        return "Make{" + "makeId=" + makeId + ", userId=" + userId + ", dateAdded=" + dateAdded + ", makeName=" + makeName + '}';
+        return "Make{" + "makeId=" + makeId + ", userId=" + userId + ", userEmail=" + userEmail + ", dateAdded=" + dateAdded + ", makeName=" + makeName + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.makeId;
-        hash = 53 * hash + this.userId;
-        hash = 53 * hash + Objects.hashCode(this.dateAdded);
-        hash = 53 * hash + Objects.hashCode(this.makeName);
+        int hash = 7;
+        hash = 37 * hash + this.makeId;
+        hash = 37 * hash + this.userId;
+        hash = 37 * hash + Objects.hashCode(this.userEmail);
+        hash = 37 * hash + Objects.hashCode(this.dateAdded);
+        hash = 37 * hash + Objects.hashCode(this.makeName);
         return hash;
     }
 
@@ -49,6 +51,9 @@ public class Make {
             return false;
         }
         if (this.userId != other.userId) {
+            return false;
+        }
+        if (!Objects.equals(this.userEmail, other.userEmail)) {
             return false;
         }
         if (!Objects.equals(this.makeName, other.makeName)) {
@@ -76,6 +81,14 @@ public class Make {
         this.userId = userId;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public LocalDate getDateAdded() {
         return dateAdded;
     }
@@ -92,6 +105,7 @@ public class Make {
         this.makeName = makeName;
     }
 
+    
 
     
 }

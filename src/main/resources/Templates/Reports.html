@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:th="https://www.thymeleaf.org"
@@ -6,20 +7,17 @@
 >
   <head>
     <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-      defer
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-      defer
-    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link
       rel="stylesheet"
       type="text/css"
       href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
     />
-    <title>TEMP DETAIL PAGE!</title>
+
+    <meta charset="utf-8" />
+    <title>Home</title>
   </head>
   <body>
     <div id="dummy-section"></div>
@@ -55,6 +53,22 @@
         </form>
       </div>
     </div>
-    <h1>THIS IS TEMP DETAIL PAGE!</h1>
+    <div class="container">
+      <h1>Reports</h1>
+      <div id="admin-links">
+        <button class="btn btn-success">
+          <a th:href="@{/admin/reports/sales}" sec:authorize="hasRole('ADMIN')"
+            >Sales Report</a
+          >
+        </button>
+        <button class="btn btn-warning">
+          <a
+            th:href="@{/admin/reports/inventory}"
+            sec:authorize="hasRole('ADMIN')"
+            >Inventory Report</a
+          >
+        </button>
+      </div>
+    </div>
   </body>
 </html>

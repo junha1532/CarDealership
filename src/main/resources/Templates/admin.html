@@ -53,8 +53,25 @@
         </form>
       </div>
     </div>
-    <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')">Vehicle</a>
-    <a>User</a>
-    <a>Report</a>
+    <div class="container">
+      <h1>What would you like to do today?</h1>
+      <div id="admin-links">
+        <button class="btn btn-success">
+          <a th:href="@{/admin/vehicles}" sec:authorize="hasRole('ADMIN')"
+            >Manage Vehicles</a
+          >
+        </button>
+        <button class="btn btn-warning">
+          <a th:href="@{/admin/users}" sec:authorize="hasRole('ADMIN')"
+            >Manage User</a
+          >
+        </button>
+        <button class="btn btn-info">
+          <a th:href="@{/admin/reports}" sec:authorize="hasRole('ADMIN')"
+            >View Reports</a
+          >
+        </button>
+      </div>
+    </div>
   </body>
 </html>

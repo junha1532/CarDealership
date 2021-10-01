@@ -48,17 +48,13 @@ public class SalesController {
     @Autowired 
     UserDao userdao;
     
-
-////    @RequestMapping(value={"/", "/index"}, method= RequestMethod.GET) //MSRP
-////    @GetMapping("Sales")
-//    public String getVehicles(Model model){
-//        List<Vehicle> vehicles = vehicleDao.getAllVehicles();
-//        model.addAttribute("vehicles",vehicles); 
-//        return "Sales";
-//    }
+    @GetMapping("/purchases")
+    public String getPurchases(){
+        return "purchases"; 
+    }
 
     
-    @RequestMapping(value={"/query", "/index/query"}, method= RequestMethod.GET)
+    @RequestMapping(value={"/purchases/query"}, method= RequestMethod.GET)
     public String getVehicles(Model model, HttpServletRequest request){
         String likeQuery = "";
         String minPrice = "0";
@@ -82,13 +78,9 @@ public class SalesController {
         
         
         model.addAttribute("vehicles", vehicles);       
-        return "sales";
+        return "purchases";
     }
 
-//    @GetMapping("Sales/query") //Search like queries
-//    public String getVehicles(Model model,String queries){
-//        return "Sales";
-//    }
     
    
     @GetMapping("/purchase")
@@ -128,6 +120,7 @@ public class SalesController {
         sale.setCustomerZipCode(customerZipCode);
         sale.setPurchasePrice(Integer.valueOf(purchasePrice));
         sale.setPurchaseType(purchaseType);
+        sale.setPurchaseDate(LocalDate.now());
 ////        
 //        System.out.println(userName);
 //        System.out.println(salespersonId);
@@ -144,42 +137,66 @@ public class SalesController {
         saleDao.addSale(sale);
         vehicleDao.deleteVehicleById(vehicle.getVehicleId());
 
-        return "redirect:/sales";
+        return "redirect:/sales/purchases";
+    }
+    
+    @GetMapping("/makes")
+    public String showCarMakes(Model model){
+        List<Make> makes = makeDao.getAllMakes();
+        model.addAttribute("makes", makes);
+        return "Makes";
     }
     
     
-    @PostMapping("addCarMake")
+    
+    @PostMapping("/addMake")
     public String addCarMake(HttpServletRequest request){
         
         String makeName = request.getParameter("makeName");
-        String userId = request.getParameter("userId");
+        String userName = request.getParameter("userName");
+        int createPersonId = userdao.getUserIdByEmail(userName);
         
         Make make = new Make();
         make.setDateAdded(LocalDate.now());
         make.setMakeName(makeName);
-        make.setUserId(Integer.valueOf(userId));
+        make.setUserId(createPersonId);
+        make.setUserEmail(userName);
         
         makeDao.addMake(make);
-        return "addCarMake";
+        return "redirect:/sales/makes";
+    }
+    
+    @GetMapping("/models")
+    public String showCarModels(Model model){
+        List<com.m3.cardealership.entities.Model> models = modelDao.getAllModels();
+        model.addAttribute("models", models);
+        
+        List<Make> makes = makeDao.getAllMakes();
+        model.addAttribute("makes", makes);
+        
+        return "Models";
     }
     
     @Transactional
-    @PostMapping ("addCarModel")
+    @PostMapping ("/addModel")
     public String addCarModel(HttpServletRequest request){
         String makeName = request.getParameter("makeName");
         String modelName = request.getParameter("modelName");
-        String userId = request.getParameter("userId");
+        String userName = request.getParameter("userName");
+        int createPersonId = userdao.getUserIdByEmail(userName);
         
         com.m3.cardealership.entities.Model newModel = new com.m3.cardealership.entities.Model();
         
         newModel.setMakeId(makeDao.getMakeFromMakeName(makeName).getMakeId());
+        newModel.setMakeName(makeName);
         newModel.setModelName(modelName);
         newModel.setDateAdded(LocalDate.now());
-        newModel.setUserId(Integer.valueOf(userId));
+        newModel.setUserId(createPersonId);
+        newModel.setUserEmail(userName);
         
         modelDao.addModel(newModel);
         
-        return "addCarModel";
+        return "redirect:/sales/models";
     }
     
 }

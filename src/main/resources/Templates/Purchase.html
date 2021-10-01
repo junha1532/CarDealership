@@ -13,12 +13,12 @@
          crossorigin="anonymous"
          />
       <!-- Bootstrap CSS -->
-      <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
       <link rel="stylesheet" th:href="@{/EditVehicle.css}" />
+      <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+      
       <script
          src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script
-         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
       <script th:src="@{/EditVehicle.js}"></script>
       <title>TEMP VEHICLE PAGE!</title>
    </head>
@@ -256,7 +256,7 @@
                <div id="form-element-container">
                   <div>
                      <label for="purchaseType"><b>Purchase Type</b></label>
-                        <select name = "purchaseType" id = "purchaseType">                        
+                     <select name = "purchaseType" id = "purchaseType">                        
                         <option value="Bank Finance">Bank Finance</option>
                         <option value="Cash">Cash</option>
                         <option value="Dealer Finance">Dealer Finance</option>

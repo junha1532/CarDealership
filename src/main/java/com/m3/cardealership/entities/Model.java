@@ -15,23 +15,27 @@ import java.util.Objects;
 public class Model {
     private int modelId;
     private int makeId;
+    private String makeName;
     private int userId;
+    private String userEmail;
     private String modelName;
     private LocalDate dateAdded;
 
     @Override
     public String toString() {
-        return "Model{" + "modelId=" + modelId + ", makeId=" + makeId + ", userId=" + userId + ", modelName=" + modelName + ", dateAdded=" + dateAdded + '}';
+        return "Model{" + "modelId=" + modelId + ", makeId=" + makeId + ", makeName=" + makeName + ", userId=" + userId + ", userEmail=" + userEmail + ", modelName=" + modelName + ", dateAdded=" + dateAdded + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + this.modelId;
-        hash = 53 * hash + this.makeId;
-        hash = 53 * hash + this.userId;
-        hash = 53 * hash + Objects.hashCode(this.modelName);
-        hash = 53 * hash + Objects.hashCode(this.dateAdded);
+        int hash = 7;
+        hash = 97 * hash + this.modelId;
+        hash = 97 * hash + this.makeId;
+        hash = 97 * hash + Objects.hashCode(this.makeName);
+        hash = 97 * hash + this.userId;
+        hash = 97 * hash + Objects.hashCode(this.userEmail);
+        hash = 97 * hash + Objects.hashCode(this.modelName);
+        hash = 97 * hash + Objects.hashCode(this.dateAdded);
         return hash;
     }
 
@@ -54,6 +58,12 @@ public class Model {
             return false;
         }
         if (this.userId != other.userId) {
+            return false;
+        }
+        if (!Objects.equals(this.makeName, other.makeName)) {
+            return false;
+        }
+        if (!Objects.equals(this.userEmail, other.userEmail)) {
             return false;
         }
         if (!Objects.equals(this.modelName, other.modelName)) {
@@ -81,12 +91,28 @@ public class Model {
         this.makeId = makeId;
     }
 
+    public String getMakeName() {
+        return makeName;
+    }
+
+    public void setMakeName(String makeName) {
+        this.makeName = makeName;
+    }
+
     public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getModelName() {
@@ -104,6 +130,7 @@ public class Model {
     public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
     }
+
     
     
 }

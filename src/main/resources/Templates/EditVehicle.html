@@ -14,17 +14,16 @@
     />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
-    <link rel="stylesheet" th:href="@{/EditVehicle.css}" />
 
-    <script
-      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-      defer
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-      defer
-    ></script>
+    <link rel="stylesheet" th:href="@{/EditVehicle.css}" />
+    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    />
 
     <script th:src="@{/EditVehicle.js}" defer></script>
 
@@ -73,7 +72,7 @@
       >
         <div id="form-element-container">
           <div>
-            <label for="make">Make</label>
+            <label for="makeName">Make</label>
             <!-- th:onchange='" -->
             <select class="form-control" id="make" name="makeName">
               <option selected disabled>Select Make</option>
@@ -95,7 +94,7 @@
           </div>
           <input type="hidden" id="modelsEmpty" th:value="${models.empty}" />
           <div>
-            <label for="model">Model</label>
+            <label for="modelName">Model</label>
             <select class="form-control" id="model" name="modelName">
               <option selected disabled>Select Model</option>
               <option

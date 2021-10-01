@@ -94,7 +94,8 @@ Create TABLE SALE(
 	customerCity varchar(20) NOT NULL,
 	customerZipCode varchar(10) NOT NULL,
     purchasePrice INT NOT NULL,
-    purchaseType varChar(20) NOT NULL
+    purchaseType varChar(20) NOT NULL,
+    purchaseDate date not null
 );
 
 INSERT INTO user(userFirstName, userLastName, userType, userEmail, password)
@@ -158,8 +159,14 @@ Values(2, "01230AJKNDSJ", 2020, 1, 1, "Mat Black", "Grey", "SUV", "Auto", 20000,
 
 -- DELETE FROM vehicle WHERE vehicleId = 1; 
 
-INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType )
-Values(1, "Aubrey", "aubrey@abc.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "CASH");
+INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType,purchaseDate )
+Values(1, "Aubrey", "aubrey@abc.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "Cash", "2021-09-09");
+
+INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType,purchaseDate )
+Values(1, "Dan", "dan@abc.com", "Somewhere in Canada", "", "Waterloo", "ZIP12", 35000, "Bank Finance", "2021-07-09");
+
+INSERT INTO sale(salesPersonId,customerName,customerEmail, customerAddress,customerAddress2,customerCity,customerZipCode,purchasePrice,purchaseType,purchaseDate )
+Values(1, "Paul", "paul@abc.com", "Somewhere in US", "", "New York", "ZIP12", 35000, "Bank Finance", "2021-10-01");
 
 INSERT INTO special(SpecialTitle, SpecialDescription, promotionAmount)
 Values ("Title", "Desc", 100);

@@ -56,12 +56,14 @@
 
             </div>
         </a>
-
-
-    <div class="container">
-        <div class="featuredVehicles">
+        <div class="container">
             <h2>Featured Vehicles</h2>
         </div>
+        
+
+
+           
+
         <div id="featuredVehicles-container">
             <div id="vehicle-element" th:each="vehicle, vehStat : ${featuredVehicles}">
                 <img th:src="@{/car.png}"

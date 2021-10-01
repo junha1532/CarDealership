@@ -40,7 +40,8 @@ public class MakeDaoDB implements MakeDao {
 
     @Override
     public List<Make> getAllMakes() {
-        final String GET_ALL_MAKES = "SELECT * FROM make";
+        final String GET_ALL_MAKES = "SELECT * FROM make m\n" +
+"LEFT JOIN user u ON m.userId = u.userId";
         return jdbc.query(GET_ALL_MAKES, new MakeMapper());
     }
    
@@ -95,16 +96,31 @@ public class MakeDaoDB implements MakeDao {
 
         @Override
         public Make mapRow(ResultSet rs, int index) throws SQLException {
+          
             Make make = new Make();
             make.setMakeId(rs.getInt("MakeId"));
             make.setUserId(rs.getInt("userId"));
             make.setMakeName(rs.getString("makeName"));
             make.setDateAdded(LocalDate.parse(rs.getString("dateAdded")));
             make.setMakeName(rs.getString("MakeName"));
+            if(isThere(rs, "userEmail")){
+                make.setUserEmail(rs.getString("userEmail"));
+            }
 //            make.setDateAdded(rs.getString("dateAdded"));
             return make;
         }
     }
+    
+    private static boolean isThere(ResultSet rs, String column){
+    try{
+        rs.findColumn(column);
+        return true;
+    } catch (SQLException sqlex){
+        //DO NOTHING
+    }
+
+    return false;
+}
     
     //    @Override
 //    public List<Make> getMakeFromUserId(int userId) {
