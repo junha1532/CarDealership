@@ -1,108 +1,178 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    >
+    <head>
+        <!-- Bootstrap CSS -->
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
-    />
-    <meta charset="utf-8" />
-    <title>UsedInventory</title>
-  </head>
-  <body>
-    <div id="dummy-section"></div>
-    <div class="navbar">
-      <div>
-        <a th:href="@{/Index}">Home</a>
-        <a th:href="@{/Inventory/New}">New Inventory</a>
-        <a th:href="@{/Inventory/Used}">Used Inventory</a>
-        <a th:href="@{/Inventory/Specials}">Specials</a>
-        <a th:href="@{/Contact}">Contact</a>
+        <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+            />
 
-        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
-        <a
-          th:href="@{/sales}"
-          sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
-          >Sales</a
-        >
-      </div>
-      <div>
-        <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
-        <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">
-          [[${#httpServletRequest.remoteUser}]] - ADMIN
-        </h4>
-        <h4 th:inline="text" sec:authorize="hasRole('SALES')">
-          [[${#httpServletRequest.remoteUser}]] - SALES
-        </h4>
-        <form
-          th:action="@{/logout}"
-          method="post"
-          sec:authorize="isAuthenticated()"
-        >
-          <input class="btn btn-warning" type="submit" value="Sign Out" />
-        </form>
-      </div>
-    </div>
-    <div class="SearchBar">
-      <h3>Search Used Vehicles</h3>
-      <form
-        name="formS"
-        id="Searchform"
-        action="/Inventory/Used/query"
-        method="GET"
-      >
-        <input
-          type="search"
-          id="likeQuery"
-          name="likeQuery"
-          placeholder="Enter make, model, or year..."
-          class="form-group"
-        />
-        <div class="dropdown form-group">
-          Prices:
-          <select name="subject" class="dropbtn" id="minPrice">
-            <option value="" selected="minPrice">Min Price</option>
-          </select>
-          <select name="subject" class="dropbtn" id="maxPrice">
-            <option value="" selected="maxPrice">Max Price</option>
-          </select>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" th:href="@{/StyleSheet.css}" />
+        <link rel="stylesheet" th:href="@{/Vehicles.css}" />
+
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            defer
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            defer
+        ></script>
+
+        <script th:src="@{/Vehicle.js}" defer></script>
+
+        <title>Used Inventory</title>
+    </head>
+    <body>
+        <div id="dummy-section"></div>
+        <div class="navbar">
+            <div>
+                <a th:href="@{/Index}">Home</a>
+                <a th:href="@{/Inventory/New}">New Inventory</a>
+                <a th:href="@{/Inventory/Used}">Used Inventory</a>
+                <a th:href="@{/Inventory/Specials}">Specials</a>
+                <a th:href="@{/Contact}">Contact</a>
+
+                <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Admin</a>
+                <a
+                    th:href="@{/sales}"
+                    sec:authorize="hasRole('ADMIN') OR hasRole('SALES')"
+                    >Sales</a
+                >
+            </div>
+            <div>
+                <a th:href="@{/login}" sec:authorize="isAnonymous()">Login</a>
+                <h4 th:inline="text" sec:authorize="hasRole('ADMIN')">
+                    [[${#httpServletRequest.remoteUser}]] - ADMIN
+                </h4>
+                <h4 th:inline="text" sec:authorize="hasRole('SALES')">
+                    [[${#httpServletRequest.remoteUser}]] - SALES
+                </h4>
+                <form
+                    th:action="@{/logout}"
+                    method="post"
+                    sec:authorize="isAuthenticated()"
+                    >
+                    <input class="btn btn-warning" type="submit" value="Sign Out" />
+                </form>
+            </div>
         </div>
+        <div class="container">
 
-        <div class="dropdown2 form-group">
-          Year:
-          <select name="subject" class="dropbtn" id="minYear">
-            <option value="" selected="minYear">Min Year</option>
-          </select>
-          <select name="subject" class="dropbtn" id="maxYear">
-            <option value="" selected="maxYear">Max Year</option>
-          </select>
+            <div class="container" id="vehicle-query-container">
+                <h3>Quick Search</h3>
+
+           <form
+                name="formS"
+                id="Searchform"
+                action="/Inventory/Used/query"
+                method="GET"
+                clas="form-group"
+              >                    <!--            <input type="hidden" id="isNew" name="isNew" value="Both">-->
+
+                    <input type="search" value ="" name="likeQuery" id ="likeQuery" placeholder="Enter make, model, or year..."/>
+                    <label for="minPrice">Price</label>
+                    <select name="minPrice" class="dropbtnnewUsed" id="minPrice">
+                        <option value="0">NO MIN</option>
+                        <option value="5000">5000</option>
+                        <option value="10000">10000</option>
+                        <option value="15000">15000</option>
+                    </select>
+                    <select name="maxPrice"  class="dropbtnnewUsed" id="maxPrice">
+                        <option value="9999999999999">NO MAX</option>
+                        <option value="5000">5000</option>
+                        <option value="10000">10000</option>
+                        <option value="15000">15000</option>
+                        <option value="100000">100000</option>
+                    </select>
+                    <label for="minYear">Year</label>
+                    <select name="minYear" class="dropbtnnewUsed"id="minYear">
+                        <option value="0">NO MIN</option>
+                        <option value="1960">1960</option>
+                        <option value="1970">1970</option>
+                        <option value="1980">1980</option>
+                        <option value="1990">1990</option>
+                        <option value="2000">2000</option>
+                        <option value="2010">2010</option>
+                        <option value="2020">2020</option>
+                    </select>
+                    <select name="maxYear"class="dropbtnnewUsed" id="maxYear">
+                        <option value="9999">NO MAX</option>
+                        <option value="1980">1980</option>
+                        <option value="1990">1990</option>
+                        <option value="2000">2000</option>
+                        <option value="2010">2010</option>
+                        <option value="2020">2020</option>
+                        <option value="2030">2030</option>
+                    </select>
+                    <input type="submit" value="Submit">
+                </form>
+
+            </div>
+            <h1>Search Results</h1>
+            <div th:if="${not #lists.isEmpty(vehicles)}">
+                <li id="vehicle-list">
+                    <ul th:each="vehicle : ${vehicles}">
+                        <div class="container" id="vehicle-container">
+                            <h3>
+                                <span id="year" th:text="${vehicle.year}"></span>
+                                <span id="make" th:text="${vehicle.make.makeName}"></span>
+                                <span id="model" th:text="${vehicle.model.modelName}"></span>
+                            </h3>
+                            <div id="vehicle-details-container">
+                                <img
+                                    th:src="@{/car.png}"
+                                    alt="CAR"
+                                    class="img-thumbnail float-left"
+                                    />
+                                <p>
+                                    Body Style:
+                                    <span id="bodyStyle" th:text="${vehicle.bodyStyle}"></span>
+                                </p>
+                                <p>
+                                    Trans:
+                                    <span
+                                        id="transmission"
+                                        th:text="${vehicle.transmission}"
+                                        ></span>
+                                </p>
+                                <p>Color: <span id="color" th:text="${vehicle.color}"></span></p>
+                                <p>
+                                    Interior:
+                                    <span id="interior" th:text="${vehicle.interior}"></span>
+                                </p>
+                                <p>
+                                    Mileage: <span id="mileage" th:text="${vehicle.mileage}"></span>
+                                </p>
+                                <p>VIN #: <span id="VIN #" th:text="${vehicle.VIN}"></span></p>
+                                <p>
+                                    Sale Price:
+                                    <span id="Sale Price" th:text="${vehicle.salePrice}"></span>
+                                </p>
+                                <p>MSRP: <span id="MSRP" th:text="${vehicle.MSRP}"></span></p>
+                                <button
+                                    type="button"
+                                    class="btn btn-info"
+                                 
+                                    >
+                                    <a
+                  href="#"
+                  th:href="@{/Inventory/detail(id=${vehicle.vehicleId})}">Details</a>
+                                </button>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+            </div>
         </div>
-
-        <button type="submit" class="search">Search</button>
-      </form>
-    </div>
-    <div th:if="${not #lists.isEmpty(vehicles)}" class="col text-center m-3">
-      <div class="col text-center m-3">
-        <div class="col text-center m-3">
-          <table class="table table-striped">
-            <tr>
-              <td class="col text-center m-3">VehicleID</td>
-              <td class="col text-center m-3">Vehicle Make</td>
-              <td class="col text-center m-3">Vehicle Model</td>
-              <td class="col text-center m-3">Vehicle Price</td>
-            </tr>
-
-            <tr th:each="vehicle : ${vehicles}">
-              <td th:text="${vehicle.VehicleId}"></td>
-              <td th:text="${vehicle.make.makeName}"></td>
-              <td th:text="${vehicle.model.modelName}"></td>
-              <td th:text="${vehicle.SalePrice}"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </body>
+        <!-- Optional JavaScript -->
+    </body>
 </html>
