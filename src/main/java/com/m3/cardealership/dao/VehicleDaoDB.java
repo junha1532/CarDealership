@@ -94,11 +94,14 @@ public class VehicleDaoDB implements VehicleDao {
     @Override
     @Transactional
     public Vehicle addVehicle(Vehicle vehicle) {
-        final String INSERT_VEHICLE = "INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelId, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        
+        final String INSERT_VEHICLE = "INSERT INTO vehicle(userId, VIN, Year, MakeId, ModelID, Color, Interior, BodyStyle, Transmission, Mileage, SalePrice, MSRP, featured, dateAdded, DESCRIPTION)"+
+                "Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         jdbc.update(INSERT_VEHICLE,
                 vehicle.getUserId(),
                 vehicle.getVIN(),
+                vehicle.getYear(),
                 vehicle.getMake().getMakeId(),
                 vehicle.getModel().getModelId(),
                 vehicle.getColor(),
@@ -112,9 +115,10 @@ public class VehicleDaoDB implements VehicleDao {
                 vehicle.getDateAdded(),
                 vehicle.getDESCRIPTION()
         );
-
-        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        vehicle.setVehicleId(newId);
+System.out.println(INSERT_VEHICLE);
+    System.out.println(vehicle);
+//        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+//        vehicle.setVehicleId(newId);
         return vehicle;
     }
 
@@ -140,7 +144,6 @@ public class VehicleDaoDB implements VehicleDao {
                 vehicle.getDateAdded(),
                 vehicle.getDESCRIPTION(),
                 vehicle.getVehicleId());
-   
     }
 
     @Override

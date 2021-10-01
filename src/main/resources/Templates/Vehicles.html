@@ -48,7 +48,11 @@
         class="btn btn-primary"
         sec:authorize="hasRole('ADMIN')"
       >
-        Add a new Vehicle
+
+        <a th:href="@{/admin/addVehicle}">Add Vehicle</a>
+
+                
+
       </button>
       <div class="container" id="vehicle-query-container">
         <h3>Quick Search</h3>
